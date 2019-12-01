@@ -3,10 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B14F67E2393EC3400DDE422 /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14F67C2393EC3400DDE422 /* ArticlesCollectionViewController.swift */; };
+		7B14F67F2393EC3400DDE422 /* ArticlesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B14F67D2393EC3400DDE422 /* ArticlesCollectionViewController.xib */; };
+		7B2A4C192393CF05003A40A8 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2A4C182393CF05003A40A8 /* SDWebImage */; };
+		7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B2A4C1A2393D144003A40A8 /* articlesEN.json */; };
+		7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C202393D1AD003A40A8 /* Article.swift */; };
+		7B2A4C242393DA3A003A40A8 /* ProcedureKitNetwork in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2A4C232393DA3A003A40A8 /* ProcedureKitNetwork */; };
+		7B2A4C262393DA3A003A40A8 /* ProcedureKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2A4C252393DA3A003A40A8 /* ProcedureKit */; };
+		7B2A4C292393DA80003A40A8 /* ArticlesCollectionDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C282393DA80003A40A8 /* ArticlesCollectionDataController.swift */; };
+		7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */; };
+		7B2A4C332393DF16003A40A8 /* SectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C322393DF16003A40A8 /* SectionProtocol.swift */; };
+		7B2A4C352393E075003A40A8 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C342393E075003A40A8 /* Section.swift */; };
 		7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DA2390014D00967B03 /* AppDelegate.swift */; };
 		7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DC2390014D00967B03 /* SceneDelegate.swift */; };
 		7B8C68DF2390014D00967B03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DE2390014D00967B03 /* ViewController.swift */; };
@@ -19,6 +30,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B14F67C2393EC3400DDE422 /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
+		7B14F67D2393EC3400DDE422 /* ArticlesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlesCollectionViewController.xib; sourceTree = "<group>"; };
+		7B2A4C1A2393D144003A40A8 /* articlesEN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = articlesEN.json; sourceTree = "<group>"; };
+		7B2A4C202393D1AD003A40A8 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		7B2A4C282393DA80003A40A8 /* ArticlesCollectionDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionDataController.swift; sourceTree = "<group>"; };
+		7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringJSONDataNetworkOperation.swift; sourceTree = "<group>"; };
+		7B2A4C322393DF16003A40A8 /* SectionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProtocol.swift; sourceTree = "<group>"; };
+		7B2A4C342393E075003A40A8 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		7B8C68D72390014D00967B03 /* ArticleI24NEWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArticleI24NEWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C68DA2390014D00967B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8C68DC2390014D00967B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,12 +56,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B2A4C242393DA3A003A40A8 /* ProcedureKitNetwork in Frameworks */,
+				7B2A4C192393CF05003A40A8 /* SDWebImage in Frameworks */,
+				7B2A4C262393DA3A003A40A8 /* ProcedureKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B2A4C272393DA49003A40A8 /* Articles */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A4C202393D1AD003A40A8 /* Article.swift */,
+				7B2A4C2E2393DAC4003A40A8 /* List */,
+				7B8C68F42390054900967B03 /* ArticleViewController.swift */,
+				7B8C68F52390054900967B03 /* ArticleViewController.xib */,
+			);
+			path = Articles;
+			sourceTree = "<group>";
+		};
+		7B2A4C2E2393DAC4003A40A8 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A4C282393DA80003A40A8 /* ArticlesCollectionDataController.swift */,
+				7B14F67C2393EC3400DDE422 /* ArticlesCollectionViewController.swift */,
+				7B14F67D2393EC3400DDE422 /* ArticlesCollectionViewController.xib */,
+				7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		7B2A4C312393DF03003A40A8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A4C322393DF16003A40A8 /* SectionProtocol.swift */,
+				7B2A4C342393E075003A40A8 /* Section.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		7B8C68CE2390014D00967B03 = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +115,15 @@
 		7B8C68D92390014D00967B03 /* ArticleI24NEWS */ = {
 			isa = PBXGroup;
 			children = (
+				7B2A4C312393DF03003A40A8 /* Protocols */,
 				7B8C68DA2390014D00967B03 /* AppDelegate.swift */,
 				7B8C68DC2390014D00967B03 /* SceneDelegate.swift */,
 				96FED69623902E1200439D80 /* ExtensionUIImage.swift */,
 				7B8C68DE2390014D00967B03 /* ViewController.swift */,
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
-				7B8C68F42390054900967B03 /* ArticleViewController.swift */,
-				7B8C68F52390054900967B03 /* ArticleViewController.xib */,
+				7B2A4C272393DA49003A40A8 /* Articles */,
 				7B8C68E32390014F00967B03 /* Assets.xcassets */,
+				7B2A4C1A2393D144003A40A8 /* articlesEN.json */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
 				7B8C68E82390014F00967B03 /* Info.plist */,
 			);
@@ -92,6 +146,11 @@
 			dependencies = (
 			);
 			name = ArticleI24NEWS;
+			packageProductDependencies = (
+				7B2A4C182393CF05003A40A8 /* SDWebImage */,
+				7B2A4C232393DA3A003A40A8 /* ProcedureKitNetwork */,
+				7B2A4C252393DA3A003A40A8 /* ProcedureKit */,
+			);
 			productName = ArticleI24NEWS;
 			productReference = 7B8C68D72390014D00967B03 /* ArticleI24NEWS.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +167,7 @@
 				TargetAttributes = {
 					7B8C68D62390014D00967B03 = {
 						CreatedOnToolsVersion = 11.2.1;
+						LastSwiftMigration = 1120;
 					};
 				};
 			};
@@ -120,6 +180,10 @@
 				Base,
 			);
 			mainGroup = 7B8C68CE2390014D00967B03;
+			packageReferences = (
+				7B2A4C172393CF05003A40A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */,
+			);
 			productRefGroup = 7B8C68D82390014D00967B03 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -136,8 +200,10 @@
 			files = (
 				7B8C68E72390014F00967B03 /* LaunchScreen.storyboard in Resources */,
 				7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */,
+				7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */,
 				7B8C68E42390014F00967B03 /* Assets.xcassets in Resources */,
 				7B8C68E22390014D00967B03 /* Main.storyboard in Resources */,
+				7B14F67F2393EC3400DDE422 /* ArticlesCollectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,9 +216,15 @@
 			files = (
 				7B8C68DF2390014D00967B03 /* ViewController.swift in Sources */,
 				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
+				7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */,
+				7B2A4C352393E075003A40A8 /* Section.swift in Sources */,
 				7B8C68F62390054900967B03 /* ArticleViewController.swift in Sources */,
 				7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */,
 				7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */,
+				7B2A4C332393DF16003A40A8 /* SectionProtocol.swift in Sources */,
+				7B14F67E2393EC3400DDE422 /* ArticlesCollectionViewController.swift in Sources */,
+				7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */,
+				7B2A4C292393DA80003A40A8 /* ArticlesCollectionDataController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +368,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LWXCT592NE;
 				INFOPLIST_FILE = ArticleI24NEWS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -305,6 +379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "gini-apps.ArticleI24NEWS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -314,7 +389,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = LWXCT592NE;
 				INFOPLIST_FILE = ArticleI24NEWS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -350,6 +427,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7B2A4C172393CF05003A40A8 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.2;
+			};
+		};
+		7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ProcedureKit/ProcedureKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7B2A4C182393CF05003A40A8 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B2A4C172393CF05003A40A8 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		7B2A4C232393DA3A003A40A8 /* ProcedureKitNetwork */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */;
+			productName = ProcedureKitNetwork;
+		};
+		7B2A4C252393DA3A003A40A8 /* ProcedureKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */;
+			productName = ProcedureKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B8C68CF2390014D00967B03 /* Project object */;
 }

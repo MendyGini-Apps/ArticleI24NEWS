@@ -46,3 +46,14 @@ extension CGFloat {
         return CGFloat(Double(self).roundToDecimal(fractionDigits))
     }
 }
+
+extension DateFormatter
+{
+    static var i24APIFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        return formatter
+    }()
+}

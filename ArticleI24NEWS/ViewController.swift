@@ -17,8 +17,8 @@ class ViewController: UIViewController {
 
 
     @IBAction func showArticleViewController(_ sender: UIBarButtonItem) {
-        let articleViewController = ArticleViewController(nibName: "\(ArticleViewController.self)", bundle: nil)
-        show(articleViewController, sender: self)
+        let articlesCollectionViewController = ArticlesCollectionViewController(nibName: "\(ArticlesCollectionViewController.self)", bundle: nil)
+        show(articlesCollectionViewController, sender: self)
     }
 }
 
