@@ -15,6 +15,7 @@
 		7B8C68E72390014F00967B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */; };
 		7B8C68F62390054900967B03 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68F42390054900967B03 /* ArticleViewController.swift */; };
 		7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68F52390054900967B03 /* ArticleViewController.xib */; };
+		96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FED69623902E1200439D80 /* ExtensionUIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		7B8C68E82390014F00967B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B8C68F42390054900967B03 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		7B8C68F52390054900967B03 /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
+		96FED69623902E1200439D80 /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				7B8C68DA2390014D00967B03 /* AppDelegate.swift */,
 				7B8C68DC2390014D00967B03 /* SceneDelegate.swift */,
+				96FED69623902E1200439D80 /* ExtensionUIImage.swift */,
 				7B8C68DE2390014D00967B03 /* ViewController.swift */,
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
 				7B8C68F42390054900967B03 /* ArticleViewController.swift */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8C68DF2390014D00967B03 /* ViewController.swift in Sources */,
+				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
 				7B8C68F62390054900967B03 /* ArticleViewController.swift in Sources */,
 				7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */,
 				7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */,
