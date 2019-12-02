@@ -27,10 +27,10 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="547"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K8U-Eg-FlV" userLabel="Parallax View">
-                                    <rect key="frame" x="0.0" y="200" width="414" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="-44" width="414" height="244"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="trump" translatesAutoresizingMaskIntoConstraints="NO" id="XiM-ec-O9Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="XiM-ec-O9Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -137,6 +137,6 @@
         </view>
     </objects>
     <resources>
-        <image name="trump" width="780" height="438"/>
+        <image name="logo_article" width="672" height="371"/>
     </resources>
 </document>

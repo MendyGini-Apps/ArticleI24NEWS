@@ -23,7 +23,7 @@ class ArticlesCollectionDataController
 {
     private weak var delegate: ArticlesCollectionDataControllerDelegate!
     private let queue: ProcedureQueue
-    var dataSource: [OrderedSection<Any, Article, Any>]
+    var dataSource: [Section]
     
     init(delegate: ArticlesCollectionDataControllerDelegate)
     {

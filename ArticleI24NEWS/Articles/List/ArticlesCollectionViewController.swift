@@ -11,9 +11,10 @@ import SDWebImage
 
 class ArticlesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
 {
-    
+    // MARK: - Properties
     var dataController: ArticlesCollectionDataController!
     
+    // MARK: - View Life Cycle
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -32,12 +33,32 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    func reuseIdentifier(at indexPath: IndexPath) -> String
+    // MARK: UICollectionViewDataSource
+    override func numberOfSections(in collectionView: UICollectionView) -> Int
+    {
+        return dataController.numberOfSections()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return dataController.numberOfItems(in: section)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier(at: indexPath), for: indexPath)
+    
+        configure(cell: cell, at: indexPath)
+    
+        return cell
+    }
+    
+    private func reuseIdentifier(at indexPath: IndexPath) -> String
     {
         return "\(ArticleCollectionViewCell.self)"
     }
     
-    func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
+    private func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
     {
         guard let articleCell = cell as? ArticleCollectionViewCell else { return }
         
@@ -48,72 +69,28 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         articleCell.webView.loadHTMLString(article.bodyHTML, baseURL: nil)
         guard let imageURL = article.images.first?.imageURL else { return }
-        articleCell.headerImageView.sd_setImage(with: imageURL)
-    }
-    
-    // MARK: UICollectionViewDataSource
-    
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return dataController.numberOfSections()
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return dataController.numberOfItems(in: section)
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier(at: indexPath), for: indexPath)
-    
-        // Configure the cell
-        configure(cell: cell, at: indexPath)
-    
-        return cell
+        articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
 
     // MARK: UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = collectionView.bounds.size
-//        size.height -= (view.layoutMargins.top + view.layoutMargins.bottom)
-        return size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        return collectionView.bounds.size
     }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets.zero
-//    }
     
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
+    // MARK: - IBActions
+    @IBAction func commentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
+    {
+        
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
+    {
+        
     }
-    */
-    
 }
 
+// MARK: - ArticlesCollectionDataControllerDelegate Implementation
 extension ArticlesCollectionViewController: ArticlesCollectionDataControllerDelegate
 {
     func dataController(_ dataController: ArticlesCollectionDataController, taskStateDidChange state: Bool) {
