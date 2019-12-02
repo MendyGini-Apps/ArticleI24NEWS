@@ -9,27 +9,52 @@
 import Foundation
 import ProcedureKit
 
+protocol ArticlesCollectionDataControllerProtocol: DataSourceProtocol
+{
+    func fetchData()
+}
+
+protocol ArticlesCollectionDataControllerDelegate: NSObjectProtocol
+{
+    func dataController(_ dataController: ArticlesCollectionDataController, taskStateDidChange state: Bool)
+}
+
 class ArticlesCollectionDataController
 {
-    let queue: ProcedureQueue
+    private weak var delegate: ArticlesCollectionDataControllerDelegate!
+    private let queue: ProcedureQueue
+    var dataSource: [OrderedSection<Any, Article, Any>]
     
-    init()
+    init(delegate: ArticlesCollectionDataControllerDelegate)
     {
+        self.delegate = delegate
         self.queue = ProcedureQueue()
+        self.dataSource = []
     }
-    
+}
+
+extension ArticlesCollectionDataController: ArticlesCollectionDataControllerProtocol
+{
     func fetchData()
     {
-        guard let url = Bundle.main.url(forResource: "articlesEN", withExtension: "json") else { return }
+        guard let path = Bundle.main.path(forResource: "articlesEN", ofType: "json") else { return }
+        let url = URL(fileURLWithPath: path)
         
-        let bringNetworkOperation = BringJSONDataNetworkOperation(urlRequest: URLRequest(url: url), outputType: [Article].self)
+        let bringLocaleFileOperation = BringJSONDataLocaleFileOperation(url: url, outputType: [Article].self)
         
-        bringNetworkOperation.addDidFinishBlockObserver(synchronizedWith: DispatchQueue.main) { (networkOpration, error) in
+        bringLocaleFileOperation.addDidFinishBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (networkOpration, error) in
+            guard let strongSelf = self else { return }
             
-            print(networkOpration.output)
-            
+            guard let articles = networkOpration.output.value?.value else { return }
+            strongSelf.dataSource = [Section(itemsMetadata: articles)]
+            strongSelf.delegate.dataController(strongSelf, taskStateDidChange: true)
         }
         
-        queue.addOperation(bringNetworkOperation)
+        queue.addOperation(bringLocaleFileOperation)
     }
+}
+
+extension ArticlesCollectionDataController: DataSourceProtocol
+{
+    typealias Section = OrderedSection<Any,Article,Any>
 }

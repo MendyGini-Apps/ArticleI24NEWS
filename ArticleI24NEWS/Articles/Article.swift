@@ -16,7 +16,6 @@ struct Article: Decodable
     let excerpt: String
     let bodyHTML: String
     let authorName: String
-    let authorImageURL: URL?
     let category: String
     let createdAt: Date?
     let publishedAt: Date?
@@ -37,9 +36,7 @@ struct Article: Decodable
         case shortTitle = "shortTitle"
         case excerpt = "excerpt"
         case bodyHTML = "body"
-        case authorName = "signature.title"
-        case authorImageURL = "signature.image"
-        case category = "category.name"
+        case category = "category"
         case createdAt = "createdAt"
         case publishedAt = "publishedAt"
         case updatedAt = "updatedAt"
@@ -84,13 +81,12 @@ struct Article: Decodable
         self.favorite = try container.decode(Bool.self, forKey: .favorite)
         self.href = try container.decode(URL.self, forKey: .href)
         self.frontedURL = try container.decode(URL.self, forKey: .frontedURL)
-        self.externalVideoId = try container.decode(String.self, forKey: .externalVideoId)
-        self.externalVideoProvider = try container.decode(String.self, forKey: .externalVideoProvider)
+        self.externalVideoId = try container.decode(String?.self, forKey: .externalVideoId)
+        self.externalVideoProvider = try container.decode(String?.self, forKey: .externalVideoProvider)
         
         let signature = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .signature)
         
-        self.authorName = try signature.decode(String.self, forKey: .authorName)
-        self.authorImageURL = try signature.decode(URL.self, forKey: .authorImageURL)
+        self.authorName = try signature.decode(String.self, forKey: .title)
         
         let category = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .category)
         

@@ -7,59 +7,82 @@
 //
 
 import UIKit
+import SDWebImage
 
-private let reuseIdentifier = "Cell"
-
-class ArticlesCollectionViewController: UICollectionViewController {
+class ArticlesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
+{
     
-    let dataController = ArticlesCollectionDataController()
+    var dataController: ArticlesCollectionDataController!
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
+        automaticallyAdjustsScrollViewInsets = false
+        
+        self.collectionView!.register(UINib(nibName: "\(ArticleCollectionViewCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(ArticleCollectionViewCell.self)")
+        
+        dataController = ArticlesCollectionDataController(delegate: self)
         dataController.fetchData()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    */
-
+    
+    func reuseIdentifier(at indexPath: IndexPath) -> String
+    {
+        return "\(ArticleCollectionViewCell.self)"
+    }
+    
+    func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
+    {
+        guard let articleCell = cell as? ArticleCollectionViewCell else { return }
+        
+        let article = dataController.item(at: indexPath)
+        
+        articleCell.titleLabel.text = article.title
+        articleCell.descriptionLabel.text = article.excerpt
+        
+        articleCell.webView.loadHTMLString(article.bodyHTML, baseURL: nil)
+        guard let imageURL = article.images.first?.imageURL else { return }
+        articleCell.headerImageView.sd_setImage(with: imageURL)
+    }
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return dataController.numberOfSections()
     }
-
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return dataController.numberOfItems(in: section)
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier(at: indexPath), for: indexPath)
     
         // Configure the cell
+        configure(cell: cell, at: indexPath)
     
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
-
+    // MARK: UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var size = collectionView.bounds.size
+//        size.height -= (view.layoutMargins.top + view.layoutMargins.bottom)
+        return size
+    }
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets.zero
+//    }
+    
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -89,4 +112,11 @@ class ArticlesCollectionViewController: UICollectionViewController {
     }
     */
     
+}
+
+extension ArticlesCollectionViewController: ArticlesCollectionDataControllerDelegate
+{
+    func dataController(_ dataController: ArticlesCollectionDataController, taskStateDidChange state: Bool) {
+        collectionView.reloadData()
+    }
 }

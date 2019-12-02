@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class orderedSection<Header, Item, Footer>: SectionProtocol
+final class OrderedSection<Header, Item, Footer>: SectionProtocol
 {
     var headerMetadata: Header?
     
