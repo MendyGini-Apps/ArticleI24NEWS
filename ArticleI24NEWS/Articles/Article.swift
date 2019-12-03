@@ -23,7 +23,7 @@ struct Article: Decodable
     let numberOfComments: UInt
     let images: [ArticleImage]
     let type: String
-    let liveNews: [News]?
+    let liveNews: [ArticleNews]?
     let favorite: Bool
     let href: URL
     let frontedURL: URL
@@ -65,19 +65,19 @@ struct Article: Decodable
         self.bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
         
         let createdAtAsString = try container.decode(String.self, forKey: .createdAt)
-        self.createdAt = DateFormatter.i24APIFormatter.date(from: createdAtAsString)
+        self.createdAt = DateFormatter.i24APIArticleFormatter.date(from: createdAtAsString)
         
         let publishedAtAsString = try container.decode(String.self, forKey: .publishedAt)
-        self.publishedAt = DateFormatter.i24APIFormatter.date(from: publishedAtAsString)
+        self.publishedAt = DateFormatter.i24APIArticleFormatter.date(from: publishedAtAsString)
         
         let updatedAtAsString = try container.decode(String.self, forKey: .updatedAt)
-        self.updatedAt = DateFormatter.i24APIFormatter.date(from: updatedAtAsString)
+        self.updatedAt = DateFormatter.i24APIArticleFormatter.date(from: updatedAtAsString)
         
         self.numberOfComments = try container.decode(UInt.self, forKey: .numberOfComments)
         let image = try container.decode(ArticleImage.self, forKey: .image)
         self.images = [image]
         self.type = try container.decode(String.self, forKey: .type)
-        self.liveNews = nil
+        self.liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
         self.favorite = try container.decode(Bool.self, forKey: .favorite)
         self.href = try container.decode(URL.self, forKey: .href)
         self.frontedURL = try container.decode(URL.self, forKey: .frontedURL)
@@ -107,9 +107,29 @@ struct ArticleImage: Codable
     }
 }
 
-struct News: Codable
+struct ArticleNews: Codable
 {
+    let identifier: Int
+    let date: Date?
+    let contentHTML: String
     
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case date = "date"
+        case contentHTML = "content"
+    }
+    
+    init(from decoder: Decoder) throws
+    {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let idAsString = try container.decode(String.self, forKey: .identifier)
+        self.identifier = Int(idAsString) ?? -1
+        self.contentHTML = try container.decode(String.self, forKey: .contentHTML)
+        
+        let dateAsString = try container.decode(String.self, forKey: .date)
+        self.date = DateFormatter.i24APINewsFormatter.date(from: dateAsString)
+    }
 }
 
 enum ArticleType: String, Codable {

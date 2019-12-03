@@ -49,10 +49,18 @@ extension CGFloat {
 
 extension DateFormatter
 {
-    static var i24APIFormatter: DateFormatter = {
+    static var i24APIArticleFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        return formatter
+    }()
+    
+    static var i24APINewsFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         return formatter
     }()

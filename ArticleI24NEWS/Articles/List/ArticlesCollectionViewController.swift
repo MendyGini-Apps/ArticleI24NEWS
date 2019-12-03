@@ -72,7 +72,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         articleCell.categoryLabel.text = article.category.uppercased(with: Locale.current)
         
         guard let date = article.createdAt else { return }
-        articleCell.dateLabel.text = DateFormatter.i24APIFormatter.string(from: date)
+        articleCell.dateLabel.text = DateFormatter.i24APIArticleFormatter.string(from: date)
         guard let imageURL = article.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
