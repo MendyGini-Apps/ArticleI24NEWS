@@ -26,6 +26,8 @@
 		7B8C68E72390014F00967B03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */; };
 		7B8C68F62390054900967B03 /* ArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68F42390054900967B03 /* ArticleViewController.swift */; };
 		7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68F52390054900967B03 /* ArticleViewController.xib */; };
+		7BF9DFFF23966D5B00109877 /* articleTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9DFFE23966D5B00109877 /* articleTemplate.html */; };
+		7BF9E004239678D900109877 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 7BF9E003239678D900109877 /* SwiftSoup */; };
 		96E8AC652394E9E000611439 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */; };
 		96E8AC662394E9E000611439 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */; };
 		96E8AC682396448900611439 /* articleStyles.css in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC672396448900611439 /* articleStyles.css */; };
@@ -51,6 +53,7 @@
 		7B8C68E82390014F00967B03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7B8C68F42390054900967B03 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		7B8C68F52390054900967B03 /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
+		7BF9DFFE23966D5B00109877 /* articleTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = articleTemplate.html; sourceTree = "<group>"; };
 		96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		96E8AC672396448900611439 /* articleStyles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = articleStyles.css; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B2A4C242393DA3A003A40A8 /* ProcedureKitNetwork in Frameworks */,
+				7BF9E004239678D900109877 /* SwiftSoup in Frameworks */,
 				7B2A4C192393CF05003A40A8 /* SDWebImage in Frameworks */,
 				7B2A4C262393DA3A003A40A8 /* ProcedureKit in Frameworks */,
 			);
@@ -130,13 +134,30 @@
 				7B8C68DE2390014D00967B03 /* ViewController.swift */,
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
 				7B2A4C272393DA49003A40A8 /* Articles */,
-				7B8C68E32390014F00967B03 /* Assets.xcassets */,
-				7B2A4C1A2393D144003A40A8 /* articlesEN.json */,
-				96E8AC672396448900611439 /* articleStyles.css */,
+				7BF9E0002396711E00109877 /* Resources */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
 				7B8C68E82390014F00967B03 /* Info.plist */,
 			);
 			path = ArticleI24NEWS;
+			sourceTree = "<group>";
+		};
+		7BF9E0002396711E00109877 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7B8C68E32390014F00967B03 /* Assets.xcassets */,
+				7BF9E0012396716800109877 /* HTML */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7BF9E0012396716800109877 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A4C1A2393D144003A40A8 /* articlesEN.json */,
+				96E8AC672396448900611439 /* articleStyles.css */,
+				7BF9DFFE23966D5B00109877 /* articleTemplate.html */,
+			);
+			path = HTML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +180,7 @@
 				7B2A4C182393CF05003A40A8 /* SDWebImage */,
 				7B2A4C232393DA3A003A40A8 /* ProcedureKitNetwork */,
 				7B2A4C252393DA3A003A40A8 /* ProcedureKit */,
+				7BF9E003239678D900109877 /* SwiftSoup */,
 			);
 			productName = ArticleI24NEWS;
 			productReference = 7B8C68D72390014D00967B03 /* ArticleI24NEWS.app */;
@@ -192,6 +214,7 @@
 			packageReferences = (
 				7B2A4C172393CF05003A40A8 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */,
+				7BF9E002239678D900109877 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 7B8C68D82390014D00967B03 /* Products */;
 			projectDirPath = "";
@@ -212,6 +235,7 @@
 				7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */,
 				7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */,
 				7B8C68E42390014F00967B03 /* Assets.xcassets in Resources */,
+				7BF9DFFF23966D5B00109877 /* articleTemplate.html in Resources */,
 				96E8AC682396448900611439 /* articleStyles.css in Resources */,
 				7B8C68E22390014D00967B03 /* Main.storyboard in Resources */,
 				7B14F67F2393EC3400DDE422 /* ArticlesCollectionViewController.xib in Resources */,
@@ -457,6 +481,14 @@
 				minimumVersion = 5.2.0;
 			};
 		};
+		7BF9E002239678D900109877 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -474,6 +506,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7B2A4C222393DA3A003A40A8 /* XCRemoteSwiftPackageReference "ProcedureKit" */;
 			productName = ProcedureKit;
+		};
+		7BF9E003239678D900109877 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7BF9E002239678D900109877 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
