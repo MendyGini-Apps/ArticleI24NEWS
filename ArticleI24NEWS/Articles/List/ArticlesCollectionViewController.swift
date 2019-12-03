@@ -66,8 +66,13 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         articleCell.titleLabel.text = article.title
         articleCell.descriptionLabel.text = article.excerpt
-        
         articleCell.webView.loadHTMLString(article.bodyHTML, baseURL: nil)
+        articleCell.authorNameLabel.text = article.authorName
+        // TODO: - current app local (EN, FR, AR)
+        articleCell.categoryLabel.text = article.category.uppercased(with: Locale.current)
+        
+        guard let date = article.createdAt else { return }
+        articleCell.dateLabel.text = DateFormatter.i24APIFormatter.string(from: date)
         guard let imageURL = article.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
@@ -81,12 +86,12 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     // MARK: - IBActions
     @IBAction func commentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
-        
+        print(#function)
     }
     
     @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
-        
+        print(#function)
     }
 }
 

@@ -28,6 +28,7 @@
 		7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68F52390054900967B03 /* ArticleViewController.xib */; };
 		96E8AC652394E9E000611439 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */; };
 		96E8AC662394E9E000611439 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */; };
+		96E8AC682396448900611439 /* articleStyles.css in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC672396448900611439 /* articleStyles.css */; };
 		96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FED69623902E1200439D80 /* ExtensionUIImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		7B8C68F52390054900967B03 /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
+		96E8AC672396448900611439 /* articleStyles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = articleStyles.css; sourceTree = "<group>"; };
 		96FED69623902E1200439D80 /* ExtensionUIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				7B2A4C272393DA49003A40A8 /* Articles */,
 				7B8C68E32390014F00967B03 /* Assets.xcassets */,
 				7B2A4C1A2393D144003A40A8 /* articlesEN.json */,
+				96E8AC672396448900611439 /* articleStyles.css */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
 				7B8C68E82390014F00967B03 /* Info.plist */,
 			);
@@ -209,6 +212,7 @@
 				7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */,
 				7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */,
 				7B8C68E42390014F00967B03 /* Assets.xcassets in Resources */,
+				96E8AC682396448900611439 /* articleStyles.css in Resources */,
 				7B8C68E22390014D00967B03 /* Main.storyboard in Resources */,
 				7B14F67F2393EC3400DDE422 /* ArticlesCollectionViewController.xib in Resources */,
 			);

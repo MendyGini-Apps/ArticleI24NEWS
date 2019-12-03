@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: '-apple-system','HelveticaNeue';
+    -webkit-text-size-adjust: none;
+	background: transparent;
+}
+
+table {
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+figure {
+    max-width: 100% !important;
+    display: block;
+    margin: auto;
+}
+
+img {
+    width: auto !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block;
+    margin: auto;
+}
+
+iframe {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: auto;
+}
+
+video {
+    max-width: 100% !important;
+    display: block;
+    margin: auto;
+}
+
+.twitter-video {	
+	max-width: 100% !important;
+	height: auto !important;
+	display: block;
+	margin: auto !important;
+	margin-left : -20px !important;
+	margin-right : -20px !important;
+}
+
+.section_day {
+	color: white;
+	background: #1F366A;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.contentLiveDiv {
+	margin-left: -20px;
+	margin-right: -20px;
+}
+
+.contentLiveDivIpad {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.contentLive > div:last-child > p:last-child{
+	border-bottom: none;
+}
+.time{
+	position: absolute;
+	left: -8px;
+	top: 18px;
+	
+}
+
+.container {
+	position: relative;
+	padding: 15px 15px 0px 20px;
+	border-left: 1px solid #999;
+	margin-left: 20px;
+}
+
+.container-ipad {
+	position: relative;
+	padding: 15px 15px 0px 20px;
+	border-left: 1px solid #999;
+	margin-left: 20px;
+}
+
+.container-ipad p,
+.container p {
+	margin: 0px;
+}
+
+.container-ipad p.heure,
+.container p.heure {
+	margin-bottom: 15px;
+	color: #999999;
+}
+.container-ipad > p:last-child,
+.container > p:last-child {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #999;
+}

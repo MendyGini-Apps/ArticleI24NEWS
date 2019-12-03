@@ -15,8 +15,14 @@ class ArticleCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var scrollView       : UIScrollView!
     @IBOutlet weak var headerImageView  : UIImageView!
     @IBOutlet weak var titleLabel       : UILabel!
+    @IBOutlet weak var categoryLabel    : UILabel!
+    @IBOutlet weak var writtenByLabel: UILabel!
+    @IBOutlet weak var authorNameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel : UILabel!
     @IBOutlet weak var containerWebView : UIView!
+    @IBOutlet weak var commentsButton: UIButton!
+    @IBOutlet weak var addCommentButton: UIButton!
     @IBOutlet weak var heightParallaxViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -41,15 +47,15 @@ class ArticleCollectionViewCell: UICollectionViewCell
     override func prepareForReuse()
     {
         super.prepareForReuse()
-        
+        print(self)
         headerImageView.image = nil
-        adjustWebViewHeight(1.0)
         if webView.isLoading
         {
             scrollView.contentOffset.y = 0
             webView.stopLoading()
         }
         webView.loadHTMLString("", baseURL: nil)
+        adjustWebViewHeight()
     }
 }
 
@@ -78,7 +84,7 @@ extension ArticleCollectionViewCell
         })
     }
     
-    private func adjustWebViewHeight(_ height: CGFloat)
+    func adjustWebViewHeight(_ height: CGFloat = 1.0)
     {
         webView.constraints.first(where: { $0.firstAttribute == .height })?.constant = height
     }
