@@ -64,4 +64,22 @@ extension DateFormatter
         
         return formatter
     }()
+    
+    static var i24DayForArticleFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "dd/MM/yyyy"
+        
+        return formatter
+    }()
+    
+    static var i24TimeForArticleFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "HH:mm"
+        
+        return formatter
+    }()
 }

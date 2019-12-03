@@ -16,13 +16,13 @@ class ArticleCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var headerImageView  : UIImageView!
     @IBOutlet weak var titleLabel       : UILabel!
     @IBOutlet weak var categoryLabel    : UILabel!
-    @IBOutlet weak var writtenByLabel: UILabel!
-    @IBOutlet weak var authorNameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var writtenByLabel   : UILabel!
+    @IBOutlet weak var authorNameLabel  : UILabel!
+    @IBOutlet weak var dateLabel        : UILabel!
     @IBOutlet weak var descriptionLabel : UILabel!
     @IBOutlet weak var containerWebView : UIView!
-    @IBOutlet weak var commentsButton: UIButton!
-    @IBOutlet weak var addCommentButton: UIButton!
+    @IBOutlet weak var commentsButton   : UIButton!
+    @IBOutlet weak var addCommentButton : UIButton!
     @IBOutlet weak var heightParallaxViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
@@ -40,6 +40,8 @@ class ArticleCollectionViewCell: UICollectionViewCell
     {
         super.awakeFromNib()
         
+        // TODO: - Localization "Written by"
+        writtenByLabel.text = "Written by"
         addWebView()
         observeWebViewEstimatedProgress()
     }
@@ -78,7 +80,7 @@ extension ArticleCollectionViewCell
             guard let newValue = changed.newValue else { return }
             guard newValue == 1.0 else { return }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: { [weak self] in
                 self?.adjustWebViewHeight(webView.scrollView.contentSize.height)
             })
         })

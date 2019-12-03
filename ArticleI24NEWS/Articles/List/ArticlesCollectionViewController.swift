@@ -87,12 +87,37 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         // TODO: - current app local (EN, FR, AR)
         articleCell.categoryLabel.text = article.category.uppercased(with: Locale.current)
         
-        guard let date = article.createdAt else { return }
-        articleCell.dateLabel.text = DateFormatter.i24APIArticleFormatter.string(from: date)
+        if var articleCreatedAtAsString = stringFor(date: article.createdAt)
+        {
+            if article.createdAt!.compare(article.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: article.updatedAt)
+            {
+                // TODO: - Localization "UPD"
+                articleCreatedAtAsString += " | UPD \(articleUpdateAtAsString)"
+            }
+            articleCell.dateLabel.text = articleCreatedAtAsString
+        }
+        
         guard let imageURL = article.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
-
+    
+    func stringFor(date: Date?) -> String?
+    {
+        guard let date = date else { return nil }
+        
+        let dateAsString = DateFormatter.i24DayForArticleFormatter.string(from: date)
+        let timeAsString = DateFormatter.i24TimeForArticleFormatter.string(from: date)
+        if Calendar.current.isDateInToday(date)
+        {
+            return timeAsString
+        }
+        else
+        {
+            // TODO: - Localization "at"
+            return "\(dateAsString) at \(timeAsString)"
+        }
+    }
+    
     // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
