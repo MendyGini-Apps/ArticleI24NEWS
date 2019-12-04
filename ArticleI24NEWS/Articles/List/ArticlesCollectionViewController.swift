@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import SwiftSoup
 
 class ArticlesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
 {
@@ -68,21 +67,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         articleCell.titleLabel.text = article.title
         articleCell.descriptionLabel.text = article.excerpt
         articleCell.authorNameLabel.text = article.authorName
-        
-        guard let url = Bundle.main.url(forResource: "articleTemplate", withExtension: "html") else { return }
-        do
-        {
-            let htmlTemplate = try String(contentsOf: url)
-            let doc = try SwiftSoup.parse(htmlTemplate)
-            
-            try doc.body()?.prepend(article.bodyHTML)
-            let html = try doc.html()
-            articleCell.webView.loadHTMLString(html, baseURL: nil)
-        }
-        catch
-        {
-            print(error)
-        }
+        articleCell.webView.loadHTMLString(article.HTMLString, baseURL: nil)
         
         // TODO: - current app local (EN, FR, AR)
         articleCell.categoryLabel.text = article.category.uppercased(with: Locale.current)

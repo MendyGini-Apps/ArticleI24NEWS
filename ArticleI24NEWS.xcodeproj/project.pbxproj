@@ -28,6 +28,7 @@
 		7B8C68F72390054900967B03 /* ArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68F52390054900967B03 /* ArticleViewController.xib */; };
 		7BF9DFFF23966D5B00109877 /* articleTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 7BF9DFFE23966D5B00109877 /* articleTemplate.html */; };
 		7BF9E004239678D900109877 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 7BF9E003239678D900109877 /* SwiftSoup */; };
+		963D935A23978D470050F014 /* ArticleUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D935923978D470050F014 /* ArticleUtility.swift */; };
 		96E8AC652394E9E000611439 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */; };
 		96E8AC662394E9E000611439 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */; };
 		96E8AC682396448900611439 /* articleStyles.css in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC672396448900611439 /* articleStyles.css */; };
@@ -54,6 +55,7 @@
 		7B8C68F42390054900967B03 /* ArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewController.swift; sourceTree = "<group>"; };
 		7B8C68F52390054900967B03 /* ArticleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleViewController.xib; sourceTree = "<group>"; };
 		7BF9DFFE23966D5B00109877 /* articleTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = articleTemplate.html; sourceTree = "<group>"; };
+		963D935923978D470050F014 /* ArticleUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleUtility.swift; sourceTree = "<group>"; };
 		96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		96E8AC672396448900611439 /* articleStyles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = articleStyles.css; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 		7B2A4C272393DA49003A40A8 /* Articles */ = {
 			isa = PBXGroup;
 			children = (
+				963D935923978D470050F014 /* ArticleUtility.swift */,
 				7B2A4C202393D1AD003A40A8 /* Article.swift */,
 				7B2A4C2E2393DAC4003A40A8 /* List */,
 				7B8C68F42390054900967B03 /* ArticleViewController.swift */,
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8C68DF2390014D00967B03 /* ViewController.swift in Sources */,
+				963D935A23978D470050F014 /* ArticleUtility.swift in Sources */,
 				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
 				7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */,
 				7B2A4C352393E075003A40A8 /* Section.swift in Sources */,

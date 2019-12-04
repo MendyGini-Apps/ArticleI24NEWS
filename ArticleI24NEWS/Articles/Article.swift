@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftSoup
 
 struct Article: Decodable
 {
@@ -29,6 +30,7 @@ struct Article: Decodable
     let frontedURL: URL
     let externalVideoId: String?
     let externalVideoProvider: String?
+    let HTMLString: String
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -91,6 +93,20 @@ struct Article: Decodable
         let category = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .category)
         
         self.category = try category.decode(String.self, forKey: .name)
+        
+        
+        if ArticleUtility.templateArticleString != nil
+        {
+            let doc = try SwiftSoup.parse(ArticleUtility.templateArticleString!)
+            
+            try doc.body()?.prepend(bodyHTML)
+            let html = try doc.html()
+            self.HTMLString = html
+        }
+        else
+        {
+            self.HTMLString = bodyHTML
+        }
     }
 }
 
