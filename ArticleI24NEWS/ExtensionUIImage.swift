@@ -49,7 +49,7 @@ extension CGFloat {
 
 extension DateFormatter
 {
-    static var i24APIArticleFormatter: DateFormatter = {
+    static let i24APIArticleFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -57,7 +57,7 @@ extension DateFormatter
         return formatter
     }()
     
-    static var i24APINewsFormatter: DateFormatter = {
+    static let i24APINewsFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -65,7 +65,7 @@ extension DateFormatter
         return formatter
     }()
     
-    static var i24DayForArticleFormatter: DateFormatter = {
+    static let i24DayForArticleFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -74,11 +74,31 @@ extension DateFormatter
         return formatter
     }()
     
-    static var i24TimeForArticleFormatter: DateFormatter = {
+    static let i24TimeForArticleFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.dateFormat = "HH:mm"
+        
+        return formatter
+    }()
+    
+    static let i24DateForeNewsFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current // TODO: - User From Version Manager
+        formatter.timeStyle = .none
+        formatter.dateStyle = .long
+        formatter.doesRelativeDateFormatting = true
+        
+        return formatter
+    }()
+    
+    static let i24TimeForeNewsFormatter: DateFormatter = {
+       
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
         
         return formatter
     }()

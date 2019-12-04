@@ -6,28 +6,28 @@
         <title>Template</title>
         <style>
             :root {
-            color-scheme: light dark;
                 --body-bckgrnd-clr: white;
                 --body-txt-clr: black;
             }
-            @media (prefers-color-scheme: dark) {
+        
+        @media (prefers-color-scheme: dark) {
             :root {
-                color-scheme: light dark;
                 --body-bckgrnd-clr: black;
                 --body-txt-clr: white;
-                }
             }
-
-            body {
-                margin: 0;
-                margin-right: 16px;
-                margin-left: 16px;
-                font-family: '-apple-system','HelveticaNeue';
-                -webkit-text-size-adjust: none;
-                background-color: var(--body-bckgrnd-clr);
-                color: var(--body-txt-clr);
-                font-size: 15px;
-            }
+        }
+        
+        body {
+            margin: 0;
+            margin-right: 16px;
+            margin-left: 16px;
+            font-family: '-apple-system', 'HelveticaNeue';
+            -webkit-text-size-adjust: none;
+            background-color: var(--body-bckgrnd-clr);
+            color: var(--body-txt-clr);
+            font-size: 15px;
+        }
+        
         table {
             margin: 0 !important;
             max-width: 100% !important;
@@ -67,8 +67,8 @@
             height: auto !important;
             display: block;
             margin: auto !important;
-            margin-left : -20px !important;
-            margin-right : -20px !important;
+            margin-left: -20px !important;
+            margin-right: -20px !important;
         }
         
         .section_day {
@@ -88,13 +88,14 @@
             margin-right: 0px;
         }
         
-        .contentLive > div:last-child > p:last-child{
+        .contentLiveDiv>div:last-child>div:last-child {
             border-bottom: none;
         }
-        .time{
+        
+        .time {
             position: absolute;
-            left: -8px;
-            top: 18px;
+            left: -10px;
+            top: 16px;
         }
         
         .container {
@@ -121,11 +122,13 @@
             margin-bottom: 15px;
             color: #999999;
         }
-        .container-ipad > p:last-child,
-        .container > p:last-child {
+        
+        .container-ipad>div:last-child,
+        .container>div:last-child {
             padding-bottom: 20px;
             border-bottom: 1px solid #999;
         }
+        
         .image-wrapper {
             display: table;
             max-width: 100% important;
@@ -133,21 +136,25 @@
             text-decoration: none !important;
             color: #999999;
         }
+        
         .article_image_container {
-            max-width: calc(100px + 20px) !important;
+            max-width: calc(100px + 40px) !important;
             margin-left: -20px;
             margin-right: -20px;
         }
-        .credit {
+        
+        .article_image_credit {
             display: inline-block;
             caption-side: bottom;
             margin-top: 8px;
             font-weight: regular;
             font-size: 14px;
         }
-            </style>
+        </style>
     </head>
     <body>
+        <div class="contentLive">
+        </div>
         <script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
     </body>
 </html>

@@ -64,7 +64,7 @@ struct Article: Decodable
         self.title = try container.decode(String.self, forKey: .title)
         self.shortTitle = try container.decode(String.self, forKey: .shortTitle)
         self.excerpt = try container.decode(String.self, forKey: .excerpt)
-        self.bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
+        
         
         let createdAtAsString = try container.decode(String.self, forKey: .createdAt)
         self.createdAt = DateFormatter.i24APIArticleFormatter.date(from: createdAtAsString)
@@ -79,7 +79,7 @@ struct Article: Decodable
         let image = try container.decode(ArticleImage.self, forKey: .image)
         self.images = [image]
         self.type = try container.decode(String.self, forKey: .type)
-        self.liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
+        
         self.favorite = try container.decode(Bool.self, forKey: .favorite)
         self.href = try container.decode(URL.self, forKey: .href)
         self.frontedURL = try container.decode(URL.self, forKey: .frontedURL)
@@ -94,19 +94,31 @@ struct Article: Decodable
         
         self.category = try category.decode(String.self, forKey: .name)
         
+        let bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
+        self.bodyHTML = bodyHTML
         
-        if ArticleUtility.templateArticleString != nil
+        let doc = try SwiftSoup.parse(ArticleUtility.templateArticleString)
+        try doc.body()?.prepend(bodyHTML)
+        
+        let liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
+        self.liveNews = liveNews?.sorted(by: >)
+        
+        if let liveNews = liveNews
         {
-            let doc = try SwiftSoup.parse(ArticleUtility.templateArticleString!)
+            let contentLive = try doc.select(".contentLive")
+            let liveNewsByDaySections = liveNews.groupedBy(dateComponents: [.day])
             
-            try doc.body()?.prepend(bodyHTML)
-            let html = try doc.html()
-            self.HTMLString = html
+            for daySection in liveNewsByDaySections.keys.sorted(by: >)
+            {
+                let daySectionHTMLStrings = liveNewsByDaySections[daySection]!.map { $0.HTMLString }.joined(separator: "\n")
+                let dayAsString = DateFormatter.i24DateForeNewsFormatter.string(from: daySection)
+                let sectionDayHTMLString = String(format: ArticleUtility.newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
+                try contentLive.append(sectionDayHTMLString)
+            }
         }
-        else
-        {
-            self.HTMLString = bodyHTML
-        }
+        
+        let html = try doc.html()
+        self.HTMLString = html
     }
 }
 
@@ -123,11 +135,17 @@ struct ArticleImage: Codable
     }
 }
 
-struct ArticleNews: Codable
+struct ArticleNews: Codable, Comparable, Dated
 {
+    static func < (lhs: ArticleNews, rhs: ArticleNews) -> Bool
+    {
+        return lhs.date < rhs.date
+    }
+    
     let identifier: Int
-    let date: Date?
+    let date: Date
     let contentHTML: String
+    let HTMLString: String
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -144,7 +162,19 @@ struct ArticleNews: Codable
         self.contentHTML = try container.decode(String.self, forKey: .contentHTML)
         
         let dateAsString = try container.decode(String.self, forKey: .date)
-        self.date = DateFormatter.i24APINewsFormatter.date(from: dateAsString)
+        let date = DateFormatter.i24APINewsFormatter.date(from: dateAsString)
+        self.date = date ?? Date()
+        
+        let time: String
+        if let date = date
+        {
+            time = DateFormatter.i24TimeForeNewsFormatter.string(from: date)
+        }
+        else
+        {
+            time = ""
+        }
+        self.HTMLString = String(format: ArticleUtility.templateNewsString, time, contentHTML)
     }
 }
 
@@ -155,3 +185,22 @@ enum ArticleType: String, Codable {
     case brightCove
 }
 
+protocol Dated {
+    var date: Date { get }
+}
+
+extension Array where Element: Dated
+{
+    func groupedBy(dateComponents: Set<Calendar.Component>, calendar: Calendar = Calendar.current) -> [Date: [Element]]
+    {
+        let initial: [Date: [Element]] = [:]
+        let groupedByDateComponents = reduce(into: initial) { acc, cur in
+            let components = calendar.dateComponents(dateComponents, from: cur.date)
+            let date = calendar.date(from: components)!
+            let existing = acc[date] ?? []
+            acc[date] = existing + [cur]
+        }
+        
+        return groupedByDateComponents
+    }
+}
