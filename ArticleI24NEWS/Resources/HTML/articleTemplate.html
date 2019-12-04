@@ -5,13 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
         <title>Template</title>
         <style>
+            :root {
+            color-scheme: light dark;
+                --body-bckgrnd-clr: white;
+                --body-txt-clr: black;
+            }
+            @media (prefers-color-scheme: dark) {
+            :root {
+                color-scheme: light dark;
+                --body-bckgrnd-clr: black;
+                --body-txt-clr: white;
+                }
+            }
+
             body {
                 margin: 0;
                 margin-right: 16px;
                 margin-left: 16px;
                 font-family: '-apple-system','HelveticaNeue';
                 -webkit-text-size-adjust: none;
-                background: transparent;
+                background-color: var(--body-bckgrnd-clr);
+                color: var(--body-txt-clr);
                 font-size: 15px;
             }
         table {
