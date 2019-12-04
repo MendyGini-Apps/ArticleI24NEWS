@@ -99,6 +99,28 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         guard let imageURL = article.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
+        articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article")) { [weak self, weak articleCell] (image, _, _, _) in
+            
+            guard let strongSelf    = self else { return }
+            guard let articleCell   = articleCell else { return }
+            guard let image         = image else { return }
+            
+            let ratio = image.size.width / image.size.height
+            let newHeight = articleCell.headerImageView.frame.width / ratio
+            let topInset: CGFloat
+            if #available(iOS 11.0, *)
+            {
+                topInset = articleCell.safeAreaInsets.top
+            }
+            else
+            {
+                topInset = strongSelf.view.layoutMargins.top
+            }
+            articleCell.heightParallaxViewConstraint.constant = newHeight - topInset
+            UIView.animate(withDuration: 0.1) {
+                articleCell.layoutIfNeeded()
+            }
+        }
     }
     
     func stringFor(date: Date?) -> String?
