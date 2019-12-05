@@ -44,13 +44,16 @@ class ArticleCollectionViewCell: UICollectionViewCell
         writtenByLabel.text = "Written by"
         addWebView()
         observeWebViewEstimatedProgress()
+        
+        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
     }
     
     override func prepareForReuse()
     {
         super.prepareForReuse()
         print(self)
-        headerImageView.image = nil
+        headerImageView.image = #imageLiteral(resourceName: "logo_article")
+        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
         if webView.isLoading
         {
             scrollView.contentOffset.y = 0

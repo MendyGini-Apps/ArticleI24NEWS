@@ -23,6 +23,13 @@ extension UIImage
         
         return image
     }
+    
+    func getHeightKeepingRatioByWidth(_ width: CGFloat, adjustedInset: UIEdgeInsets = UIEdgeInsets.zero) -> CGFloat
+    {
+        let ratio = size.width / size.height
+        let height = width / ratio
+        return height - (adjustedInset.top + adjustedInset.bottom)
+    }
 }
 
 extension UIColor {
@@ -102,4 +109,21 @@ extension DateFormatter
         
         return formatter
     }()
+}
+
+extension UIView
+{
+    var insetLayoutSafeArea: UIEdgeInsets
+    {
+        let edgeInset: UIEdgeInsets
+        if #available(iOS 11.0, *)
+        {
+            edgeInset = safeAreaInsets
+        }
+        else
+        {
+            edgeInset = layoutMargins
+        }
+        return edgeInset
+    }
 }

@@ -21,7 +21,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         automaticallyAdjustsScrollViewInsets = false
         
-        self.collectionView!.register(UINib(nibName: "\(ArticleCollectionViewCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(ArticleCollectionViewCell.self)")
+        collectionView.register(UINib(nibName: "\(ArticleCollectionViewCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(ArticleCollectionViewCell.self)")
         
         dataController = ArticlesCollectionDataController(delegate: self)
         dataController.fetchData()
@@ -90,18 +90,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
             guard let articleCell   = articleCell else { return }
             guard let image         = image else { return }
             
-            let ratio = image.size.width / image.size.height
-            let newHeight = articleCell.headerImageView.frame.width / ratio
-            let topInset: CGFloat
-            if #available(iOS 11.0, *)
-            {
-                topInset = articleCell.safeAreaInsets.top
-            }
-            else
-            {
-                topInset = strongSelf.view.layoutMargins.top
-            }
-            articleCell.heightParallaxViewConstraint.constant = newHeight - topInset
+            articleCell.heightParallaxViewConstraint.constant = image.getHeightKeepingRatioByWidth(articleCell.headerImageView.frame.width, adjustedInset: strongSelf.view.insetLayoutSafeArea)
             UIView.animate(withDuration: 0.1) {
                 articleCell.layoutIfNeeded()
             }

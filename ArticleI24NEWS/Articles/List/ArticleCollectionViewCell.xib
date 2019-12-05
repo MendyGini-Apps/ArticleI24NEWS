@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -21,13 +21,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="467" height="576"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpK-Dh-fZ8" userLabel="Container Scroll View">
-                                <rect key="frame" x="0.0" y="0.0" width="467" height="534"/>
+                                <rect key="frame" x="0.0" y="0.0" width="467" height="541.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9E-xD-Rdz" userLabel="Parallax View">
-                                        <rect key="frame" x="0.0" y="1" width="467" height="199"/>
+                                        <rect key="frame" x="0.0" y="36" width="467" height="164"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="8hb-Kg-xzj">
-                                                <rect key="frame" x="0.0" y="0.0" width="467" height="199"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="164"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -73,22 +73,22 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XJQ-AP-HGc" userLabel="Details View">
-                                        <rect key="frame" x="0.0" y="200" width="467" height="334"/>
+                                        <rect key="frame" x="0.0" y="200" width="467" height="341.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sYq-Kk-kd3" userLabel="Article View">
-                                                <rect key="frame" x="0.0" y="0.0" width="467" height="334"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="341.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAe-sw-UbJ">
-                                                        <rect key="frame" x="16" y="16" width="435" height="145"/>
+                                                        <rect key="frame" x="80" y="16" width="307" height="152.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a title of an article" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPy-EI-QU9">
-                                                                <rect key="frame" x="0.0" y="0.0" width="299" height="31"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="188.5" height="62"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UbU-AT-EOY" userLabel="Author View">
-                                                                <rect key="frame" x="0.0" y="39" width="157.5" height="38.5"/>
+                                                                <rect key="frame" x="0.0" y="70" width="157.5" height="38.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚪️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ign-RE-CBa">
                                                                         <rect key="frame" x="0.0" y="0.0" width="29" height="38.5"/>
@@ -121,7 +121,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHR-VK-Whj" userLabel="Date View">
-                                                                <rect key="frame" x="6" y="85.5" width="137" height="15.5"/>
+                                                                <rect key="frame" x="173.5" y="81.5" width="127" height="15.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🕗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-Vh-L3H">
                                                                         <rect key="frame" x="0.0" y="0.0" width="17" height="15.5"/>
@@ -130,14 +130,14 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18:14 | UPD 18:43" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="goT-lG-gCb">
-                                                                        <rect key="frame" x="31" y="0.0" width="106" height="15.5"/>
+                                                                        <rect key="frame" x="21" y="0.0" width="106" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                                         <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="goT-lG-gCb" firstAttribute="leading" secondItem="aIa-Vh-L3H" secondAttribute="trailing" constant="14" id="3ms-Gc-ruK"/>
+                                                                    <constraint firstItem="goT-lG-gCb" firstAttribute="leading" secondItem="aIa-Vh-L3H" secondAttribute="trailing" constant="4" id="3ms-Gc-ruK"/>
                                                                     <constraint firstItem="aIa-Vh-L3H" firstAttribute="leading" secondItem="DHR-VK-Whj" secondAttribute="leading" id="7mg-nG-OK0"/>
                                                                     <constraint firstItem="goT-lG-gCb" firstAttribute="centerY" secondItem="aIa-Vh-L3H" secondAttribute="centerY" id="Hmq-Ti-Yem"/>
                                                                     <constraint firstItem="aIa-Vh-L3H" firstAttribute="top" secondItem="DHR-VK-Whj" secondAttribute="top" id="c3D-ho-Aoa"/>
@@ -156,7 +156,7 @@
                                                                 </variation>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is description of an artice. it can be long very long description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TA-ci-tyU">
-                                                                <rect key="frame" x="0.0" y="109" width="435" height="36"/>
+                                                                <rect key="frame" x="0.0" y="116.5" width="307" height="36"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -173,7 +173,7 @@
                                                             <constraint firstItem="2TA-ci-tyU" firstAttribute="leading" secondItem="eAe-sw-UbJ" secondAttribute="leading" id="Xiq-EB-td2"/>
                                                             <constraint firstItem="2TA-ci-tyU" firstAttribute="top" secondItem="UbU-AT-EOY" secondAttribute="bottom" constant="8" id="ajt-oq-lRm"/>
                                                             <constraint firstItem="aIa-Vh-L3H" firstAttribute="centerX" secondItem="Ign-RE-CBa" secondAttribute="centerX" id="d7M-ke-W2H"/>
-                                                            <constraint firstItem="DHR-VK-Whj" firstAttribute="leading" secondItem="UbU-AT-EOY" secondAttribute="trailing" constant="8" id="rNM-VG-xJ6"/>
+                                                            <constraint firstItem="DHR-VK-Whj" firstAttribute="leading" secondItem="UbU-AT-EOY" secondAttribute="trailing" constant="16" id="rNM-VG-xJ6"/>
                                                             <constraint firstItem="UbU-AT-EOY" firstAttribute="leading" secondItem="eAe-sw-UbJ" secondAttribute="leading" id="sCJ-SA-F8J"/>
                                                             <constraint firstAttribute="trailing" secondItem="2TA-ci-tyU" secondAttribute="trailing" id="suG-gc-Uo7"/>
                                                             <constraint firstItem="DHR-VK-Whj" firstAttribute="top" secondItem="UbU-AT-EOY" secondAttribute="bottom" constant="8" id="vmq-7Q-8Yz"/>
@@ -201,10 +201,10 @@
                                                         </variation>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="414" placeholderIntrinsicHeight="77" translatesAutoresizingMaskIntoConstraints="NO" id="cad-an-sNe" userLabel="Container WebView">
-                                                        <rect key="frame" x="0.0" y="171" width="467" height="77"/>
+                                                        <rect key="frame" x="0.0" y="178.5" width="467" height="77"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Vj-7a-2dE">
-                                                        <rect key="frame" x="0.0" y="256" width="467" height="62"/>
+                                                        <rect key="frame" x="0.0" y="263.5" width="467" height="62"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pZd-VD-Ugx">
                                                                 <rect key="frame" x="0.0" y="0.0" width="467" height="46"/>
