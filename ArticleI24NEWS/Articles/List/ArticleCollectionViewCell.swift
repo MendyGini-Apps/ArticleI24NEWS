@@ -40,20 +40,25 @@ class ArticleCollectionViewCell: UICollectionViewCell
     {
         super.awakeFromNib()
         
-        // TODO: - Localization "Written by"
-        writtenByLabel.text = "Written by"
+        decideDirection()
+        configureText()
+        
         addWebView()
         observeWebViewEstimatedProgress()
-        
-        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
+    }
+    
+    override func layoutSubviews()
+    {
+        super.layoutSubviews()
+        adjusteParallaxViewHeight()
     }
     
     override func prepareForReuse()
     {
         super.prepareForReuse()
-        print(self)
+        
         headerImageView.image = #imageLiteral(resourceName: "logo_article")
-        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
+        adjusteParallaxViewHeight()
         if webView.isLoading
         {
             scrollView.contentOffset.y = 0
@@ -66,6 +71,14 @@ class ArticleCollectionViewCell: UICollectionViewCell
 
 extension ArticleCollectionViewCell
 {
+    private func configureText()
+    {
+        // TODO: - Localization "Written by"
+        writtenByLabel.text = "Written by"
+        commentsButton.setTitle("Comments", for: .normal)
+        addCommentButton.setTitle("Add a comment", for: .normal)
+    }
+    
     private func addWebView()
     {
         containerWebView.addSubview(webView)
@@ -92,5 +105,10 @@ extension ArticleCollectionViewCell
     func adjustWebViewHeight(_ height: CGFloat = 1.0)
     {
         webView.constraints.first(where: { $0.firstAttribute == .height })?.constant = height
+    }
+    
+    private func adjusteParallaxViewHeight()
+    {
+        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
     }
 }

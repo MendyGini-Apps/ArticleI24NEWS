@@ -37,7 +37,8 @@ extension ArticlesCollectionDataController: ArticlesCollectionDataControllerProt
 {
     func fetchData()
     {
-        guard let path = Bundle.main.path(forResource: "articlesEN", ofType: "json") else { return }
+        let resource = VersionManager.shared.isArabic ? "articlesAR" : "articlesEN"
+        guard let path = Bundle.main.path(forResource: resource, ofType: "json") else { return }
         let url = URL(fileURLWithPath: path)
         
         let bringLocaleFileOperation = BringJSONDataLocaleFileOperation(url: url, outputType: [Article].self)

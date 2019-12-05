@@ -1,10 +1,16 @@
 :root {
-    --body-bckgrnd-clr: white;
-    --body-txt-clr: black;
+        --body-bckgrnd-clr: white;
+        --body-txt-clr: black;
+        --body-side-margin: 16px;
+    }
+@media only screen and (min-device-width: 768px) {
+    :root {
+        --body-side-margin: 80px;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
-     :root {
+    :root {
         --body-bckgrnd-clr: black;
         --body-txt-clr: white;
     }
@@ -12,13 +18,14 @@
 
 body {
     margin: 0;
-    margin-right: 16px;
-    margin-left: 16px;
+    margin-right: var(--body-side-margin);
+    margin-left: var(--body-side-margin);
     font-family: '-apple-system', 'HelveticaNeue';
     -webkit-text-size-adjust: none;
     background-color: var(--body-bckgrnd-clr);
     color: var(--body-txt-clr);
     font-size: 15px;
+    direction: %@;
 }
 
 table {
@@ -81,14 +88,14 @@ video {
     margin-right: 0px;
 }
 
-.contentLive>div:last-child>div:last-child {
+.contentLiveDiv>div:last-child>div:last-child {
     border-bottom: none;
 }
 
 .time {
     position: absolute;
-    left: -8px;
-    top: 14px;
+    left: -10px;
+    top: 16px;
 }
 
 .container {

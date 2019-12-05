@@ -84,17 +84,6 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         guard let imageURL = article.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
-        articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article")) { [weak self, weak articleCell] (image, _, _, _) in
-            
-            guard let strongSelf    = self else { return }
-            guard let articleCell   = articleCell else { return }
-            guard let image         = image else { return }
-            
-            articleCell.heightParallaxViewConstraint.constant = image.getHeightKeepingRatioByWidth(articleCell.headerImageView.frame.width, adjustedInset: strongSelf.view.insetLayoutSafeArea)
-            UIView.animate(withDuration: 0.1) {
-                articleCell.layoutIfNeeded()
-            }
-        }
     }
     
     func stringFor(date: Date?) -> String?
