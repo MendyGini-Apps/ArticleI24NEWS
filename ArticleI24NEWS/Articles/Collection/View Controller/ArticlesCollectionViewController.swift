@@ -12,7 +12,7 @@ import SDWebImage
 class ArticlesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
 {
     // MARK: - Properties
-    var dataController: ArticlesCollectionDataController!
+    private var dataController: ArticlesCollectionDataController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad()
@@ -23,14 +23,13 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         
         collectionView.register(UINib(nibName: "\(ArticleCollectionViewCell.self)", bundle: nil), forCellWithReuseIdentifier: "\(ArticleCollectionViewCell.self)")
         
-        dataController = ArticlesCollectionDataController(delegate: self)
         dataController.fetchData()
     }
     
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     // MARK: UICollectionViewDataSource
@@ -69,8 +68,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         articleCell.authorNameLabel.text = article.authorName
         articleCell.webView.loadHTMLString(article.HTMLString, baseURL: nil)
         
-        // TODO: - current app local (EN, FR, AR)
-        articleCell.categoryLabel.text = article.category.uppercased(with: Locale.current)
+        articleCell.categoryLabel.text = article.category.uppercased(with: VersionManager.shared.locale)
         
         if var articleCreatedAtAsString = stringFor(date: article.createdAt)
         {
@@ -86,7 +84,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
     
-    func stringFor(date: Date?) -> String?
+    private func stringFor(date: Date?) -> String?
     {
         guard let date = date else { return nil }
         
@@ -118,6 +116,14 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
         print(#function)
+    }
+}
+
+extension ArticlesCollectionViewController
+{
+    func bindData(_ articles: [Article])
+    {
+        dataController = ArticlesCollectionDataController(articles: articles, delegate: self)
     }
 }
 

@@ -25,11 +25,11 @@ class ArticlesCollectionDataController
     private let queue: ProcedureQueue
     var dataSource: [Section]
     
-    init(delegate: ArticlesCollectionDataControllerDelegate)
+    init(articles: [Article], delegate: ArticlesCollectionDataControllerDelegate)
     {
         self.delegate = delegate
         self.queue = ProcedureQueue()
-        self.dataSource = []
+        self.dataSource = [Section(itemsMetadata: articles)]
     }
 }
 
@@ -37,21 +37,7 @@ extension ArticlesCollectionDataController: ArticlesCollectionDataControllerProt
 {
     func fetchData()
     {
-        let resource = VersionManager.shared.isArabic ? "articlesAR" : "articlesEN"
-        guard let path = Bundle.main.path(forResource: resource, ofType: "json") else { return }
-        let url = URL(fileURLWithPath: path)
-        
-        let bringLocaleFileOperation = BringJSONDataLocaleFileOperation(url: url, outputType: [Article].self)
-        
-        bringLocaleFileOperation.addDidFinishBlockObserver(synchronizedWith: DispatchQueue.main) { [weak self] (networkOpration, error) in
-            guard let strongSelf = self else { return }
-            
-            guard let articles = networkOpration.output.value?.value else { return }
-            strongSelf.dataSource = [Section(itemsMetadata: articles)]
-            strongSelf.delegate.dataController(strongSelf, taskStateDidChange: true)
-        }
-        
-        queue.addOperation(bringLocaleFileOperation)
+        self.delegate.dataController(self, taskStateDidChange: true)
     }
 }
 

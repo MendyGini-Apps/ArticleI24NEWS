@@ -97,7 +97,7 @@ struct Article: Decodable
         let bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
         self.bodyHTML = bodyHTML
         
-        let doc = try SwiftSoup.parse(ArticleUtility.templateArticleString)
+        let doc = try SwiftSoup.parse(ArticleHTMLFormatter.templateArticleString)
         try doc.body()?.prepend(bodyHTML)
         
         let liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
@@ -112,7 +112,7 @@ struct Article: Decodable
             {
                 let daySectionHTMLStrings = liveNewsByDaySections[daySection]!.map { $0.HTMLString }.joined(separator: "\n")
                 let dayAsString = DateFormatter.i24DateForeNewsFormatter.string(from: daySection)
-                let sectionDayHTMLString = String(format: ArticleUtility.newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
+                let sectionDayHTMLString = String(format: ArticleHTMLFormatter.newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
                 try contentLive.append(sectionDayHTMLString)
             }
         }
@@ -174,7 +174,7 @@ struct ArticleNews: Codable, Comparable, Dated
         {
             time = ""
         }
-        self.HTMLString = String(format: ArticleUtility.templateNewsString, time, contentHTML)
+        self.HTMLString = String(format: ArticleHTMLFormatter.templateNewsString, time, contentHTML)
     }
 }
 
