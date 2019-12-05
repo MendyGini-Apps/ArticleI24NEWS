@@ -11,26 +11,25 @@ import SwiftSoup
 
 struct Article: Decodable
 {
-    let identifier: Int
-    let title: String
-    let shortTitle: String
-    let excerpt: String
-    let bodyHTML: String
-    let authorName: String
-    let category: String
-    let createdAt: Date?
-    let publishedAt: Date?
-    let updatedAt: Date?
-    let numberOfComments: UInt
-    let images: [ArticleImage]
-    let type: String
-    let liveNews: [ArticleNews]?
-    let favorite: Bool
-    let href: URL
-    let frontedURL: URL
-    let externalVideoId: String?
+    let identifier           : Int
+    let title                : String
+    let shortTitle           : String
+    let excerpt              : String
+    let bodyHTML             : String
+    let authorName           : String
+    let category             : String
+    let createdAt            : Date?
+    let publishedAt          : Date?
+    let updatedAt            : Date?
+    let numberOfComments     : UInt
+    let images               : [ArticleImage]
+    let type                 : String
+    let liveNews             : [ArticleNews]?
+    let favorite             : Bool
+    let href                 : URL
+    let frontedURL           : URL
+    let externalVideoId      : String?
     let externalVideoProvider: String?
-    let HTMLString: String
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -94,44 +93,28 @@ struct Article: Decodable
         
         self.category = try category.decode(String.self, forKey: .name)
         
-        let bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
-        self.bodyHTML = bodyHTML
-        
-        let doc = try SwiftSoup.parse(ArticleHTMLFormatter.templateArticleString)
-        try doc.body()?.prepend(bodyHTML)
-        
-        let liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
-        self.liveNews = liveNews?.sorted(by: >)
-        
-        if let liveNews = liveNews
-        {
-            let contentLive = try doc.select(".contentLive")
-            let liveNewsByDaySections = liveNews.groupedBy(dateComponents: [.day])
-            
-            for daySection in liveNewsByDaySections.keys.sorted(by: >)
-            {
-                let daySectionHTMLStrings = liveNewsByDaySections[daySection]!.map { $0.HTMLString }.joined(separator: "\n")
-                let dayAsString = DateFormatter.i24DateForeNewsFormatter.string(from: daySection)
-                let sectionDayHTMLString = String(format: ArticleHTMLFormatter.newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
-                try contentLive.append(sectionDayHTMLString)
-            }
-        }
-        
-        let html = try doc.html()
-        self.HTMLString = html
+        self.bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
+        self.liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
     }
 }
 
 struct ArticleImage: Codable
 {
     let imageURL: URL
-    let credit: String
-    let legent: String
+    let credit  : String
+    let legent  : String
     
     enum CodingKeys: String, CodingKey {
         case imageURL = "href"
-        case credit = "credit"
-        case legent = "legend"
+        case credit   = "credit"
+        case legent   = "legend"
+    }
+    
+    init(imageURL: URL, credit: String = String(), legend: String = String())
+    {
+        self.imageURL = imageURL
+        self.credit   = credit
+        self.legent   = legend
     }
 }
 
@@ -145,7 +128,6 @@ struct ArticleNews: Codable, Comparable, Dated
     let identifier: Int
     let date: Date
     let contentHTML: String
-    let HTMLString: String
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
@@ -164,17 +146,6 @@ struct ArticleNews: Codable, Comparable, Dated
         let dateAsString = try container.decode(String.self, forKey: .date)
         let date = DateFormatter.i24APINewsFormatter.date(from: dateAsString)
         self.date = date ?? Date()
-        
-        let time: String
-        if let date = date
-        {
-            time = DateFormatter.i24TimeForeNewsFormatter.string(from: date)
-        }
-        else
-        {
-            time = ""
-        }
-        self.HTMLString = String(format: ArticleHTMLFormatter.templateNewsString, time, contentHTML)
     }
 }
 

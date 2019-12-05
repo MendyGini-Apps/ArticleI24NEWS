@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ProcedureKit
 
 protocol ArticlesCollectionDataControllerProtocol: DataSourceProtocol
 {
@@ -22,14 +21,16 @@ protocol ArticlesCollectionDataControllerDelegate: NSObjectProtocol
 class ArticlesCollectionDataController
 {
     private weak var delegate: ArticlesCollectionDataControllerDelegate!
-    private let queue: ProcedureQueue
+    private let articleHTMLFormatter: ArticleHTMLFormatter
     var dataSource: [Section]
     
     init(articles: [Article], delegate: ArticlesCollectionDataControllerDelegate)
     {
         self.delegate = delegate
-        self.queue = ProcedureQueue()
-        self.dataSource = [Section(itemsMetadata: articles)]
+        let articleHTMLFormatter = ArticleHTMLFormatter()
+        self.articleHTMLFormatter = articleHTMLFormatter
+        let HTMLArticlesModels = articles.compactMap { try? articleHTMLFormatter.extractHTMLArticle(from: $0) }
+        self.dataSource = [Section(itemsMetadata: HTMLArticlesModels)]
     }
 }
 
@@ -43,5 +44,5 @@ extension ArticlesCollectionDataController: ArticlesCollectionDataControllerProt
 
 extension ArticlesCollectionDataController: DataSourceProtocol
 {
-    typealias Section = OrderedSection<Any,Article,Any>
+    typealias Section = OrderedSection<Any,HTMLArticleModel,Any>
 }

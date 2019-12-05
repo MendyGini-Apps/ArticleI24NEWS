@@ -24,10 +24,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="467" height="541.5"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p9E-xD-Rdz" userLabel="Parallax View">
-                                        <rect key="frame" x="0.0" y="36" width="467" height="164"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="467" height="200"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="8hb-Kg-xzj">
-                                                <rect key="frame" x="0.0" y="0.0" width="467" height="164"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="200"/>
                                             </imageView>
                                         </subviews>
                                         <constraints>
@@ -40,6 +40,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vw5-au-UhS" userLabel="Category View">
                                         <rect key="frame" x="0.0" y="198" width="467" height="2"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kfu-gV-I3I" customClass="LoadBarView" customModule="ArticleI24NEWS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="467" height="2"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wa8-RE-Je1">
                                                 <rect key="frame" x="205" y="-8.5" width="57.5" height="19"/>
                                                 <subviews>
@@ -65,9 +69,13 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="2" id="1YW-0u-gYx"/>
+                                            <constraint firstItem="Kfu-gV-I3I" firstAttribute="top" secondItem="Vw5-au-UhS" secondAttribute="top" id="7y8-DE-lqo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kfu-gV-I3I" secondAttribute="trailing" id="Ihf-Pd-lol"/>
+                                            <constraint firstItem="Kfu-gV-I3I" firstAttribute="leading" secondItem="Vw5-au-UhS" secondAttribute="leading" id="LSJ-tS-zAb"/>
+                                            <constraint firstAttribute="bottom" secondItem="Kfu-gV-I3I" secondAttribute="bottom" id="Of1-lM-K65"/>
                                             <constraint firstItem="Wa8-RE-Je1" firstAttribute="centerX" secondItem="Vw5-au-UhS" secondAttribute="centerX" id="X9L-gz-HgV"/>
                                             <constraint firstItem="Wa8-RE-Je1" firstAttribute="centerY" secondItem="Vw5-au-UhS" secondAttribute="centerY" id="ooC-4C-iia"/>
                                         </constraints>
@@ -324,6 +332,7 @@
                 <outlet property="descriptionLabel" destination="2TA-ci-tyU" id="ict-1K-SUO"/>
                 <outlet property="headerImageView" destination="8hb-Kg-xzj" id="tWU-WZ-PoL"/>
                 <outlet property="heightParallaxViewConstraint" destination="fxn-yx-3KF" id="AQZ-O9-FAO"/>
+                <outlet property="loadBarView" destination="Kfu-gV-I3I" id="Niy-mR-p57"/>
                 <outlet property="scrollView" destination="exD-xT-Bf0" id="cwX-DI-ggT"/>
                 <outlet property="titleLabel" destination="aPy-EI-QU9" id="eAa-7k-IWz"/>
                 <outlet property="writtenByLabel" destination="l9l-MW-g8A" id="OJI-ok-rL2"/>

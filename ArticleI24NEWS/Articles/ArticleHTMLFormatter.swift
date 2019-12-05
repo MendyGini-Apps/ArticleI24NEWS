@@ -7,44 +7,94 @@
 //
 
 import Foundation
+import SwiftSoup
 
 class VersionManager
 {
     static let shared = VersionManager()
     var isArabic = true
     var locale = Locale.current
+    {
+        didSet
+        {
+            DateFormatter.i24TimeForeNewsFormatter.locale = locale
+            DateFormatter.i24DateForeNewsFormatter.locale = locale
+        }
+    }
 }
 
+//±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
 struct HTMLArticleModel
 {
-    
+    let identifier      : String
+    let base            : Article
+    let formatted       : String
+    let imageMetadata   : [ArticleImage]
 }
+//±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
 
 class ArticleHTMLFormatter
 {
-    static let articleStyleURL = Bundle.main.url(forResource: "articleStyles", withExtension: "css")!
-    static let articleStyleString: String = {
+    private lazy var articleStyleString: String = {
+        let articleStyleURL = Bundle.main.url(forResource: "articleStyles", withExtension: "css")!
         let articleStyleString = try! String(contentsOf: articleStyleURL)
         
         let direction = VersionManager.shared.isArabic ? "rtl" : "ltr"
         return String(format: articleStyleString, direction)
     }()
     
-    static let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
-    static let templateArticleString: String = {
+    private lazy var templateArticleString: String = {
+        let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
         let templateArticleString = try! String(contentsOf: templateArticleURL)
         
         return String(format: templateArticleString, articleStyleString)
     }()
     
-    static let templateNewsURL = Bundle.main.url(forResource: "NewsTemplate", withExtension: "html")!
-    static let templateNewsString = try! String(contentsOf: templateNewsURL)
+    private lazy var templateNewsString: String = {
+        let templateNewsURL = Bundle.main.url(forResource: "NewsTemplate", withExtension: "html")!
+        
+        return try! String(contentsOf: templateNewsURL)
+    }()
     
-    static let newsSectionDayTemplateURL = Bundle.main.url(forResource: "NewsSectionDayTemplate", withExtension: "html")!
-    static let newsSectionDayTemplateString = try! String(contentsOf: newsSectionDayTemplateURL)
+    private lazy var newsSectionDayTemplateString: String = {
+        let newsSectionDayTemplateURL = Bundle.main.url(forResource: "NewsSectionDayTemplate", withExtension: "html")!
+        
+        return try! String(contentsOf: newsSectionDayTemplateURL)
+    }()
     
-    func extractHTMLArticle(from metadata: Article) -> HTMLArticleModel?
+    func extractHTMLArticle(from metadata: Article) throws -> HTMLArticleModel
     {
-        return nil
+        let doc = try SwiftSoup.parse(templateArticleString)
+        try doc.body()?.prepend(metadata.bodyHTML)
+        
+        if let liveNews = metadata.liveNews?.sorted(by: >)
+        {
+            let contentLive = try doc.select(".contentLive")
+            let liveNewsByDaySections = liveNews.groupedBy(dateComponents: [.day])
+            
+            for daySection in liveNewsByDaySections.keys.sorted(by: >)
+            {
+                
+                let daySectionHTMLStrings = liveNewsByDaySections[daySection]!.map {
+                    
+                    let time = DateFormatter.i24TimeForeNewsFormatter.string(from: $0.date)
+                    
+                    let newsHTMLString = String(format: templateNewsString, time, $0.contentHTML)
+                    
+                    return newsHTMLString
+                }.joined(separator: "\n")
+                
+                let dayAsString = DateFormatter.i24DateForeNewsFormatter.string(from: daySection)
+                let sectionDayHTMLString = String(format: newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
+                try contentLive.append(sectionDayHTMLString)
+            }
+        }
+        
+        let html = try doc.html()
+        
+        return HTMLArticleModel(identifier: "\(metadata.identifier)",
+            base: metadata,
+            formatted: html,
+            imageMetadata: [])
     }
 }

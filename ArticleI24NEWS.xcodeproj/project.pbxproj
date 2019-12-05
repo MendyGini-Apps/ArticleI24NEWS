@@ -31,6 +31,7 @@
 		7BF9E013239925A800109877 /* ExtensionUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9E012239925A800109877 /* ExtensionUIView.swift */; };
 		7BF9E015239925C900109877 /* ExtenstionDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9E014239925C900109877 /* ExtenstionDateFormatter.swift */; };
 		7BF9E0182399271000109877 /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9E0172399271000109877 /* MainTableViewController.swift */; };
+		7BF9E01A2399532E00109877 /* LoadBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF9E0192399532E00109877 /* LoadBarView.swift */; };
 		963D935A23978D470050F014 /* ArticleHTMLFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963D935923978D470050F014 /* ArticleHTMLFormatter.swift */; };
 		96E8AC652394E9E000611439 /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */; };
 		96E8AC662394E9E000611439 /* ArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */; };
@@ -61,6 +62,7 @@
 		7BF9E012239925A800109877 /* ExtensionUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIView.swift; sourceTree = "<group>"; };
 		7BF9E014239925C900109877 /* ExtenstionDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtenstionDateFormatter.swift; sourceTree = "<group>"; };
 		7BF9E0172399271000109877 /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
+		7BF9E0192399532E00109877 /* LoadBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadBarView.swift; sourceTree = "<group>"; };
 		963D935923978D470050F014 /* ArticleHTMLFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHTMLFormatter.swift; sourceTree = "<group>"; };
 		96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			children = (
 				96E8AC632394E9E000611439 /* ArticleCollectionViewCell.swift */,
 				96E8AC642394E9E000611439 /* ArticleCollectionViewCell.xib */,
+				7BF9E0192399532E00109877 /* LoadBarView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				7BF9E013239925A800109877 /* ExtensionUIView.swift in Sources */,
 				963D935A23978D470050F014 /* ArticleHTMLFormatter.swift in Sources */,
 				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
+				7BF9E01A2399532E00109877 /* LoadBarView.swift in Sources */,
 				7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */,
 				7B2A4C352393E075003A40A8 /* Section.swift in Sources */,
 				7BF9E0182399271000109877 /* MainTableViewController.swift in Sources */,

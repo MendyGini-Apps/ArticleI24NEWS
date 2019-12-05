@@ -16,6 +16,7 @@ class ArticleCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var headerImageView  : UIImageView!
     @IBOutlet weak var titleLabel       : UILabel!
     @IBOutlet weak var categoryLabel    : UILabel!
+    @IBOutlet weak var loadBarView      : LoadBarView!
     @IBOutlet weak var writtenByLabel   : UILabel!
     @IBOutlet weak var authorNameLabel  : UILabel!
     @IBOutlet weak var dateLabel        : UILabel!
@@ -57,8 +58,6 @@ class ArticleCollectionViewCell: UICollectionViewCell
     {
         super.prepareForReuse()
         
-        headerImageView.image = #imageLiteral(resourceName: "logo_article")
-        adjusteParallaxViewHeight()
         if webView.isLoading
         {
             scrollView.contentOffset.y = 0
@@ -66,6 +65,9 @@ class ArticleCollectionViewCell: UICollectionViewCell
         }
         webView.loadHTMLString("", baseURL: nil)
         adjustWebViewHeight()
+        
+        headerImageView.image = #imageLiteral(resourceName: "logo_article")
+        adjusteParallaxViewHeight()
     }
 }
 
@@ -91,13 +93,17 @@ extension ArticleCollectionViewCell
     
     private func observeWebViewEstimatedProgress()
     {
-        observations.insert(webView.observe(\.estimatedProgress, options: [.new]) { (webView, changed) in
+        observations.insert(webView.observe(\.estimatedProgress, options: [.new]) { [weak self] (webView, changed) in
             
+            guard let strongSelf = self else { return }
             guard let newValue = changed.newValue else { return }
+            strongSelf.loadBarView.progress = CGFloat(newValue)
             guard newValue == 1.0 else { return }
             
+            strongSelf.adjustWebViewHeight()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: { [weak self] in
-                self?.adjustWebViewHeight(webView.scrollView.contentSize.height)
+                guard let strongSelf = self else { return }
+                strongSelf.adjustWebViewHeight(webView.scrollView.contentSize.height)
             })
         })
     }
@@ -105,6 +111,8 @@ extension ArticleCollectionViewCell
     func adjustWebViewHeight(_ height: CGFloat = 1.0)
     {
         webView.constraints.first(where: { $0.firstAttribute == .height })?.constant = height
+        setNeedsLayout()
+        layoutIfNeeded()
     }
     
     private func adjusteParallaxViewHeight()

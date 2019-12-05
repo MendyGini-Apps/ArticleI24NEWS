@@ -61,18 +61,18 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     {
         guard let articleCell = cell as? ArticleCollectionViewCell else { return }
         
-        let article = dataController.item(at: indexPath)
+        let htmlArticleModel = dataController.item(at: indexPath)
         
-        articleCell.titleLabel.text = article.title
-        articleCell.descriptionLabel.text = article.excerpt
-        articleCell.authorNameLabel.text = article.authorName
-        articleCell.webView.loadHTMLString(article.HTMLString, baseURL: nil)
+        articleCell.titleLabel.text = htmlArticleModel.base.title
+        articleCell.descriptionLabel.text = htmlArticleModel.base.excerpt
+        articleCell.authorNameLabel.text = htmlArticleModel.base.authorName
+        articleCell.webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
         
-        articleCell.categoryLabel.text = article.category.uppercased(with: VersionManager.shared.locale)
+        articleCell.categoryLabel.text = htmlArticleModel.base.category.uppercased(with: VersionManager.shared.locale)
         
-        if var articleCreatedAtAsString = stringFor(date: article.createdAt)
+        if var articleCreatedAtAsString = stringFor(date: htmlArticleModel.base.createdAt)
         {
-            if article.createdAt!.compare(article.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: article.updatedAt)
+            if htmlArticleModel.base.createdAt!.compare(htmlArticleModel.base.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: htmlArticleModel.base.updatedAt)
             {
                 // TODO: - Localization "UPD"
                 articleCreatedAtAsString += " | UPD \(articleUpdateAtAsString)"
@@ -80,7 +80,7 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
             articleCell.dateLabel.text = articleCreatedAtAsString
         }
         
-        guard let imageURL = article.images.first?.imageURL else { return }
+        guard let imageURL = htmlArticleModel.base.images.first?.imageURL else { return }
         articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
     

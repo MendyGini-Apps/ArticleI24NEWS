@@ -63,6 +63,7 @@ extension DateFormatter
     static let i24TimeForeNewsFormatter: DateFormatter = {
        
         let formatter = DateFormatter()
+        formatter.locale = VersionManager.shared.locale
         formatter.timeStyle = .short
         formatter.dateStyle = .none
         
