@@ -12,23 +12,26 @@ import UIKit
 class LoadBarView: UIView
 {
     @IBInspectable var fillColor: UIColor = UIColor.systemRed
+    {
+        didSet
         {
-        didSet {
             setNeedsDisplay()
         }
-        
     }
     
     @IBInspectable var progress: CGFloat = 0.5
+    {
+        didSet
         {
-        didSet {
             setNeedsDisplay()
         }
     }
     
+    @IBInspectable var hidesWhenFinishProgress: Bool = false
+    
     override func draw(_ rect: CGRect)
     {
-        guard (0...1) ~= progress else { isHidden = true; return }
+        guard (0.0...1.0) ~= progress else { isHidden = true; return }
         
         isHidden = false
         
@@ -39,5 +42,13 @@ class LoadBarView: UIView
         
         fillColor.setFill()
         path.fill()
+        
+        if hidesWhenFinishProgress && progress == 1.0
+        {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.isHidden = true
+            }
+        }
     }
 }

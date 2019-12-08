@@ -310,15 +310,23 @@
                         </constraints>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
                     </scrollView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mAr-A3-a66">
+                        <rect key="frame" x="0.0" y="200" width="467" height="376"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </activityIndicatorView>
                 </subviews>
             </view>
             <constraints>
                 <constraint firstItem="p9E-xD-Rdz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" priority="750" id="24w-e6-nqS"/>
+                <constraint firstItem="mAr-A3-a66" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5Zf-hV-LVX"/>
                 <constraint firstAttribute="bottom" secondItem="exD-xT-Bf0" secondAttribute="bottom" id="6hQ-AJ-iAN"/>
                 <constraint firstItem="OpK-Dh-fZ8" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="6po-gw-fqK"/>
                 <constraint firstAttribute="trailing" secondItem="exD-xT-Bf0" secondAttribute="trailing" id="Vlc-96-kqg"/>
+                <constraint firstItem="mAr-A3-a66" firstAttribute="top" secondItem="p9E-xD-Rdz" secondAttribute="bottom" id="Zrd-g2-oA6"/>
                 <constraint firstItem="exD-xT-Bf0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="oL2-ZL-YQT"/>
+                <constraint firstAttribute="trailing" secondItem="mAr-A3-a66" secondAttribute="trailing" id="obA-Vc-aqQ"/>
                 <constraint firstItem="exD-xT-Bf0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uB3-Mo-cpM"/>
+                <constraint firstAttribute="bottom" secondItem="mAr-A3-a66" secondAttribute="bottom" id="v38-eE-uFn"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Pup-gN-431"/>
             <size key="customSize" width="467" height="576"/>
@@ -337,7 +345,7 @@
                 <outlet property="titleLabel" destination="aPy-EI-QU9" id="eAa-7k-IWz"/>
                 <outlet property="writtenByLabel" destination="l9l-MW-g8A" id="OJI-ok-rL2"/>
             </connections>
-            <point key="canvasLocation" x="392.02898550724643" y="283.25892857142856"/>
+            <point key="canvasLocation" x="391.796875" y="283.0078125"/>
         </collectionViewCell>
     </objects>
     <resources>

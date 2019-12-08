@@ -27,12 +27,36 @@ class ArticleCollectionViewCell: UICollectionViewCell
     @IBOutlet weak var heightParallaxViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    let webView: WKWebView = {
-        let webView = WKWebView(frame: CGRect.zero, configuration: WKWebViewConfiguration())
+    lazy var webView: WKWebView = {
+        //Javascript string
+        let source = "window.onload=function () {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.body.scrollHeight});};"
+        let source2 = "document.body.addEventListener( 'resize', incrementCounter); function incrementCounter() {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.body.scrollHeight});};"
+
+        //UserScript object
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+
+        let script2 = WKUserScript(source: source2, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+
+        //Content Controller object
+        let controller = WKUserContentController()
+
+        //Add script to controller
+        controller.addUserScript(script)
+        controller.addUserScript(script2)
+
+        //Add message handler reference
+        controller.add(self, name: "sizeNotification")
+
+        //Create configuration
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = controller
+        
+        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         webView.scrollView.isScrollEnabled = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
+    var heightWebViewConstraint: NSLayoutConstraint!
     
     private var observations = Set<NSKeyValueObservation>()
     
@@ -88,7 +112,8 @@ extension ArticleCollectionViewCell
         webView.topAnchor.constraint(equalTo: containerWebView.topAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: containerWebView.trailingAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: containerWebView.bottomAnchor).isActive = true
-        webView.heightAnchor.constraint(equalToConstant: 1.0).isActive = true
+        heightWebViewConstraint = webView.heightAnchor.constraint(equalToConstant: 1.0)
+        heightWebViewConstraint.isActive = true
     }
     
     private func observeWebViewEstimatedProgress()
@@ -98,13 +123,6 @@ extension ArticleCollectionViewCell
             guard let strongSelf = self else { return }
             guard let newValue = changed.newValue else { return }
             strongSelf.loadBarView.progress = CGFloat(newValue)
-            guard newValue == 1.0 else { return }
-            
-            strongSelf.adjustWebViewHeight()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.adjustWebViewHeight(webView.scrollView.contentSize.height)
-            })
         })
     }
     
@@ -117,6 +135,23 @@ extension ArticleCollectionViewCell
     
     private func adjusteParallaxViewHeight()
     {
-        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: insetLayoutSafeArea)
+        var adjustedInset = UIEdgeInsets.zero
+        adjustedInset.top = insetLayoutSafeArea.top
+        heightParallaxViewConstraint.constant = headerImageView.image!.getHeightKeepingRatioByWidth(headerImageView.frame.width, adjustedInset: adjustedInset)
+    }
+}
+
+extension ArticleCollectionViewCell: WKScriptMessageHandler
+{
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
+    {
+        guard let responseDict = message.body as? [String:Any],
+            let height = responseDict["height"] as? Float else {return}
+        
+        if heightWebViewConstraint.constant != CGFloat(height)
+        {
+            print("height: - ", height)
+            heightWebViewConstraint.constant = CGFloat(height)
+        }
     }
 }
