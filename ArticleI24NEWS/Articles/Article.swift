@@ -9,8 +9,13 @@
 import Foundation
 import SwiftSoup
 
-struct Article: Decodable
+struct Article: Decodable, Equatable
 {
+    static func == (lhs: Article, rhs: Article) -> Bool
+    {
+        return lhs.identifier == rhs.identifier
+    }
+    
     let identifier           : Int
     let title                : String
     let shortTitle           : String

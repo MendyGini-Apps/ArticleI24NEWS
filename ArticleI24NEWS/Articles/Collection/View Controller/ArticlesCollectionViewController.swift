@@ -59,8 +59,8 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     
     private func configure(cell: UICollectionViewCell, at indexPath: IndexPath)
     {
-        guard let articleCell = cell as? ArticleCollectionViewCell else { return }
-        
+//        guard let articleCell = cell as? ArticleCollectionViewCell else { return }
+//
 //        let htmlArticleModel = dataController.item(at: indexPath)
 //
 //        articleCell.titleLabel.text = htmlArticleModel.base.title

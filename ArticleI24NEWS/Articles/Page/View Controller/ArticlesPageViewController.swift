@@ -77,7 +77,7 @@ extension ArticlesPageViewController: UIPageViewControllerDelegate
         
         guard let articleViewController = pageViewController.viewControllers?.first as? ArticleViewController else { return }
         
-        dataController.currentItem = articleViewController.htmlArticle
+        dataController.currentItem = articleViewController.dataController.htmlArticle
     }
 }
 

@@ -69,11 +69,11 @@ class ArticleHTMLFormatter
     func extractHTMLArticle(from metadata: Article) throws -> HTMLArticleModel
     {
         let doc = try SwiftSoup.parse(templateArticleString)
-        try doc.body()?.prepend(metadata.bodyHTML)
+        try doc.body()?.select("#contentBody").prepend(metadata.bodyHTML)
         
         if let liveNews = metadata.liveNews?.sorted(by: >)
         {
-            let contentLive = try doc.select(".contentLive")
+            let contentLive = try doc.select("#contentLive")
             let liveNewsByDaySections = liveNews.groupedBy(dateComponents: [.day])
             
             for daySection in liveNewsByDaySections.keys.sorted(by: >)

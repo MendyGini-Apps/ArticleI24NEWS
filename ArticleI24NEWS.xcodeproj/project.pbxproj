@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B14F67E2393EC3400DDE422 /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B14F67C2393EC3400DDE422 /* ArticlesCollectionViewController.swift */; };
 		7B14F67F2393EC3400DDE422 /* ArticlesCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B14F67D2393EC3400DDE422 /* ArticlesCollectionViewController.xib */; };
+		7B29AA15239D066500C34F5D /* ArticleDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29AA14239D066500C34F5D /* ArticleDataController.swift */; };
 		7B2A4C192393CF05003A40A8 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2A4C182393CF05003A40A8 /* SDWebImage */; };
 		7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B2A4C1A2393D144003A40A8 /* articlesEN.json */; };
 		7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C202393D1AD003A40A8 /* Article.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		7B14F67C2393EC3400DDE422 /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
 		7B14F67D2393EC3400DDE422 /* ArticlesCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticlesCollectionViewController.xib; sourceTree = "<group>"; };
+		7B29AA14239D066500C34F5D /* ArticleDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataController.swift; sourceTree = "<group>"; };
 		7B2A4C1A2393D144003A40A8 /* articlesEN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = articlesEN.json; sourceTree = "<group>"; };
 		7B2A4C202393D1AD003A40A8 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		7B2A4C282393DA80003A40A8 /* ArticlesPageDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesPageDataController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B29AA12239D064B00C34F5D /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				96BFCF53239CCC4E00C49E39 /* ArticleViewController.swift */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		7B29AA13239D065200C34F5D /* Data Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7B29AA14239D066500C34F5D /* ArticleDataController.swift */,
+			);
+			path = "Data Controller";
+			sourceTree = "<group>";
+		};
 		7B2A4C272393DA49003A40A8 /* Articles */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,7 +236,8 @@
 		96BFCF4C239CCBB000C49E39 /* Article */ = {
 			isa = PBXGroup;
 			children = (
-				96BFCF53239CCC4E00C49E39 /* ArticleViewController.swift */,
+				7B29AA12239D064B00C34F5D /* View Controller */,
+				7B29AA13239D065200C34F5D /* Data Controller */,
 			);
 			path = Article;
 			sourceTree = "<group>";
@@ -346,6 +365,7 @@
 				7B2A4C332393DF16003A40A8 /* SectionProtocol.swift in Sources */,
 				7B14F67E2393EC3400DDE422 /* ArticlesCollectionViewController.swift in Sources */,
 				96E8AC652394E9E000611439 /* ArticleCollectionViewCell.swift in Sources */,
+				7B29AA15239D066500C34F5D /* ArticleDataController.swift in Sources */,
 				7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */,
 				7B2A4C292393DA80003A40A8 /* ArticlesPageDataController.swift in Sources */,
 				96BFCF58239CCCA000C49E39 /* ArticlesPageViewController.swift in Sources */,
