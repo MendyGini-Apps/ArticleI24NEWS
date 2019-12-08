@@ -24,12 +24,16 @@ class VersionManager
 }
 
 //±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
-struct HTMLArticleModel
+struct HTMLArticleModel: Equatable
 {
-    let identifier      : String
     let base            : Article
     let formatted       : String
     let imageMetadata   : [ArticleImage]
+    
+    static func == (lhs: Self, rhs: Self) -> Bool
+    {
+        return lhs.base.identifier == rhs.base.identifier
+    }
 }
 //±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
 
@@ -92,9 +96,8 @@ class ArticleHTMLFormatter
         
         let html = try doc.html()
         
-        return HTMLArticleModel(identifier: "\(metadata.identifier)",
-            base: metadata,
-            formatted: html,
-            imageMetadata: [])
+        return HTMLArticleModel(base: metadata,
+                                formatted: html,
+                                imageMetadata: [])
     }
 }

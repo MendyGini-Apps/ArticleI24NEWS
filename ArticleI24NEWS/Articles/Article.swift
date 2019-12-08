@@ -125,6 +125,11 @@ struct ArticleNews: Codable, Comparable, Dated
         return lhs.date < rhs.date
     }
     
+    static func == (lhs: Self, rhs: Self) -> Bool
+    {
+        return lhs.identifier == rhs.identifier
+    }
+    
     let identifier: Int
     let date: Date
     let contentHTML: String

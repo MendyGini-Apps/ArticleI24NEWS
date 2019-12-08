@@ -12,7 +12,7 @@ import SDWebImage
 class ArticlesCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout
 {
     // MARK: - Properties
-    private var dataController: ArticlesCollectionDataController!
+    private var dataController: ArticlesPageDataController!
     
     // MARK: - View Life Cycle
     override func viewDidLoad()
@@ -35,12 +35,12 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     // MARK: UICollectionViewDataSource
     override func numberOfSections(in collectionView: UICollectionView) -> Int
     {
-        return dataController.numberOfSections()
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return dataController.numberOfItems(in: section)
+        return 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
@@ -61,27 +61,27 @@ class ArticlesCollectionViewController: UICollectionViewController, UICollection
     {
         guard let articleCell = cell as? ArticleCollectionViewCell else { return }
         
-        let htmlArticleModel = dataController.item(at: indexPath)
-        
-        articleCell.titleLabel.text = htmlArticleModel.base.title
-        articleCell.descriptionLabel.text = htmlArticleModel.base.excerpt
-        articleCell.authorNameLabel.text = htmlArticleModel.base.authorName
-        articleCell.webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
-        
-        articleCell.categoryLabel.text = htmlArticleModel.base.category.uppercased(with: VersionManager.shared.locale)
-        
-        if var articleCreatedAtAsString = stringFor(date: htmlArticleModel.base.createdAt)
-        {
-            if htmlArticleModel.base.createdAt!.compare(htmlArticleModel.base.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: htmlArticleModel.base.updatedAt)
-            {
-                // TODO: - Localization "UPD"
-                articleCreatedAtAsString += " | UPD \(articleUpdateAtAsString)"
-            }
-            articleCell.dateLabel.text = articleCreatedAtAsString
-        }
-        
-        guard let imageURL = htmlArticleModel.base.images.first?.imageURL else { return }
-        articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
+//        let htmlArticleModel = dataController.item(at: indexPath)
+//
+//        articleCell.titleLabel.text = htmlArticleModel.base.title
+//        articleCell.descriptionLabel.text = htmlArticleModel.base.excerpt
+//        articleCell.authorNameLabel.text = htmlArticleModel.base.authorName
+//        articleCell.webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
+//
+//        articleCell.categoryLabel.text = htmlArticleModel.base.category.uppercased(with: VersionManager.shared.locale)
+//
+//        if var articleCreatedAtAsString = stringFor(date: htmlArticleModel.base.createdAt)
+//        {
+//            if htmlArticleModel.base.createdAt!.compare(htmlArticleModel.base.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: htmlArticleModel.base.updatedAt)
+//            {
+//                // TODO: - Localization "UPD"
+//                articleCreatedAtAsString += " | UPD \(articleUpdateAtAsString)"
+//            }
+//            articleCell.dateLabel.text = articleCreatedAtAsString
+//        }
+//
+//        guard let imageURL = htmlArticleModel.base.images.first?.imageURL else { return }
+//        articleCell.headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
     
     private func stringFor(date: Date?) -> String?
@@ -123,14 +123,14 @@ extension ArticlesCollectionViewController
 {
     func bindData(_ articles: [Article])
     {
-        dataController = ArticlesCollectionDataController(articles: articles, delegate: self)
+        dataController = ArticlesPageDataController(articles: articles, delegate: self)
     }
 }
 
-// MARK: - ArticlesCollectionDataControllerDelegate Implementation
-extension ArticlesCollectionViewController: ArticlesCollectionDataControllerDelegate
+// MARK: - ArticlesPageDataControllerDelegate Implementation
+extension ArticlesCollectionViewController: ArticlesPageDataControllerDelegate
 {
-    func dataController(_ dataController: ArticlesCollectionDataController, taskStateDidChange state: Bool) {
+    func dataController(_ dataController: ArticlesPageDataController, taskStateDidChange state: Bool) {
         collectionView.reloadData()
     }
 }

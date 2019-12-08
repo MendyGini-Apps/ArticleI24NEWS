@@ -76,9 +76,10 @@ class MainTableViewController: UITableViewController {
     
     @IBAction func showArticlesAction(_ sender: Any) {
         guard let articles = VersionManager.shared.isArabic ? arArticles : enArticles else { return }
-
-        let articlesCollectionViewController = ArticlesCollectionViewController(nibName: "\(ArticlesCollectionViewController.self)", bundle: nil)
-        articlesCollectionViewController.bindData(articles)
-        show(articlesCollectionViewController, sender: self)
+        
+        let storyboard = UIStoryboard(name: "Articles", bundle: nil)
+        let articlesPageViewController = storyboard.instantiateInitialViewController() as! ArticlesPageViewController
+        articlesPageViewController.bindData(articles)
+        show(articlesPageViewController, sender: self)
     }
 }
