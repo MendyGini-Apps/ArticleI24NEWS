@@ -29,8 +29,8 @@ class ArticleViewController: UIViewController
     // MARK: - Properties
     lazy var webView: WKWebView! = {
         //Javascript string
-        let source = "window.onload=function () {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').offsetHeight});};"
-        let source2 = "document.body.addEventListener( 'resize', incrementCounter); function incrementCounter() {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').offsetHeight});};"
+        let source = "window.onload=function () {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').clientHeight});};"
+        let source2 = "document.getElementById('contentBody').addEventListener( 'resize', incrementCounter); function incrementCounter() {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').clientHeight});};"
 
         //UserScript object
         let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
@@ -61,7 +61,6 @@ class ArticleViewController: UIViewController
     private var observations = Set<NSKeyValueObservation>()
     
     var dataController: ArticleDataController!
-    
     
     override func viewDidLoad()
     {
@@ -174,14 +173,11 @@ extension ArticleViewController: WKScriptMessageHandler
     {
         guard userContentController === webView.configuration.userContentController else { return }
         guard let responseDict = message.body as? [String:Any],
-            let height = responseDict["height"] as? Float else {return}
-
-        if heightWebViewConstraint.constant != CGFloat(height)
+            let height = responseDict["height"] as? CGFloat else { return }
+        
+        if heightWebViewConstraint.constant != height + 30.0
         {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                print(self.webView.scrollView.contentSize.height, height,self.heightWebViewConstraint.constant, self.webView.estimatedProgress)
-                self.heightWebViewConstraint.constant = self.webView.scrollView.contentSize.height
-            }
+            self.heightWebViewConstraint.constant = height + 30.0
         }
     }
 }

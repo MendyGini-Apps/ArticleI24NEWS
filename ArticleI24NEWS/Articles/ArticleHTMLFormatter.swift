@@ -43,15 +43,16 @@ class ArticleHTMLFormatter
         let articleStyleURL = Bundle.main.url(forResource: "articleStyles", withExtension: "css")!
         let articleStyleString = try! String(contentsOf: articleStyleURL)
         
-        let direction = VersionManager.shared.isArabic ? "rtl" : "ltr"
-        return String(format: articleStyleString, direction)
+        return articleStyleString
     }()
     
     private lazy var templateArticleString: String = {
         let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
         let templateArticleString = try! String(contentsOf: templateArticleURL)
         
-        return String(format: templateArticleString, articleStyleString)
+        let direction = VersionManager.shared.isArabic ? "rtl" : "ltr"
+        
+        return String(format: templateArticleString, direction, articleStyleString)
     }()
     
     private lazy var templateNewsString: String = {
@@ -69,6 +70,7 @@ class ArticleHTMLFormatter
     func extractHTMLArticle(from metadata: Article) throws -> HTMLArticleModel
     {
         let doc = try SwiftSoup.parse(templateArticleString)
+        
         try doc.body()?.select("#contentBody").prepend(metadata.bodyHTML)
         
         if let liveNews = metadata.liveNews?.sorted(by: >)
