@@ -34,10 +34,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="534"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cg-hz-hWi" userLabel="Parallax View">
-                                                        <rect key="frame" x="0.0" y="-44" width="414" height="244"/>
+                                                        <rect key="frame" x="0.0" y="79" width="414" height="121"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-8b-h0Y">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -200,21 +200,21 @@
                                                                         </constraints>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
-                                                                                <exclude reference="XPm-Gb-ohc"/>
-                                                                                <exclude reference="pTy-A4-2T5"/>
                                                                                 <exclude reference="dFr-7w-IbM"/>
+                                                                                <exclude reference="pTy-A4-2T5"/>
+                                                                                <exclude reference="XPm-Gb-ohc"/>
                                                                             </mask>
                                                                         </variation>
                                                                         <variation key="heightClass=regular-widthClass=regular">
                                                                             <mask key="constraints">
                                                                                 <exclude reference="QbU-Mg-6x0"/>
-                                                                                <exclude reference="wDH-dv-pd7"/>
-                                                                                <include reference="XPm-Gb-ohc"/>
-                                                                                <include reference="pTy-A4-2T5"/>
                                                                                 <include reference="dFr-7w-IbM"/>
+                                                                                <include reference="pTy-A4-2T5"/>
                                                                                 <exclude reference="qwj-TF-qgM"/>
                                                                                 <exclude reference="gCg-bU-VTN"/>
                                                                                 <exclude reference="CdZ-MR-vOc"/>
+                                                                                <include reference="XPm-Gb-ohc"/>
+                                                                                <exclude reference="wDH-dv-pd7"/>
                                                                             </mask>
                                                                         </variation>
                                                                     </view>
@@ -323,7 +323,6 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="UPK-K8-Dld" firstAttribute="top" secondItem="FkT-II-qXd" secondAttribute="top" id="3Dz-MY-sIE"/>
-                                    <constraint firstItem="qbh-bE-222" firstAttribute="width" secondItem="FkT-II-qXd" secondAttribute="width" id="Gke-CT-gfn"/>
                                     <constraint firstItem="9cg-hz-hWi" firstAttribute="top" secondItem="FkT-II-qXd" secondAttribute="top" priority="750" id="Kgb-6j-NDc"/>
                                     <constraint firstAttribute="bottom" secondItem="UPK-K8-Dld" secondAttribute="bottom" id="Zzp-vx-3RN"/>
                                     <constraint firstAttribute="trailing" secondItem="UPK-K8-Dld" secondAttribute="trailing" id="l11-LP-gRR"/>
@@ -336,6 +335,7 @@
                             <constraint firstAttribute="bottom" secondItem="FkT-II-qXd" secondAttribute="bottom" id="AeL-Be-L5k"/>
                             <constraint firstAttribute="trailing" secondItem="FkT-II-qXd" secondAttribute="trailing" id="JDT-Zr-MZ1"/>
                             <constraint firstItem="FkT-II-qXd" firstAttribute="top" secondItem="lwA-Mc-fTO" secondAttribute="top" id="RNX-3K-4cG"/>
+                            <constraint firstItem="qbh-bE-222" firstAttribute="width" secondItem="YLr-Eb-ImD" secondAttribute="width" id="fui-Pe-joG"/>
                             <constraint firstItem="FkT-II-qXd" firstAttribute="leading" secondItem="lwA-Mc-fTO" secondAttribute="leading" id="joY-ED-Rq0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YLr-Eb-ImD"/>

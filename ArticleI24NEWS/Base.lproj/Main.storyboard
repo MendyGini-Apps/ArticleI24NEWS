@@ -49,7 +49,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FmO-x2-Lrq">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FmO-x2-Lrq">
                                                     <rect key="frame" x="345" y="6.5" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="arabicSwitchValueChanged:" destination="doK-pX-TSc" eventType="valueChanged" id="zG2-Cq-sfW"/>

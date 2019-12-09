@@ -27,35 +27,8 @@ class ArticleViewController: UIViewController
     @IBOutlet weak var heightParallaxViewConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
-    lazy var webView: WKWebView! = {
-        //Javascript string
-        let source = "window.onload=function () {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').clientHeight});};"
-        let source2 = "document.getElementById('contentBody').addEventListener( 'resize', incrementCounter); function incrementCounter() {window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').clientHeight});};"
-
-        //UserScript object
-        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-
-        let script2 = WKUserScript(source: source2, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-
-        //Content Controller object
-        let controller = WKUserContentController()
-
-        //Add script to controller
-        controller.addUserScript(script)
-        controller.addUserScript(script2)
-
-        //Add message handler reference
-        controller.add(self, name: "sizeNotification")
-
-        //Create configuration
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = controller
-        
-        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
-        webView.scrollView.isScrollEnabled = false
-        webView.translatesAutoresizingMaskIntoConstraints = false
-        return webView
-    }()
+    var webController: WebControllerProtocol!
+    weak var webView: WKWebView!
     weak var heightWebViewConstraint: NSLayoutConstraint!
     
     private var observations = Set<NSKeyValueObservation>()
@@ -69,7 +42,20 @@ class ArticleViewController: UIViewController
         addWebView()
         view.decideDirection()
         configureView()
-        observeWebViewEstimatedProgress()
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+
+        guard webView.estimatedProgress == 1.0 else { return }
+        heightWebViewConstraint.constant = webView.scrollView.contentSize.height
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }
+    
+    deinit {
+        observations.forEach { $0.invalidate() }
     }
     
     override func viewDidLayoutSubviews()
@@ -84,6 +70,13 @@ extension ArticleViewController
 {
     private func addWebView()
     {
+        let webView = WKWebView(frame: CGRect.zero, configuration: webController.configuration())
+        self.webView = webView
+        webView.scrollView.isScrollEnabled = false
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.backgroundColor = .clear
+        webView.scrollView.backgroundColor = .clear
+        webView.navigationDelegate = webController
         containerWebView.addSubview(webView)
         webView.leadingAnchor.constraint(equalTo: containerWebView.leadingAnchor).isActive = true
         webView.topAnchor.constraint(equalTo: containerWebView.topAnchor).isActive = true
@@ -91,6 +84,14 @@ extension ArticleViewController
         webView.bottomAnchor.constraint(equalTo: containerWebView.bottomAnchor).isActive = true
         heightWebViewConstraint = webView.heightAnchor.constraint(equalToConstant: 1.0)
         heightWebViewConstraint.isActive = true
+        
+        observeWebViewEstimatedProgress(webView: webView)
+        
+        guard webView.estimatedProgress == 0.0 else { return }
+        let htmlArticleModel = dataController.htmlArticle
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
     }
     
     private func configureView()
@@ -118,8 +119,6 @@ extension ArticleViewController
             dateLabel.text = articleCreatedAtAsString
         }
         
-        webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
-        
         guard let imageURL = htmlArticleModel.base.images.first?.imageURL else { return }
         headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
@@ -141,7 +140,7 @@ extension ArticleViewController
         }
     }
     
-    private func observeWebViewEstimatedProgress()
+    private func observeWebViewEstimatedProgress(webView: WKWebView)
     {
         observations.insert(webView.observe(\.estimatedProgress, options: [.new]) { [weak self] (webView, changed) in
             
@@ -164,20 +163,23 @@ extension ArticleViewController
     func bindData(htmlArticle: HTMLArticleModel)
     {
         dataController = ArticleDataController(htmlArticle: htmlArticle)
+        webController = ArticleWebController(delegate: self)
     }
 }
 
-extension ArticleViewController: WKScriptMessageHandler
+extension ArticleViewController: WebControllerDelegate
 {
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage)
+    func webController(_ webController: WebControllerProtocol, heightOfBody height: CGFloat)
     {
-        guard userContentController === webView.configuration.userContentController else { return }
-        guard let responseDict = message.body as? [String:Any],
-            let height = responseDict["height"] as? CGFloat else { return }
+        guard heightWebViewConstraint.constant != height else { return }
         
-        if heightWebViewConstraint.constant != height + 30.0
-        {
-            self.heightWebViewConstraint.constant = height + 30.0
+        self.heightWebViewConstraint.constant = height
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.heightWebViewConstraint.constant = self.webView.scrollView.contentSize.height
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
         }
     }
 }
