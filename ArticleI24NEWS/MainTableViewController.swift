@@ -27,6 +27,12 @@ class MainTableViewController: UITableViewController {
         fetchArticles()
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     func fetchArticles()
     {
         let articleENURL = Bundle.main.url(forResource: "articlesEN", withExtension: "json")!

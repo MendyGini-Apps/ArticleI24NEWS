@@ -16,7 +16,7 @@ protocol ArticlesPageDataControllerProtocol: PageDataSourceProtocol
 protocol ArticlesPageDataControllerDelegate: NSObjectProtocol
 {
     func dataController(_ dataController: ArticlesPageDataController, taskStateDidChange state: Bool)
-    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged: ArticlesPageDataController.Item)
+    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged item: ArticlesPageDataController.Item)
 }
 
 class ArticlesPageDataController

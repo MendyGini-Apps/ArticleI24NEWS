@@ -10,6 +10,11 @@ import UIKit
 
 class ArticlesPageViewController: UIPageViewController
 {
+    @IBOutlet var backgroundNavigationBarView: GradientView!
+    @IBOutlet weak var blueBackgroundNavigationBarView: UIView!
+    @IBOutlet var navigationBar: UINavigationBar!
+    @IBOutlet weak var commentButton: CommentButton!
+    
     // MARK: - Properties
     private var dataController: ArticlesPageDataController!
     
@@ -18,10 +23,17 @@ class ArticlesPageViewController: UIPageViewController
     {
         super.viewDidLoad()
         
+        configureView()
         dataSource = self
         delegate = self
         
         dataController.fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     // MARK: - IBActions
@@ -33,6 +45,11 @@ class ArticlesPageViewController: UIPageViewController
     @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
         print(#function)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
     }
 }
 
@@ -48,6 +65,28 @@ extension ArticlesPageViewController
 // MARK: - Private Methods
 extension ArticlesPageViewController
 {
+    func configureView()
+    {
+        let emptyImage = UIImage()
+        navigationBar.setBackgroundImage(emptyImage, for: .default)
+        navigationBar.shadowImage = emptyImage
+        view.addSubview(navigationBar)
+        navigationBar.translatesAutoresizingMaskIntoConstraints = false
+        navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        navigationBar.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+        
+        backgroundNavigationBarView.gradientLayer.colors = [UIColor.black.withAlphaComponent(0.5).cgColor, UIColor.clear.cgColor]
+        backgroundNavigationBarView.gradientLayer.startPoint = CGPoint.zero
+        backgroundNavigationBarView.gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        view.insertSubview(backgroundNavigationBarView, belowSubview: navigationBar)
+        backgroundNavigationBarView.translatesAutoresizingMaskIntoConstraints = false
+        backgroundNavigationBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundNavigationBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        backgroundNavigationBarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundNavigationBarView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
+    }
+    
     private func getArticleViewController(with item: ArticlesPageDataController.Item) -> ArticleViewController
     {
         let articleViewController = storyboard!.instantiateViewController(withIdentifier: "\(ArticleViewController.self)") as! ArticleViewController
@@ -104,8 +143,8 @@ extension ArticlesPageViewController: ArticlesPageDataControllerDelegate
         setViewControllers([articleViewController], direction: .forward, animated: false, completion: nil)
     }
     
-    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged: ArticlesPageDataController.Item)
+    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged item: ArticlesPageDataController.Item)
     {
-        
+        commentButton.numberOfComment = item.base.numberOfComments
     }
 }

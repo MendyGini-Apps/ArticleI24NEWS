@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7B29AA15239D066500C34F5D /* ArticleDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29AA14239D066500C34F5D /* ArticleDataController.swift */; };
+		7B29AA19239FBE4A00C34F5D /* CommentButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29AA18239FBE4A00C34F5D /* CommentButton.swift */; };
+		7B29AA1B239FC9F300C34F5D /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29AA1A239FC9F300C34F5D /* ExtensionUIViewController.swift */; };
+		7B29AA1D239FDB8000C34F5D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B29AA1C239FDB7F00C34F5D /* GradientView.swift */; };
 		7B2A4C192393CF05003A40A8 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 7B2A4C182393CF05003A40A8 /* SDWebImage */; };
 		7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B2A4C1A2393D144003A40A8 /* articlesEN.json */; };
 		7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C202393D1AD003A40A8 /* Article.swift */; };
@@ -42,6 +45,9 @@
 
 /* Begin PBXFileReference section */
 		7B29AA14239D066500C34F5D /* ArticleDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDataController.swift; sourceTree = "<group>"; };
+		7B29AA18239FBE4A00C34F5D /* CommentButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentButton.swift; sourceTree = "<group>"; };
+		7B29AA1A239FC9F300C34F5D /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
+		7B29AA1C239FDB7F00C34F5D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		7B2A4C1A2393D144003A40A8 /* articlesEN.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = articlesEN.json; sourceTree = "<group>"; };
 		7B2A4C202393D1AD003A40A8 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		7B2A4C282393DA80003A40A8 /* ArticlesPageDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesPageDataController.swift; sourceTree = "<group>"; };
@@ -150,6 +156,8 @@
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
 				7BF9E0172399271000109877 /* MainTableViewController.swift */,
 				7BF9E0192399532E00109877 /* LoadBarView.swift */,
+				7B29AA18239FBE4A00C34F5D /* CommentButton.swift */,
+				7B29AA1C239FDB7F00C34F5D /* GradientView.swift */,
 				7B2A4C272393DA49003A40A8 /* Articles */,
 				7BF9E0002396711E00109877 /* Resources */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
@@ -195,6 +203,7 @@
 				96FED69623902E1200439D80 /* ExtensionUIImage.swift */,
 				7BF9E012239925A800109877 /* ExtensionUIView.swift */,
 				7BF9E014239925C900109877 /* ExtenstionDateFormatter.swift */,
+				7B29AA1A239FC9F300C34F5D /* ExtensionUIViewController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B29AA1D239FDB8000C34F5D /* GradientView.swift in Sources */,
 				7BF9E015239925C900109877 /* ExtenstionDateFormatter.swift in Sources */,
 				7BF9E013239925A800109877 /* ExtensionUIView.swift in Sources */,
 				963D935A23978D470050F014 /* ArticleHTMLFormatter.swift in Sources */,
@@ -335,7 +345,9 @@
 				96BFCF5B239D56C700C49E39 /* ArticleWebcontroller.swift in Sources */,
 				7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */,
 				96BFCF54239CCC4E00C49E39 /* ArticleViewController.swift in Sources */,
+				7B29AA19239FBE4A00C34F5D /* CommentButton.swift in Sources */,
 				7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */,
+				7B29AA1B239FC9F300C34F5D /* ExtensionUIViewController.swift in Sources */,
 				7B2A4C332393DF16003A40A8 /* PageDataSourceProtocol.swift in Sources */,
 				7B29AA15239D066500C34F5D /* ArticleDataController.swift in Sources */,
 				7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */,

@@ -27,7 +27,7 @@ class ArticleWebController: NSObject
         let source = try! String(contentsOf: articleJS)
         return source
     }
-    private weak var delegate: WebControllerDelegate!
+    private weak var delegate: WebControllerDelegate?
     
     init(delegate: WebControllerDelegate)
     {
@@ -71,8 +71,9 @@ extension ArticleWebController: WKScriptMessageHandler
         guard let responseDict = message.body as? [String:Any],
             let height = responseDict["height"] as? CGFloat else { return }
         
-        DispatchQueue.main.async {
-            self.delegate.webController(self, heightOfBody: height)
+        DispatchQueue.main.async { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.delegate?.webController(strongSelf, heightOfBody: height)
         }
     }
 }

@@ -11,8 +11,60 @@
         <!--Articles Page View Controller-->
         <scene sceneID="MpP-Pi-yTn">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="VRT-of-tz0" customClass="ArticlesPageViewController" customModule="ArticleI24NEWS" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="VRT-of-tz0" customClass="ArticlesPageViewController" customModule="ArticleI24NEWS" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <outlet property="backgroundNavigationBarView" destination="azG-NG-hvo" id="5DV-Co-dm5"/>
+                        <outlet property="blueBackgroundNavigationBarView" destination="kgM-zA-Urd" id="hsc-qq-uVJ"/>
+                        <outlet property="commentButton" destination="ZR8-DB-IhU" id="n8M-AK-ky5"/>
+                        <outlet property="navigationBar" destination="MvG-lZ-WOf" id="DXq-e2-0gK"/>
+                    </connections>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ro3-T8-46d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationBar contentMode="scaleToFill" id="MvG-lZ-WOf">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <items>
+                        <navigationItem id="ttu-op-0aw">
+                            <barButtonItem key="leftBarButtonItem" image="navigation_arrow" id="MES-KT-Zxw">
+                                <connections>
+                                    <action selector="popViewControllerWithAnimation" destination="Ro3-T8-46d" id="JB2-g4-992"/>
+                                </connections>
+                            </barButtonItem>
+                            <rightBarButtonItems>
+                                <barButtonItem image="article_text_sizing" id="bIV-UF-2NC"/>
+                                <barButtonItem image="article_share_icon" id="hbi-QC-2Dc"/>
+                                <barButtonItem image="article_favorite_icon" id="yJ3-5b-T44"/>
+                                <barButtonItem id="B55-oY-Kcr">
+                                    <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZR8-DB-IhU" customClass="CommentButton" customModule="ArticleI24NEWS" customModuleProvider="target">
+                                        <rect key="frame" x="213" y="4" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="9"/>
+                                        <state key="normal" image="article_comment_icon">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                    </button>
+                                </barButtonItem>
+                            </rightBarButtonItems>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <view contentMode="scaleToFill" id="azG-NG-hvo" customClass="GradientView" customModule="ArticleI24NEWS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kgM-zA-Urd">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="89"/>
+                            <color key="backgroundColor" red="0.061876662079999999" green="0.13183289770000001" blue="0.27981516719999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="kgM-zA-Urd" firstAttribute="leading" secondItem="azG-NG-hvo" secondAttribute="leading" id="11j-E3-YbA"/>
+                        <constraint firstAttribute="bottom" secondItem="kgM-zA-Urd" secondAttribute="bottom" id="2tg-z3-qR8"/>
+                        <constraint firstItem="kgM-zA-Urd" firstAttribute="top" secondItem="azG-NG-hvo" secondAttribute="top" id="8hW-SH-jGI"/>
+                        <constraint firstAttribute="trailing" secondItem="kgM-zA-Urd" secondAttribute="trailing" id="wVg-5x-jDL"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="-7" y="96"/>
         </scene>
@@ -321,7 +373,7 @@
                                             <constraint firstItem="qbh-bE-222" firstAttribute="leading" secondItem="UPK-K8-Dld" secondAttribute="leading" id="XrD-fo-IPL"/>
                                             <constraint firstAttribute="trailing" secondItem="qbh-bE-222" secondAttribute="trailing" id="gCo-4u-IL0"/>
                                         </constraints>
-                                        <inset key="scrollIndicatorInsets" minX="0.0" minY="16" maxX="0.0" maxY="0.0"/>
+                                        <inset key="scrollIndicatorInsets" minX="0.0" minY="44" maxX="0.0" maxY="0.0"/>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -367,6 +419,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="article_comment_icon" width="18" height="18"/>
+        <image name="article_favorite_icon" width="18" height="18"/>
+        <image name="article_share_icon" width="18" height="18"/>
+        <image name="article_text_sizing" width="30" height="22"/>
         <image name="logo_article" width="672" height="371"/>
+        <image name="navigation_arrow" width="22" height="22"/>
     </resources>
 </document>
