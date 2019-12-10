@@ -44,16 +44,6 @@ class ArticleViewController: UIViewController
         configureView()
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
-
-        guard webView.estimatedProgress == 1.0 else { return }
-        heightWebViewConstraint.constant = webView.scrollView.contentSize.height
-        self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
-    }
-    
     deinit {
         observations.forEach { $0.invalidate() }
     }
@@ -89,8 +79,6 @@ extension ArticleViewController
         
         guard webView.estimatedProgress == 0.0 else { return }
         let htmlArticleModel = dataController.htmlArticle
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
         webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
     }
     
@@ -171,15 +159,11 @@ extension ArticleViewController: WebControllerDelegate
 {
     func webController(_ webController: WebControllerProtocol, heightOfBody height: CGFloat)
     {
-        guard heightWebViewConstraint.constant != height else { return }
+        let heightWithInset = height + 30.0
+        guard heightWebViewConstraint.constant != heightWithInset else { return }
         
-        self.heightWebViewConstraint.constant = height
+        self.heightWebViewConstraint.constant = heightWithInset
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.heightWebViewConstraint.constant = self.webView.scrollView.contentSize.height
-            self.view.setNeedsLayout()
-            self.view.layoutIfNeeded()
-        }
     }
 }

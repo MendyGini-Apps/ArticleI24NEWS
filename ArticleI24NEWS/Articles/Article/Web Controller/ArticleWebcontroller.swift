@@ -34,21 +34,18 @@ extension ArticleWebController: WebControllerProtocol
     func configuration() -> WKWebViewConfiguration
     {
         //Javascript string
-        let source = "window.addEventListener('load', function(event) {window.webkit.messageHandlers.sizeNotification.postMessage({height:document.getElementById('contentBody').scrollHeight});});"
-        let source2 = "document.getElementById('contentBody').addEventListener('resize', function(event){window.webkit.messageHandlers.sizeNotification.postMessage({height: document.getElementById('contentBody').scrollHeight});});"
-        
+        let articleJS = Bundle.main.url(forResource: "Article", withExtension: "js")!
+        let source = try! String(contentsOf: articleJS)
         
         //UserScript object
         let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
-        let script2 = WKUserScript(source: source2, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
         //Content Controller object
         let controller = WKUserContentController()
 
         //Add script to controller
         controller.addUserScript(script)
-        controller.addUserScript(script2)
 
         //Add message handler reference
         controller.add(self, name: "sizeNotification")
@@ -74,7 +71,7 @@ extension ArticleWebController: WKScriptMessageHandler
             let height = responseDict["height"] as? CGFloat else { return }
         
         DispatchQueue.main.async {
-            self.delegate.webController(self, heightOfBody: height + 30.0)
+            self.delegate.webController(self, heightOfBody: height)
         }
     }
 }
