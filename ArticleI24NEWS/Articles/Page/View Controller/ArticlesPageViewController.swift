@@ -23,6 +23,17 @@ class ArticlesPageViewController: UIPageViewController
         
         dataController.fetchData()
     }
+    
+    // MARK: - IBActions
+    @IBAction func commentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
+    {
+        print(#function)
+    }
+    
+    @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
+    {
+        print(#function)
+    }
 }
 
 // MARK: - Public Methods

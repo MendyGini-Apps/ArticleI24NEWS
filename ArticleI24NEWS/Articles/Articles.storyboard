@@ -34,10 +34,10 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="534"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cg-hz-hWi" userLabel="Parallax View">
-                                                        <rect key="frame" x="0.0" y="79" width="414" height="121"/>
+                                                        <rect key="frame" x="0.0" y="-44" width="414" height="244"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-8b-h0Y">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="121"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -227,38 +227,42 @@
                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2f1-Y4-fLU">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                                                                                 <subviews>
-                                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="iaH-TV-8r9">
-                                                                                        <rect key="frame" x="16" y="10" width="382" height="26"/>
-                                                                                        <subviews>
-                                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5b-pY-YrS">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="26"/>
-                                                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                                                                <state key="normal" title="Comments">
-                                                                                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                                                                </state>
-                                                                                                <connections>
-                                                                                                    <action selector="commentButtonDidTappedWithSender:forEvent:" destination="hhO-Zg-2Df" eventType="touchUpInside" id="1F7-4W-6vd"/>
-                                                                                                </connections>
-                                                                                            </button>
-                                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mg-T6-oVd">
-                                                                                                <rect key="frame" x="296" y="0.0" width="86" height="26"/>
-                                                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                                                                                <state key="normal" title="Add a comment">
-                                                                                                    <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                </state>
-                                                                                                <connections>
-                                                                                                    <action selector="addCommentButtonDidTappedWithSender:forEvent:" destination="hhO-Zg-2Df" eventType="touchUpInside" id="BoX-DR-BV3"/>
-                                                                                                </connections>
-                                                                                            </button>
-                                                                                        </subviews>
-                                                                                    </stackView>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h5b-pY-YrS">
+                                                                                        <rect key="frame" x="16" y="10" width="59" height="26"/>
+                                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                                                        <state key="normal" title="Comments">
+                                                                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="commentButtonDidTappedWithSender:forEvent:" destination="hhO-Zg-2Df" eventType="touchUpInside" id="1F7-4W-6vd"/>
+                                                                                        </connections>
+                                                                                    </button>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(1)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyq-bz-hz7">
+                                                                                        <rect key="frame" x="79" y="16" width="13" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                                                        <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mg-T6-oVd">
+                                                                                        <rect key="frame" x="312" y="10" width="86" height="26"/>
+                                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                                                        <state key="normal" title="Add a comment">
+                                                                                            <color key="titleColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                        </state>
+                                                                                        <connections>
+                                                                                            <action selector="addCommentButtonDidTappedWithSender:forEvent:" destination="hhO-Zg-2Df" eventType="touchUpInside" id="BoX-DR-BV3"/>
+                                                                                        </connections>
+                                                                                    </button>
                                                                                 </subviews>
-                                                                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="trailing" secondItem="iaH-TV-8r9" secondAttribute="trailing" constant="16" id="M7G-aM-jMA"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="iaH-TV-8r9" secondAttribute="bottom" constant="10" id="PI9-re-2bW"/>
-                                                                                    <constraint firstItem="iaH-TV-8r9" firstAttribute="top" secondItem="2f1-Y4-fLU" secondAttribute="top" constant="10" id="dFz-RP-QX8"/>
-                                                                                    <constraint firstItem="iaH-TV-8r9" firstAttribute="leading" secondItem="2f1-Y4-fLU" secondAttribute="leading" constant="16" id="hJy-vf-zoW"/>
+                                                                                    <constraint firstItem="Lyq-bz-hz7" firstAttribute="leading" secondItem="h5b-pY-YrS" secondAttribute="trailing" constant="4" id="4cZ-Tf-Bgq"/>
+                                                                                    <constraint firstItem="8mg-T6-oVd" firstAttribute="centerY" secondItem="2f1-Y4-fLU" secondAttribute="centerY" id="6G9-ZX-63N"/>
+                                                                                    <constraint firstItem="h5b-pY-YrS" firstAttribute="centerY" secondItem="2f1-Y4-fLU" secondAttribute="centerY" id="F17-t0-4WO"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="8mg-T6-oVd" secondAttribute="trailing" constant="16" id="GQw-i6-f2x"/>
+                                                                                    <constraint firstItem="Lyq-bz-hz7" firstAttribute="centerY" secondItem="h5b-pY-YrS" secondAttribute="centerY" id="J5G-mX-ukR"/>
+                                                                                    <constraint firstAttribute="height" constant="46" id="Pjh-KM-X7f"/>
+                                                                                    <constraint firstItem="h5b-pY-YrS" firstAttribute="leading" secondItem="2f1-Y4-fLU" secondAttribute="leading" constant="16" id="vbs-3C-fou"/>
                                                                                 </constraints>
                                                                             </view>
                                                                         </subviews>
@@ -351,6 +355,7 @@
                         <outlet property="headerImageView" destination="Kpu-8b-h0Y" id="tw5-b6-fIq"/>
                         <outlet property="heightParallaxViewConstraint" destination="UEz-qJ-zTL" id="kYj-FJ-iO9"/>
                         <outlet property="loadBarView" destination="47Y-YA-siq" id="deN-jt-3qd"/>
+                        <outlet property="numberOfCommentsLabel" destination="Lyq-bz-hz7" id="8LJ-wt-24T"/>
                         <outlet property="scrollView" destination="UPK-K8-Dld" id="DFp-5A-8xE"/>
                         <outlet property="titleLabel" destination="1nj-Ep-J6c" id="GL6-Rd-wyZ"/>
                         <outlet property="writtenByLabel" destination="gX6-Km-zlo" id="f2A-ae-wPq"/>

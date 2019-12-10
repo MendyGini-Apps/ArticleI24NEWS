@@ -23,6 +23,7 @@ class ArticleViewController: UIViewController
     @IBOutlet weak var descriptionLabel : UILabel!
     @IBOutlet weak var containerWebView : UIView!
     @IBOutlet weak var commentsButton   : UIButton!
+    @IBOutlet weak var numberOfCommentsLabel: UILabel!
     @IBOutlet weak var addCommentButton : UIButton!
     @IBOutlet weak var heightParallaxViewConstraint: NSLayoutConstraint!
     
@@ -64,15 +65,13 @@ extension ArticleViewController
         self.webView = webView
         webView.scrollView.isScrollEnabled = false
         webView.translatesAutoresizingMaskIntoConstraints = false
-        webView.backgroundColor = .clear
-        webView.scrollView.backgroundColor = .clear
         webView.navigationDelegate = webController
         containerWebView.addSubview(webView)
         webView.leadingAnchor.constraint(equalTo: containerWebView.leadingAnchor).isActive = true
         webView.topAnchor.constraint(equalTo: containerWebView.topAnchor).isActive = true
         webView.trailingAnchor.constraint(equalTo: containerWebView.trailingAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: containerWebView.bottomAnchor).isActive = true
-        heightWebViewConstraint = webView.heightAnchor.constraint(equalToConstant: 1.0)
+        heightWebViewConstraint = webView.heightAnchor.constraint(equalToConstant: 0.0)
         heightWebViewConstraint.isActive = true
         
         observeWebViewEstimatedProgress(webView: webView)
@@ -94,6 +93,8 @@ extension ArticleViewController
         titleLabel.text = htmlArticleModel.base.title
         descriptionLabel.text = htmlArticleModel.base.excerpt
         authorNameLabel.text = htmlArticleModel.base.authorName
+        let numberOfComments = htmlArticleModel.base.numberOfComments
+        numberOfCommentsLabel.text = numberOfComments > 0 ? "(\(numberOfComments))" : ""
         
         categoryLabel.text = htmlArticleModel.base.category.uppercased(with: VersionManager.shared.locale)
         
@@ -159,7 +160,8 @@ extension ArticleViewController: WebControllerDelegate
 {
     func webController(_ webController: WebControllerProtocol, heightOfBody height: CGFloat)
     {
-        let heightWithInset = height + 30.0
+        let inset = CGFloat(30.0)
+        let heightWithInset = height + inset
         guard heightWebViewConstraint.constant != heightWithInset else { return }
         
         self.heightWebViewConstraint.constant = heightWithInset

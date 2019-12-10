@@ -21,7 +21,13 @@ protocol WebControllerDelegate: NSObjectProtocol
 
 class ArticleWebController: NSObject
 {
-    weak var delegate: WebControllerDelegate!
+    private static var jsSource: String
+    {
+        let articleJS = Bundle.main.url(forResource: "Article", withExtension: "js")!
+        let source = try! String(contentsOf: articleJS)
+        return source
+    }
+    private weak var delegate: WebControllerDelegate!
     
     init(delegate: WebControllerDelegate)
     {
@@ -33,13 +39,8 @@ extension ArticleWebController: WebControllerProtocol
 {
     func configuration() -> WKWebViewConfiguration
     {
-        //Javascript string
-        let articleJS = Bundle.main.url(forResource: "Article", withExtension: "js")!
-        let source = try! String(contentsOf: articleJS)
-        
         //UserScript object
-        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-
+        let script = WKUserScript(source: ArticleWebController.jsSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 
         //Content Controller object
         let controller = WKUserContentController()
