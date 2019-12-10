@@ -103,4 +103,9 @@ extension ArticlesPageViewController: ArticlesPageDataControllerDelegate
         
         setViewControllers([articleViewController], direction: .forward, animated: false, completion: nil)
     }
+    
+    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged: ArticlesPageDataController.Item)
+    {
+        
+    }
 }

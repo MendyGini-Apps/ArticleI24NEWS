@@ -16,6 +16,7 @@ protocol ArticlesPageDataControllerProtocol: PageDataSourceProtocol
 protocol ArticlesPageDataControllerDelegate: NSObjectProtocol
 {
     func dataController(_ dataController: ArticlesPageDataController, taskStateDidChange state: Bool)
+    func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged: ArticlesPageDataController.Item)
 }
 
 class ArticlesPageDataController
@@ -24,6 +25,13 @@ class ArticlesPageDataController
     private let articleHTMLFormatter: ArticleHTMLFormatter
     private(set) var dataSource: [Item]
     private var _currentItem: Item?
+    {
+        didSet
+        {
+            guard let currentItem = _currentItem else { return }
+            delegate.dataController(self, currentItemDidChanged: currentItem)
+        }
+    }
     
     init(articles: [Article], delegate: ArticlesPageDataControllerDelegate)
     {
