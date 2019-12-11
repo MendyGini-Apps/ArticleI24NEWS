@@ -18,6 +18,11 @@ class ArticlesPageViewController: UIPageViewController
     // MARK: - Properties
     private var dataController: ArticlesPageDataController!
     
+    override var preferredStatusBarStyle: UIStatusBarStyle
+    {
+        return .lightContent
+    }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad()
     {
@@ -46,11 +51,6 @@ class ArticlesPageViewController: UIPageViewController
     {
         print(#function)
     }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle
-    {
-        return .lightContent
-    }
 }
 
 // MARK: - Public Methods
@@ -67,6 +67,11 @@ extension ArticlesPageViewController
 {
     func configureView()
     {
+        if #available(iOS 13.0, *) {
+            view.backgroundColor = UIColor.systemBackground
+        } else {
+            view.backgroundColor = UIColor.white
+        }
         let emptyImage = UIImage()
         navigationBar.setBackgroundImage(emptyImage, for: .default)
         navigationBar.shadowImage = emptyImage
@@ -146,5 +151,33 @@ extension ArticlesPageViewController: ArticlesPageDataControllerDelegate
     func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged item: ArticlesPageDataController.Item)
     {
         commentButton.numberOfComment = item.base.numberOfComments
+    }
+}
+
+extension ArticlesPageViewController: FromArticleVCToArticlesPageVCProtocol
+{
+    func updateNavigationBarBackground(withScrollView scrollView: UIScrollView, heightParallaxView: CGFloat, animated: Bool)
+    {
+        let contentYOffsetAdjusted: CGFloat
+        if #available(iOS 11.0, *)
+        {
+            contentYOffsetAdjusted = scrollView.adjustedContentInset.top + scrollView.contentOffset.y
+        }
+        else
+        {
+            contentYOffsetAdjusted = scrollView.contentOffset.y
+        }
+        var percentParalaxOffset = (contentYOffsetAdjusted/(heightParallaxView - navigationBar.frame.maxY)).roundToDecimal(2)
+        percentParalaxOffset = max(0, min(percentParalaxOffset, 1))
+        if animated
+        {
+            UIView.animate(withDuration: 0.3) {
+                self.blueBackgroundNavigationBarView.alpha = percentParalaxOffset
+            }
+        }
+        else
+        {
+            blueBackgroundNavigationBarView.alpha = percentParalaxOffset
+        }
     }
 }

@@ -10,6 +10,12 @@ import UIKit
 import WebKit
 import SDWebImage
 
+@objc
+protocol FromArticleVCToArticlesPageVCProtocol
+{
+    @objc func updateNavigationBarBackground(withScrollView scrollView: UIScrollView, heightParallaxView: CGFloat, animated: Bool)
+}
+
 class ArticleViewController: UIViewController
 {
     // MARK: - IBOutlets
@@ -46,6 +52,12 @@ class ArticleViewController: UIViewController
         configureView()
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        shouldNotifyScrollDidScroll(scrollView, withAnimation: animated)
+    }
+
     deinit {
         observations.forEach { $0.invalidate() }
     }
@@ -84,6 +96,7 @@ extension ArticleViewController
     
     private func configureView()
     {
+        scrollView.delegate = self
         // TODO: - Localization "Written by"
         writtenByLabel.text = "Written by"
         commentsButton.setTitle("Comments", for: .normal)
@@ -168,5 +181,23 @@ extension ArticleViewController: WebControllerDelegate
         self.heightWebViewConstraint.constant = heightWithInset
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
+    }
+}
+
+extension ArticleViewController: UIScrollViewDelegate
+{
+    private func shouldNotifyScrollDidScroll(_ scrollView: UIScrollView, withAnimation animated: Bool)
+    {
+        let selector = #selector(FromArticleVCToArticlesPageVCProtocol.updateNavigationBarBackground(withScrollView:heightParallaxView:animated:))
+        
+        if let responder = target(forAction: selector, withSender: self) as? FromArticleVCToArticlesPageVCProtocol
+        {
+            responder.updateNavigationBarBackground(withScrollView: scrollView, heightParallaxView: heightParallaxViewConstraint.constant, animated: animated)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        shouldNotifyScrollDidScroll(scrollView, withAnimation: false)
     }
 }
