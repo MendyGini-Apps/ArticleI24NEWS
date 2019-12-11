@@ -24,18 +24,19 @@ class ArticlesPageDataController
     private weak var delegate: ArticlesPageDataControllerDelegate!
     private let articleHTMLFormatter: ArticleHTMLFormatter
     private(set) var dataSource: [Item]
-    private var _currentItem: Item?
+    private var currentIndex: Int
     {
         didSet
         {
-            guard let currentItem = _currentItem else { return }
-            delegate.dataController(self, currentItemDidChanged: currentItem)
+            guard (0..<dataSource.count) ~= currentIndex else { return }
+            delegate.dataController(self, currentItemDidChanged: dataSource[currentIndex])
         }
     }
     
-    init(articles: [Article], delegate: ArticlesPageDataControllerDelegate)
+    init(articles: [Article], at index: Int, delegate: ArticlesPageDataControllerDelegate)
     {
         self.delegate = delegate
+        self.currentIndex = index
         let articleHTMLFormatter = ArticleHTMLFormatter()
         self.articleHTMLFormatter = articleHTMLFormatter
         let HTMLArticlesModels = articles.compactMap { try? articleHTMLFormatter.extractHTMLArticle(from: $0) }
@@ -47,7 +48,6 @@ extension ArticlesPageDataController: ArticlesPageDataControllerProtocol
 {
     func fetchData()
     {
-        _currentItem = dataSource.first
         self.delegate.dataController(self, taskStateDidChange: true)
     }
 }
@@ -60,13 +60,14 @@ extension ArticlesPageDataController: PageDataSourceProtocol
     {
         get
         {
-            return _currentItem
+            guard (0..<dataSource.count) ~= currentIndex else { return nil }
+            return dataSource[currentIndex]
         }
         set
         {
             guard let newValue = newValue else { return }
-            guard dataSource.contains(newValue) else { return }
-            _currentItem = newValue
+            guard let currentIndex = dataSource.firstIndex(of: newValue) else { return }
+            self.currentIndex = currentIndex
         }
     }
 }

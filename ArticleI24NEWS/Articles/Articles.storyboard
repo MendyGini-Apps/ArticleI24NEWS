@@ -325,7 +325,7 @@
                                                                             <constraint firstAttribute="trailing" secondItem="2f1-Y4-fLU" secondAttribute="trailing" id="qHh-dO-s7C"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="749" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-Fv-fSq">
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="749" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-Fv-fSq">
                                                                         <rect key="frame" x="0.0" y="171" width="414" height="163"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     </activityIndicatorView>

@@ -105,6 +105,26 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MPK-U8-DS7" id="2bZ-5b-xsh">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="odM-oF-aSf">
+                                                    <rect key="frame" x="300" y="6" width="94" height="32"/>
+                                                    <connections>
+                                                        <action selector="indexStepperValueChanged:" destination="doK-pX-TSc" eventType="valueChanged" id="EsM-hR-PPc"/>
+                                                    </connections>
+                                                </stepper>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6a-8d-X3S">
+                                                    <rect key="frame" x="20" y="11.5" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="odM-oF-aSf" firstAttribute="trailing" secondItem="2bZ-5b-xsh" secondAttribute="trailingMargin" id="fKu-lo-sDl"/>
+                                                <constraint firstItem="b6a-8d-X3S" firstAttribute="leading" secondItem="2bZ-5b-xsh" secondAttribute="leadingMargin" id="gfg-4t-cUw"/>
+                                                <constraint firstItem="b6a-8d-X3S" firstAttribute="centerY" secondItem="2bZ-5b-xsh" secondAttribute="centerY" id="njc-zz-EcY"/>
+                                                <constraint firstItem="odM-oF-aSf" firstAttribute="centerY" secondItem="2bZ-5b-xsh" secondAttribute="centerY" id="xSO-CY-8Hm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -124,6 +144,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="arabicSwitch" destination="FmO-x2-Lrq" id="0QD-sz-HYu"/>
+                        <outlet property="indexLabel" destination="b6a-8d-X3S" id="btg-v3-5ke"/>
+                        <outlet property="indexStepper" destination="odM-oF-aSf" id="2Em-3E-le9"/>
                         <outlet property="localeControls" destination="dAL-52-dfr" id="VqZ-OI-LnA"/>
                         <outlet property="showArticlesButton" destination="pxX-uU-fFW" id="tdJ-qi-LWM"/>
                     </connections>

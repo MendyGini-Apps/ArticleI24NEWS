@@ -56,9 +56,9 @@ class ArticlesPageViewController: UIPageViewController
 // MARK: - Public Methods
 extension ArticlesPageViewController
 {
-    func bindData(_ articles: [Article])
+    func bindData(_ articles: [Article], at index: Int = 0)
     {
-        dataController = ArticlesPageDataController(articles: articles, delegate: self)
+        dataController = ArticlesPageDataController(articles: articles, at: index, delegate: self)
     }
 }
 
@@ -90,8 +90,8 @@ extension ArticlesPageViewController
         backgroundNavigationBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         backgroundNavigationBarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundNavigationBarView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
-        // TODO: - take a color from the app
-        blueBackgroundNavigationBarView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        // TODO: - take the color from the app
+        blueBackgroundNavigationBarView.backgroundColor = UIDevice.current.userInterfaceIdiom == .pad ? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1) : #colorLiteral(red: 0.06187666208, green: 0.1318328977, blue: 0.2798151672, alpha: 1)
     }
     
     private func getArticleViewController(with item: ArticlesPageDataController.Item) -> ArticleViewController

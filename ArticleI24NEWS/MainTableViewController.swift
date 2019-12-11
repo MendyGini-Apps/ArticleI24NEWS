@@ -14,6 +14,8 @@ class MainTableViewController: UITableViewController {
     @IBOutlet weak var showArticlesButton: UIBarButtonItem!
     @IBOutlet weak var arabicSwitch: UISwitch!
     @IBOutlet weak var localeControls: UISegmentedControl!
+    @IBOutlet weak var indexStepper: UIStepper!
+    @IBOutlet weak var indexLabel: UILabel!
     
     var enArticles: [Article]!
     var arArticles: [Article]!
@@ -24,6 +26,7 @@ class MainTableViewController: UITableViewController {
         
         arabicSwitch.sendActions(for: .valueChanged)
         localeControls.sendActions(for: .valueChanged)
+        indexStepper.sendActions(for: .valueChanged)
         fetchArticles()
     }
     
@@ -80,12 +83,17 @@ class MainTableViewController: UITableViewController {
         VersionManager.shared.locale = Locale(identifier: identifier)
     }
     
+    @IBAction func indexStepperValueChanged(_ sender: UIStepper)
+    {
+        indexLabel.text = "Indexed at: \(Int(sender.value))"
+    }
+    
     @IBAction func showArticlesAction(_ sender: Any) {
         guard let articles = VersionManager.shared.isArabic ? arArticles : enArticles else { return }
         
         let storyboard = UIStoryboard(name: "Articles", bundle: nil)
         let articlesPageViewController = storyboard.instantiateInitialViewController() as! ArticlesPageViewController
-        articlesPageViewController.bindData(articles)
+        articlesPageViewController.bindData(articles, at: Int(indexStepper.value))
         show(articlesPageViewController, sender: self)
     }
 }

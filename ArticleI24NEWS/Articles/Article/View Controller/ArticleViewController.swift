@@ -154,6 +154,23 @@ extension ArticleViewController
             guard newValue == 1.0 else { return }
             strongSelf.activityIndicator.stopAnimating()
         })
+        
+        observations.insert(webView.observe(\.isLoading, options: [.new]) { [weak self] (webView, changed) in
+            
+            guard let strongSelf = self else { return }
+            guard let isLoading = changed.newValue else { return }
+            if isLoading
+            {
+                strongSelf.activityIndicator.startAnimating()
+            }
+            else
+            {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    guard let strongSelf = self else { return }
+                    strongSelf.activityIndicator.stopAnimating()
+                }
+            }
+        })
     }
     
     private func adjusteParallaxViewHeight()
