@@ -9,6 +9,7 @@
 import Foundation
 import SwiftSoup
 
+// TODO: - remove this class in the app
 class VersionManager
 {
     static let shared = VersionManager()
@@ -44,14 +45,14 @@ struct HTMLArticleModel: Equatable
 
 class ArticleHTMLFormatter
 {
-    private lazy var articleStyleString: String = {
+    private static var articleStyleString: String = {
         let articleStyleURL = Bundle.main.url(forResource: "articleStyles", withExtension: "css")!
         let articleStyleString = try! String(contentsOf: articleStyleURL)
         
         return articleStyleString
     }()
     
-    private lazy var templateArticleString: String = {
+    private static var templateArticleString: String = {
         let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
         let templateArticleString = try! String(contentsOf: templateArticleURL)
         
@@ -60,13 +61,13 @@ class ArticleHTMLFormatter
         return String(format: templateArticleString, direction, articleStyleString)
     }()
     
-    private lazy var templateNewsString: String = {
+    private static var templateNewsString: String = {
         let templateNewsURL = Bundle.main.url(forResource: "NewsTemplate", withExtension: "html")!
         
         return try! String(contentsOf: templateNewsURL)
     }()
     
-    private lazy var newsSectionDayTemplateString: String = {
+    private static var newsSectionDayTemplateString: String = {
         let newsSectionDayTemplateURL = Bundle.main.url(forResource: "NewsSectionDayTemplate", withExtension: "html")!
         
         return try! String(contentsOf: newsSectionDayTemplateURL)
@@ -74,7 +75,7 @@ class ArticleHTMLFormatter
     
     func extractHTMLArticle(from metadata: Article) throws -> HTMLArticleModel
     {
-        let doc = try SwiftSoup.parse(templateArticleString)
+        let doc = try SwiftSoup.parse(ArticleHTMLFormatter.templateArticleString)
         
         try doc.body()?.select("#contentBody").prepend(metadata.bodyHTML)
         
@@ -90,13 +91,13 @@ class ArticleHTMLFormatter
                     
                     let time = DateFormatter.i24TimeForeNewsFormatter.string(from: $0.date)
                     
-                    let newsHTMLString = String(format: templateNewsString, time, $0.contentHTML)
+                    let newsHTMLString = String(format: ArticleHTMLFormatter.templateNewsString, time, $0.contentHTML)
                     
                     return newsHTMLString
                 }.joined(separator: "\n")
                 
                 let dayAsString = DateFormatter.i24DateForeNewsFormatter.string(from: daySection)
-                let sectionDayHTMLString = String(format: newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
+                let sectionDayHTMLString = String(format: ArticleHTMLFormatter.newsSectionDayTemplateString, dayAsString, daySectionHTMLStrings)
                 try contentLive.append(sectionDayHTMLString)
             }
         }
@@ -113,5 +114,62 @@ class ArticleHTMLFormatter
         return HTMLArticleModel(base: metadata,
                                 formatted: html,
                                 articleImages: [metadata.image] + articleImages)
+    }
+}
+
+import ProcedureKit
+
+class ArticleHTMLExtratorOperation: Procedure, InputProcedure, OutputProcedure
+{
+    typealias Input = Article
+    typealias Output = HTMLArticleModel
+    
+    var input: Pending<Article> {
+        get { stateLock.withCriticalScope { _input } }
+        set {
+            stateLock.withCriticalScope {
+                _input = newValue
+            }
+        }
+    }
+    var output: Pending<ProcedureResult<HTMLArticleModel>> {
+        get { stateLock.withCriticalScope { _output } }
+        set {
+            stateLock.withCriticalScope {
+                _output = newValue
+            }
+        }
+    }
+    
+    private var _input: Pending<Article> = .pending
+    private var _output: Pending<ProcedureResult<HTMLArticleModel>> = .pending
+    
+    private let stateLock = NSLock()
+    
+    init(article: Article)
+    {
+        super.init()
+        self.input = .ready(article)
+    }
+    
+    override func execute()
+    {
+        guard let article = input.value else {
+            finish(withResult: .failure(ProcedureKitError.requirementNotSatisfied()))
+            return
+        }
+        guard !isCancelled else {
+            finish()
+            return
+        }
+        
+        do
+        {
+            
+        }
+        catch let error
+        {
+            finish(withResult: .failure(error))
+        }
     }
 }
