@@ -10,6 +10,7 @@ import UIKit
 
 class ArticlesPageViewController: UIPageViewController
 {
+    // MARK: - IBOutlets
     @IBOutlet var backgroundNavigationBarView: GradientView!
     @IBOutlet weak var blueBackgroundNavigationBarView: UIView!
     @IBOutlet var navigationBar: UINavigationBar!
@@ -20,7 +21,7 @@ class ArticlesPageViewController: UIPageViewController
     
     override var preferredStatusBarStyle: UIStatusBarStyle
     {
-        return .lightContent
+        return UIDevice.current.userInterfaceIdiom == .pad && self.blueBackgroundNavigationBarView.alpha > 0.5 ? .default : .lightContent
     }
     
     // MARK: - View Life Cycle
@@ -42,14 +43,40 @@ class ArticlesPageViewController: UIPageViewController
     }
     
     // MARK: - IBActions
+    @IBAction func commentBarButtonDidTapped(_ sender: UIBarButtonItem)
+    {
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: -
+    }
+    
+    @IBAction func favoriteBarButtonDidTapped(_ sender: UIBarButtonItem)
+    {
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: -
+    }
+    
+    @IBAction func shareButtonDidTapped(_ sender: UIBarButtonItem)
+    {
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: -
+    }
+    
+    @IBAction func sizeTextBarButtonDidTapped(_ sender: UIBarButtonItem)
+    {
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: -
+    }
+    
     @IBAction func commentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
-        print(#function)
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: -
     }
     
     @IBAction func addCommentButtonDidTapped(sender: UIView, forEvent event: UIEvent)
     {
-        print(#function)
+        guard let currentItem = dataController.currentItem else { return }
+        // TODO: - 
     }
 }
 
@@ -171,29 +198,26 @@ extension ArticlesPageViewController: FromArticleVCToArticlesPageVCProtocol
         }
         var percentParalaxOffset = (contentYOffsetAdjusted/(heightParallaxView - navigationBar.frame.maxY)).roundToDecimal(2)
         percentParalaxOffset = max(0, min(percentParalaxOffset, 1))
-        if animated
-        {
-            UIView.animate(withDuration: 0.3) {
-                self.blueBackgroundNavigationBarView.alpha = percentParalaxOffset
-                if UIDevice.current.userInterfaceIdiom == .pad
-                {
-                    let navigationBarTintColor = UIColor(white: 1 - percentParalaxOffset, alpha: 1.0)
-                    self.navigationBar.tintColor = navigationBarTintColor
-                    let commentButtonTitleColor = UIColor(white: percentParalaxOffset, alpha: 1.0)
-                    self.commentButton.setTitleColor(commentButtonTitleColor, for: .normal)
-                }
-            }
-        }
-        else
-        {
-            blueBackgroundNavigationBarView.alpha = percentParalaxOffset
+        
+        let updateViewsBlock = {
+            self.blueBackgroundNavigationBarView.alpha = percentParalaxOffset
             if UIDevice.current.userInterfaceIdiom == .pad
             {
                 let navigationBarTintColor = UIColor(white: 1 - percentParalaxOffset, alpha: 1.0)
-                navigationBar.tintColor = navigationBarTintColor
+                self.navigationBar.tintColor = navigationBarTintColor
                 let commentButtonTitleColor = UIColor(white: percentParalaxOffset, alpha: 1.0)
-                commentButton.setTitleColor(commentButtonTitleColor, for: .normal)
+                self.commentButton.setTitleColor(commentButtonTitleColor, for: .normal)
+                self.setNeedsStatusBarAppearanceUpdate()
             }
+        }
+        
+        if animated
+        {
+            UIView.animate(withDuration: 0.3, animations: updateViewsBlock)
+        }
+        else
+        {
+            updateViewsBlock()
         }
     }
 }

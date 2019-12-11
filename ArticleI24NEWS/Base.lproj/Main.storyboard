@@ -120,6 +120,7 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="odM-oF-aSf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="b6a-8d-X3S" secondAttribute="trailing" constant="8" symbolic="YES" id="ZrW-ND-Bvp"/>
                                                 <constraint firstItem="odM-oF-aSf" firstAttribute="trailing" secondItem="2bZ-5b-xsh" secondAttribute="trailingMargin" id="fKu-lo-sDl"/>
                                                 <constraint firstItem="b6a-8d-X3S" firstAttribute="leading" secondItem="2bZ-5b-xsh" secondAttribute="leadingMargin" id="gfg-4t-cUw"/>
                                                 <constraint firstItem="b6a-8d-X3S" firstAttribute="centerY" secondItem="2bZ-5b-xsh" secondAttribute="centerY" id="njc-zz-EcY"/>

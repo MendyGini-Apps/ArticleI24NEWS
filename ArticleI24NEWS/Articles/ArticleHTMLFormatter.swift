@@ -12,7 +12,7 @@ import SwiftSoup
 class VersionManager
 {
     static let shared = VersionManager()
-    var isArabic = true
+    var isArabic = false
     var locale = Locale.current
     {
         didSet
@@ -21,6 +21,11 @@ class VersionManager
             DateFormatter.i24DateForeNewsFormatter.locale = locale
         }
     }
+    
+    var localeCode: String
+    {
+        return isArabic ? "ar" : "en"
+    }
 }
 
 //±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±
@@ -28,7 +33,7 @@ struct HTMLArticleModel: Equatable
 {
     let base            : Article
     let formatted       : String
-    let imageMetadata   : [ArticleImage]
+    let articleImages   : [ArticleImage]
     
     static func == (lhs: Self, rhs: Self) -> Bool
     {
@@ -98,8 +103,15 @@ class ArticleHTMLFormatter
         
         let html = try doc.html()
         
+        let imgElements = try doc.select("img")
+        
+        let articleImages = try imgElements.array().compactMap({ (img) -> ArticleImage? in
+            guard let imageURL = URL(string: try img.attr("src")) else { return nil }
+            return ArticleImage(imageURL: imageURL, credit: "", legend: try img.attr("title"))
+        })
+        
         return HTMLArticleModel(base: metadata,
                                 formatted: html,
-                                imageMetadata: [])
+                                articleImages: [metadata.image] + articleImages)
     }
 }

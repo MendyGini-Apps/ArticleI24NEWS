@@ -17,6 +17,9 @@ protocol WebControllerProtocol: WKNavigationDelegate
 protocol WebControllerDelegate: NSObjectProtocol
 {
     func webController(_ webController: WebControllerProtocol, heightOfBody height: CGFloat)
+    func webController(_ webController: WebControllerProtocol, articleImageLinkActivatedAtIndex index: Int)
+    func webController(_ webController: WebControllerProtocol, articleLinkActivatedWithSlug slug: String)
+    func webController(_ webController: WebControllerProtocol, linkActivated url: URL)
 }
 
 class ArticleWebController: NSObject
@@ -28,10 +31,31 @@ class ArticleWebController: NSObject
         return source
     }
     private weak var delegate: WebControllerDelegate?
+    private weak var dataController: ArticleDataController?
     
-    init(delegate: WebControllerDelegate)
+    init(dataController: ArticleDataController, delegate: WebControllerDelegate)
     {
+        self.dataController = dataController
         self.delegate = delegate
+    }
+}
+
+extension ArticleWebController
+{
+    func handleNavigation(with url: URL)
+    {
+        if let imageIndex = dataController?.indexOfArticleImage(from: url)
+        {
+            delegate?.webController(self, articleImageLinkActivatedAtIndex: imageIndex)
+        }
+        else if let slug = dataController?.slugFromArticleLink(url)
+        {
+            delegate?.webController(self, articleLinkActivatedWithSlug: slug)
+        }
+        else
+        {
+            delegate?.webController(self, linkActivated: url)
+        }
     }
 }
 
@@ -61,7 +85,13 @@ extension ArticleWebController: WebControllerProtocol
 
 extension ArticleWebController: WKNavigationDelegate
 {
-    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
+    {
+        guard navigationAction.navigationType == .linkActivated else { decisionHandler(.allow); return }
+        guard let url = navigationAction.request.url else { decisionHandler(.allow); return }
+        decisionHandler(.cancel)
+        handleNavigation(with: url)
+    }
 }
 
 extension ArticleWebController: WKScriptMessageHandler

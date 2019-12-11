@@ -32,9 +32,21 @@
                                 </connections>
                             </barButtonItem>
                             <rightBarButtonItems>
-                                <barButtonItem image="article_text_sizing" id="bIV-UF-2NC"/>
-                                <barButtonItem image="article_share_icon" id="hbi-QC-2Dc"/>
-                                <barButtonItem image="article_favorite_icon" id="yJ3-5b-T44"/>
+                                <barButtonItem image="article_text_sizing" id="bIV-UF-2NC">
+                                    <connections>
+                                        <action selector="sizeTextBarButtonDidTapped:" destination="VRT-of-tz0" id="YW2-d2-u8k"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem image="article_share_icon" id="hbi-QC-2Dc">
+                                    <connections>
+                                        <action selector="shareButtonDidTapped:" destination="VRT-of-tz0" id="zOU-a7-CS5"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem image="article_favorite_icon" id="yJ3-5b-T44">
+                                    <connections>
+                                        <action selector="favoriteBarButtonDidTapped:" destination="VRT-of-tz0" id="OB0-O6-7K3"/>
+                                    </connections>
+                                </barButtonItem>
                                 <barButtonItem id="B55-oY-Kcr">
                                     <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZR8-DB-IhU" customClass="CommentButton" customModule="ArticleI24NEWS" customModuleProvider="target">
                                         <rect key="frame" x="147" y="4" width="36" height="36"/>
@@ -44,6 +56,9 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                     </button>
+                                    <connections>
+                                        <action selector="commentBarButtonDidTapped:" destination="VRT-of-tz0" id="zQl-Yt-hjV"/>
+                                    </connections>
                                 </barButtonItem>
                             </rightBarButtonItems>
                         </navigationItem>
@@ -88,8 +103,12 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cg-hz-hWi" userLabel="Parallax View">
                                                         <rect key="frame" x="0.0" y="-44" width="414" height="244"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-8b-h0Y">
+                                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="logo_article" translatesAutoresizingMaskIntoConstraints="NO" id="Kpu-8b-h0Y">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="244"/>
+                                                                <gestureRecognizers/>
+                                                                <connections>
+                                                                    <outletCollection property="gestureRecognizers" destination="aLM-Dp-MJD" appends="YES" id="gMs-7n-XNf"/>
+                                                                </connections>
                                                             </imageView>
                                                         </subviews>
                                                         <constraints>
@@ -423,6 +442,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhO-Zg-2Df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="aLM-Dp-MJD">
+                    <connections>
+                        <action selector="articleImageDidTapped:" destination="Twp-pw-GwP" id="Ggb-Km-e0R"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1061" y="96"/>
         </scene>

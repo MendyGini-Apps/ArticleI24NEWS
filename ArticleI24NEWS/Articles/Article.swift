@@ -27,7 +27,7 @@ struct Article: Decodable, Equatable
     let publishedAt          : Date?
     let updatedAt            : Date?
     let numberOfComments     : UInt
-    let images               : [ArticleImage]
+    let image                : ArticleImage
     let type                 : String
     let liveNews             : [ArticleNews]?
     let favorite             : Bool
@@ -80,8 +80,7 @@ struct Article: Decodable, Equatable
         self.updatedAt = DateFormatter.i24APIArticleFormatter.date(from: updatedAtAsString)
         
         self.numberOfComments = try container.decode(UInt.self, forKey: .numberOfComments)
-        let image = try container.decode(ArticleImage.self, forKey: .image)
-        self.images = [image]
+        self.image = try container.decode(ArticleImage.self, forKey: .image)
         self.type = try container.decode(String.self, forKey: .type)
         
         self.favorite = try container.decode(Bool.self, forKey: .favorite)

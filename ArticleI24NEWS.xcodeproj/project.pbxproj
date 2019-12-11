@@ -19,6 +19,16 @@
 		7B2A4C292393DA80003A40A8 /* ArticlesPageDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C282393DA80003A40A8 /* ArticlesPageDataController.swift */; };
 		7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */; };
 		7B2A4C332393DF16003A40A8 /* PageDataSourceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2A4C322393DF16003A40A8 /* PageDataSourceProtocol.swift */; };
+		7B88865323A109B400AFCED8 /* IDMPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B88863D23A109B400AFCED8 /* IDMPhotoBrowser.bundle */; };
+		7B88865423A109B400AFCED8 /* IDMPBLocalizations.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B88863F23A109B400AFCED8 /* IDMPBLocalizations.bundle */; };
+		7B88865523A109B400AFCED8 /* IDMTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864323A109B400AFCED8 /* IDMTapDetectingImageView.m */; };
+		7B88865623A109B400AFCED8 /* IDMCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864523A109B400AFCED8 /* IDMCaptionView.m */; };
+		7B88865723A109B400AFCED8 /* IDMPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864623A109B400AFCED8 /* IDMPhoto.m */; };
+		7B88865823A109B400AFCED8 /* IDMZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864723A109B400AFCED8 /* IDMZoomingScrollView.m */; };
+		7B88865923A109B400AFCED8 /* IDMPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864923A109B400AFCED8 /* IDMPhotoBrowser.m */; };
+		7B88865A23A109B400AFCED8 /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864B23A109B400AFCED8 /* IDMTapDetectingView.m */; };
+		7B88865B23A109B400AFCED8 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864F23A109B400AFCED8 /* DALabeledCircularProgressView.m */; };
+		7B88865C23A109B400AFCED8 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88865023A109B400AFCED8 /* DACircularProgressView.m */; };
 		7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DA2390014D00967B03 /* AppDelegate.swift */; };
 		7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DC2390014D00967B03 /* SceneDelegate.swift */; };
 		7B8C68E22390014D00967B03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68E02390014D00967B03 /* Main.storyboard */; };
@@ -53,6 +63,27 @@
 		7B2A4C282393DA80003A40A8 /* ArticlesPageDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesPageDataController.swift; sourceTree = "<group>"; };
 		7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringJSONDataNetworkOperation.swift; sourceTree = "<group>"; };
 		7B2A4C322393DF16003A40A8 /* PageDataSourceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDataSourceProtocol.swift; sourceTree = "<group>"; };
+		7B88863D23A109B400AFCED8 /* IDMPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPhotoBrowser.bundle; sourceTree = "<group>"; };
+		7B88863E23A109B400AFCED8 /* IDMCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMCaptionView.h; sourceTree = "<group>"; };
+		7B88863F23A109B400AFCED8 /* IDMPBLocalizations.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IDMPBLocalizations.bundle; sourceTree = "<group>"; };
+		7B88864023A109B400AFCED8 /* IDMZoomingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMZoomingScrollView.h; sourceTree = "<group>"; };
+		7B88864123A109B400AFCED8 /* IDMPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhoto.h; sourceTree = "<group>"; };
+		7B88864223A109B400AFCED8 /* IDMPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoBrowser.h; sourceTree = "<group>"; };
+		7B88864323A109B400AFCED8 /* IDMTapDetectingImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingImageView.m; sourceTree = "<group>"; };
+		7B88864423A109B400AFCED8 /* IDMTapDetectingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingView.h; sourceTree = "<group>"; };
+		7B88864523A109B400AFCED8 /* IDMCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMCaptionView.m; sourceTree = "<group>"; };
+		7B88864623A109B400AFCED8 /* IDMPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhoto.m; sourceTree = "<group>"; };
+		7B88864723A109B400AFCED8 /* IDMZoomingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMZoomingScrollView.m; sourceTree = "<group>"; };
+		7B88864823A109B400AFCED8 /* IDMPhotoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPhotoProtocol.h; sourceTree = "<group>"; };
+		7B88864923A109B400AFCED8 /* IDMPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMPhotoBrowser.m; sourceTree = "<group>"; };
+		7B88864A23A109B400AFCED8 /* IDMPBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMPBConstants.h; sourceTree = "<group>"; };
+		7B88864B23A109B400AFCED8 /* IDMTapDetectingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDMTapDetectingView.m; sourceTree = "<group>"; };
+		7B88864C23A109B400AFCED8 /* IDMTapDetectingImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDMTapDetectingImageView.h; sourceTree = "<group>"; };
+		7B88864F23A109B400AFCED8 /* DALabeledCircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DALabeledCircularProgressView.m; sourceTree = "<group>"; };
+		7B88865023A109B400AFCED8 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		7B88865123A109B400AFCED8 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
+		7B88865223A109B400AFCED8 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		7B88866123A10D2500AFCED8 /* ArticleI24NEWS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ArticleI24NEWS-Bridging-Header.h"; sourceTree = "<group>"; };
 		7B8C68D72390014D00967B03 /* ArticleI24NEWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArticleI24NEWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C68DA2390014D00967B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8C68DC2390014D00967B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +160,75 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		7B88863923A1098600AFCED8 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				7BF9E0192399532E00109877 /* LoadBarView.swift */,
+				7B29AA18239FBE4A00C34F5D /* CommentButton.swift */,
+				7B29AA1C239FDB7F00C34F5D /* GradientView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		7B88863A23A109A100AFCED8 /* External Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B88864D23A109B400AFCED8 /* DACircularProgress */,
+				7B88863B23A109B400AFCED8 /* IDMPhotoBrowser */,
+			);
+			path = "External Frameworks";
+			sourceTree = "<group>";
+		};
+		7B88863B23A109B400AFCED8 /* IDMPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				7B88863C23A109B400AFCED8 /* Classes */,
+			);
+			path = IDMPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		7B88863C23A109B400AFCED8 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7B88863D23A109B400AFCED8 /* IDMPhotoBrowser.bundle */,
+				7B88863E23A109B400AFCED8 /* IDMCaptionView.h */,
+				7B88863F23A109B400AFCED8 /* IDMPBLocalizations.bundle */,
+				7B88864023A109B400AFCED8 /* IDMZoomingScrollView.h */,
+				7B88864123A109B400AFCED8 /* IDMPhoto.h */,
+				7B88864223A109B400AFCED8 /* IDMPhotoBrowser.h */,
+				7B88864323A109B400AFCED8 /* IDMTapDetectingImageView.m */,
+				7B88864423A109B400AFCED8 /* IDMTapDetectingView.h */,
+				7B88864523A109B400AFCED8 /* IDMCaptionView.m */,
+				7B88864623A109B400AFCED8 /* IDMPhoto.m */,
+				7B88864723A109B400AFCED8 /* IDMZoomingScrollView.m */,
+				7B88864823A109B400AFCED8 /* IDMPhotoProtocol.h */,
+				7B88864923A109B400AFCED8 /* IDMPhotoBrowser.m */,
+				7B88864A23A109B400AFCED8 /* IDMPBConstants.h */,
+				7B88864B23A109B400AFCED8 /* IDMTapDetectingView.m */,
+				7B88864C23A109B400AFCED8 /* IDMTapDetectingImageView.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		7B88864D23A109B400AFCED8 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				7B88864E23A109B400AFCED8 /* DACircularProgress */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
+		7B88864E23A109B400AFCED8 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				7B88864F23A109B400AFCED8 /* DALabeledCircularProgressView.m */,
+				7B88865023A109B400AFCED8 /* DACircularProgressView.m */,
+				7B88865123A109B400AFCED8 /* DALabeledCircularProgressView.h */,
+				7B88865223A109B400AFCED8 /* DACircularProgressView.h */,
+			);
+			path = DACircularProgress;
+			sourceTree = "<group>";
+		};
 		7B8C68CE2390014D00967B03 = {
 			isa = PBXGroup;
 			children = (
@@ -151,13 +251,12 @@
 				7B8C68DA2390014D00967B03 /* AppDelegate.swift */,
 				7B8C68DC2390014D00967B03 /* SceneDelegate.swift */,
 				7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */,
-				7BF9E0162399265B00109877 /* Extensions */,
-				7B2A4C312393DF03003A40A8 /* Protocols */,
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
 				7BF9E0172399271000109877 /* MainTableViewController.swift */,
-				7BF9E0192399532E00109877 /* LoadBarView.swift */,
-				7B29AA18239FBE4A00C34F5D /* CommentButton.swift */,
-				7B29AA1C239FDB7F00C34F5D /* GradientView.swift */,
+				7B88863A23A109A100AFCED8 /* External Frameworks */,
+				7BF9E0162399265B00109877 /* Extensions */,
+				7B2A4C312393DF03003A40A8 /* Protocols */,
+				7B88863923A1098600AFCED8 /* Custom Views */,
 				7B2A4C272393DA49003A40A8 /* Articles */,
 				7BF9E0002396711E00109877 /* Resources */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
@@ -171,6 +270,7 @@
 			children = (
 				7B8C68E32390014F00967B03 /* Assets.xcassets */,
 				7BF9E0012396716800109877 /* HTML */,
+				7B88866123A10D2500AFCED8 /* ArticleI24NEWS-Bridging-Header.h */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -315,8 +415,10 @@
 			files = (
 				7B8C68E72390014F00967B03 /* LaunchScreen.storyboard in Resources */,
 				7BF9E00E2399169800109877 /* articlesAR.json in Resources */,
+				7B88865323A109B400AFCED8 /* IDMPhotoBrowser.bundle in Resources */,
 				7B2A4C1B2393D144003A40A8 /* articlesEN.json in Resources */,
 				7B8C68E42390014F00967B03 /* Assets.xcassets in Resources */,
+				7B88865423A109B400AFCED8 /* IDMPBLocalizations.bundle in Resources */,
 				7BF9DFFF23966D5B00109877 /* articleTemplate.html in Resources */,
 				7BF9E00C2397D69000109877 /* NewsSectionDayTemplate.html in Resources */,
 				96E8AC682396448900611439 /* articleStyles.css in Resources */,
@@ -336,14 +438,18 @@
 			files = (
 				7B29AA1D239FDB8000C34F5D /* GradientView.swift in Sources */,
 				7BF9E015239925C900109877 /* ExtenstionDateFormatter.swift in Sources */,
+				7B88865823A109B400AFCED8 /* IDMZoomingScrollView.m in Sources */,
 				7BF9E013239925A800109877 /* ExtensionUIView.swift in Sources */,
+				7B88865C23A109B400AFCED8 /* DACircularProgressView.m in Sources */,
 				963D935A23978D470050F014 /* ArticleHTMLFormatter.swift in Sources */,
 				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
 				7BF9E01A2399532E00109877 /* LoadBarView.swift in Sources */,
 				7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */,
 				7BF9E0182399271000109877 /* MainTableViewController.swift in Sources */,
 				96BFCF5B239D56C700C49E39 /* ArticleWebcontroller.swift in Sources */,
+				7B88865623A109B400AFCED8 /* IDMCaptionView.m in Sources */,
 				7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */,
+				7B88865723A109B400AFCED8 /* IDMPhoto.m in Sources */,
 				96BFCF54239CCC4E00C49E39 /* ArticleViewController.swift in Sources */,
 				7B29AA19239FBE4A00C34F5D /* CommentButton.swift in Sources */,
 				7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */,
@@ -351,8 +457,12 @@
 				7B2A4C332393DF16003A40A8 /* PageDataSourceProtocol.swift in Sources */,
 				7B29AA15239D066500C34F5D /* ArticleDataController.swift in Sources */,
 				7B2A4C302393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift in Sources */,
+				7B88865923A109B400AFCED8 /* IDMPhotoBrowser.m in Sources */,
+				7B88865523A109B400AFCED8 /* IDMTapDetectingImageView.m in Sources */,
 				7B2A4C292393DA80003A40A8 /* ArticlesPageDataController.swift in Sources */,
 				96BFCF58239CCCA000C49E39 /* ArticlesPageViewController.swift in Sources */,
+				7B88865A23A109B400AFCED8 /* IDMTapDetectingView.m in Sources */,
+				7B88865B23A109B400AFCED8 /* DALabeledCircularProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +617,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "gini-apps.ArticleI24NEWS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ArticleI24NEWS/Resources/ArticleI24NEWS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -528,6 +639,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "gini-apps.ArticleI24NEWS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ArticleI24NEWS/Resources/ArticleI24NEWS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

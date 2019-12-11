@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import SDWebImage
+import SafariServices
 
 @objc
 protocol FromArticleVCToArticlesPageVCProtocol
@@ -69,6 +70,11 @@ class ArticleViewController: UIViewController
         
         adjusteParallaxViewHeight()
     }
+    
+    @IBAction func articleImageDidTapped(_ sender: UITapGestureRecognizer)
+    {
+        presentPhotoBrowser(from: 0, animatedFrom: sender.view)
+    }
 }
 
 extension ArticleViewController
@@ -123,8 +129,7 @@ extension ArticleViewController
             dateLabel.text = articleCreatedAtAsString
         }
         
-        guard let imageURL = htmlArticleModel.base.images.first?.imageURL else { return }
-        headerImageView.sd_setImage(with: imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
+        headerImageView.sd_setImage(with: htmlArticleModel.base.image.imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
     
     private func stringFor(date: Date?) -> String?
@@ -186,7 +191,7 @@ extension ArticleViewController
     func bindData(htmlArticle: HTMLArticleModel)
     {
         dataController = ArticleDataController(htmlArticle: htmlArticle)
-        webController = ArticleWebController(delegate: self)
+        webController = ArticleWebController(dataController: dataController, delegate: self)
     }
 }
 
@@ -201,6 +206,36 @@ extension ArticleViewController: WebControllerDelegate
         self.heightWebViewConstraint.constant = heightWithInset
         self.view.setNeedsLayout()
         self.view.layoutIfNeeded()
+    }
+    
+    private func presentPhotoBrowser(from index: Int, animatedFrom view: UIView? = nil)
+    {
+        guard let browser = IDMPhotoBrowser(photoURLs: dataController.imagesURLs, animatedFrom: view) else { return }
+        browser.setInitialPageIndex(UInt(index))
+        browser.portraitOrientationOnDismiss = !(UIDevice.current.userInterfaceIdiom == .pad)
+        browser.delegate = self
+        browser.displayActionButton = false
+        browser.displayArrowButton = false
+        browser.displayCounterLabel = false
+        browser.controlsAlwaysVisible = false
+        browser.doneButtonImage = #imageLiteral(resourceName: "article_photos_close")
+        present(browser, animated: true, completion: nil)
+    }
+    
+    func webController(_ webController: WebControllerProtocol, articleImageLinkActivatedAtIndex index: Int)
+    {
+        presentPhotoBrowser(from: index)
+    }
+    
+    func webController(_ webController: WebControllerProtocol, articleLinkActivatedWithSlug slug: String)
+    {
+        // TODO: - show ArticlesPageViewController from slug
+    }
+    
+    func webController(_ webController: WebControllerProtocol, linkActivated url: URL)
+    {
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 
@@ -220,4 +255,12 @@ extension ArticleViewController: UIScrollViewDelegate
     {
         shouldNotifyScrollDidScroll(scrollView, withAnimation: false)
     }
+}
+
+extension ArticleViewController: IDMPhotoBrowserDelegate
+{
+//    func photoBrowser(_ photoBrowser: IDMPhotoBrowser!, captionViewForPhotoAt index: UInt) -> IDMCaptionView!
+//    {
+//        // TODO: - take the code from the app
+//    }
 }
