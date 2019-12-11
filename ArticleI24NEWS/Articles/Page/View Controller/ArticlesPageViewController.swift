@@ -90,6 +90,8 @@ extension ArticlesPageViewController
         backgroundNavigationBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         backgroundNavigationBarView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundNavigationBarView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
+        // TODO: - take a color from the app
+        blueBackgroundNavigationBarView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     }
     
     private func getArticleViewController(with item: ArticlesPageDataController.Item) -> ArticleViewController
@@ -173,11 +175,25 @@ extension ArticlesPageViewController: FromArticleVCToArticlesPageVCProtocol
         {
             UIView.animate(withDuration: 0.3) {
                 self.blueBackgroundNavigationBarView.alpha = percentParalaxOffset
+                if UIDevice.current.userInterfaceIdiom == .pad
+                {
+                    let navigationBarTintColor = UIColor(white: 1 - percentParalaxOffset, alpha: 1.0)
+                    self.navigationBar.tintColor = navigationBarTintColor
+                    let commentButtonTitleColor = UIColor(white: percentParalaxOffset, alpha: 1.0)
+                    self.commentButton.setTitleColor(commentButtonTitleColor, for: .normal)
+                }
             }
         }
         else
         {
             blueBackgroundNavigationBarView.alpha = percentParalaxOffset
+            if UIDevice.current.userInterfaceIdiom == .pad
+            {
+                let navigationBarTintColor = UIColor(white: 1 - percentParalaxOffset, alpha: 1.0)
+                navigationBar.tintColor = navigationBarTintColor
+                let commentButtonTitleColor = UIColor(white: percentParalaxOffset, alpha: 1.0)
+                commentButton.setTitleColor(commentButtonTitleColor, for: .normal)
+            }
         }
     }
 }

@@ -40,6 +40,12 @@ class CommentButton: UIButton
         configureView()
     }
     
+    override func setTitleColor(_ color: UIColor?, for state: UIControl.State)
+    {
+        super.setTitleColor(color, for: state)
+        setNeedsDisplay()
+    }
+    
     override func draw(_ rect: CGRect)
     {
         textLayer.string = numberOfComment > 0 ? "\(numberOfComment)" : ""
