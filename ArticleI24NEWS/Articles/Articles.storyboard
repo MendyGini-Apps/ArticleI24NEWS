@@ -100,14 +100,14 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GK8-IZ-0fl" userLabel="Category View">
-                                                        <rect key="frame" x="0.0" y="198" width="414" height="2"/>
+                                                        <rect key="frame" x="0.0" y="197" width="414" height="3"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47Y-YA-siq" customClass="LoadBarView" customModule="ArticleI24NEWS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="3"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7U-iI-Omh">
-                                                                <rect key="frame" x="178.5" y="-8.5" width="57.5" height="19"/>
+                                                                <rect key="frame" x="178.5" y="-8" width="57.5" height="19"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ISRAEL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jy4-ky-QzG">
                                                                         <rect key="frame" x="10" y="3" width="37.5" height="13"/>
@@ -137,7 +137,7 @@
                                                             <constraint firstItem="I7U-iI-Omh" firstAttribute="centerY" secondItem="GK8-IZ-0fl" secondAttribute="centerY" id="Tfa-QT-Ml8"/>
                                                             <constraint firstAttribute="trailing" secondItem="47Y-YA-siq" secondAttribute="trailing" id="Tny-69-1bY"/>
                                                             <constraint firstItem="47Y-YA-siq" firstAttribute="top" secondItem="GK8-IZ-0fl" secondAttribute="top" id="UB5-3H-xrG"/>
-                                                            <constraint firstAttribute="height" constant="2" id="VON-31-0dJ"/>
+                                                            <constraint firstAttribute="height" constant="3" id="VON-31-0dJ"/>
                                                             <constraint firstItem="I7U-iI-Omh" firstAttribute="centerX" secondItem="GK8-IZ-0fl" secondAttribute="centerX" id="Xft-Lj-1gx"/>
                                                             <constraint firstItem="47Y-YA-siq" firstAttribute="leading" secondItem="GK8-IZ-0fl" secondAttribute="leading" id="s0c-eg-upN"/>
                                                         </constraints>
@@ -325,6 +325,10 @@
                                                                             <constraint firstAttribute="trailing" secondItem="2f1-Y4-fLU" secondAttribute="trailing" id="qHh-dO-s7C"/>
                                                                         </constraints>
                                                                     </view>
+                                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="749" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-Fv-fSq">
+                                                                        <rect key="frame" x="0.0" y="171" width="414" height="163"/>
+                                                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    </activityIndicatorView>
                                                                 </subviews>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="eQV-gJ-Faf" secondAttribute="trailing" id="6cZ-9J-xft"/>
@@ -337,10 +341,14 @@
                                                                     <constraint firstItem="ss3-Zo-jnJ" firstAttribute="leading" secondItem="enq-ls-9Ex" secondAttribute="leading" constant="16" id="JzG-Yd-xiA">
                                                                         <variation key="heightClass=regular-widthClass=regular" constant="80"/>
                                                                     </constraint>
+                                                                    <constraint firstAttribute="bottom" secondItem="cPh-Fv-fSq" secondAttribute="bottom" id="Q1H-Hp-Tve"/>
                                                                     <constraint firstItem="ss3-Zo-jnJ" firstAttribute="top" secondItem="enq-ls-9Ex" secondAttribute="top" constant="16" id="av8-eE-Yrs"/>
                                                                     <constraint firstAttribute="bottom" secondItem="av4-GQ-gQP" secondAttribute="bottom" constant="16" id="eml-iK-cve"/>
                                                                     <constraint firstItem="av4-GQ-gQP" firstAttribute="top" secondItem="eQV-gJ-Faf" secondAttribute="bottom" constant="8" id="fn8-bd-SUL"/>
                                                                     <constraint firstItem="eQV-gJ-Faf" firstAttribute="leading" secondItem="enq-ls-9Ex" secondAttribute="leading" id="iVv-Tj-nNr"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="cPh-Fv-fSq" secondAttribute="trailing" id="kej-8L-PXd"/>
+                                                                    <constraint firstItem="cPh-Fv-fSq" firstAttribute="top" secondItem="eQV-gJ-Faf" secondAttribute="top" id="ruU-m9-QnL"/>
+                                                                    <constraint firstItem="cPh-Fv-fSq" firstAttribute="leading" secondItem="enq-ls-9Ex" secondAttribute="leading" id="sDs-sJ-cfU"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
@@ -397,6 +405,7 @@
                         <viewLayoutGuide key="safeArea" id="YLr-Eb-ImD"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="cPh-Fv-fSq" id="qlx-n5-dhH"/>
                         <outlet property="addCommentButton" destination="8mg-T6-oVd" id="Qea-6C-7Y9"/>
                         <outlet property="authorNameLabel" destination="qLv-3C-mpK" id="0iy-f3-aaD"/>
                         <outlet property="categoryLabel" destination="jy4-ky-QzG" id="edg-A1-H8S"/>

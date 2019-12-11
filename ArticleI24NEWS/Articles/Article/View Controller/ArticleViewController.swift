@@ -24,6 +24,7 @@ class ArticleViewController: UIViewController
     @IBOutlet weak var titleLabel       : UILabel!
     @IBOutlet weak var categoryLabel    : UILabel!
     @IBOutlet weak var loadBarView      : LoadBarView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var writtenByLabel   : UILabel!
     @IBOutlet weak var authorNameLabel  : UILabel!
     @IBOutlet weak var dateLabel        : UILabel!
@@ -150,6 +151,8 @@ extension ArticleViewController
             guard let strongSelf = self else { return }
             guard let newValue = changed.newValue else { return }
             strongSelf.loadBarView.progress = CGFloat(newValue)
+            guard newValue == 1.0 else { return }
+            strongSelf.activityIndicator.stopAnimating()
         })
     }
     
