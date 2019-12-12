@@ -81,6 +81,7 @@ extension ArticleViewController
 {
     private func addWebView()
     {
+        guard let htmlArticle = dataController.article as? HTMLArticleModel else { return }
         let webView = WKWebView(frame: CGRect.zero, configuration: webController.configuration())
         self.webView = webView
         webView.scrollView.isScrollEnabled = false
@@ -97,8 +98,7 @@ extension ArticleViewController
         observeWebViewEstimatedProgress(webView: webView)
         
         guard webView.estimatedProgress == 0.0 else { return }
-        let htmlArticleModel = dataController.htmlArticle
-        webView.loadHTMLString(htmlArticleModel.formatted, baseURL: nil)
+        webView.loadHTMLString(htmlArticle.htmlFormated, baseURL: nil)
     }
     
     private func configureView()
@@ -109,19 +109,19 @@ extension ArticleViewController
         commentsButton.setTitle("Comments", for: .normal)
         addCommentButton.setTitle("Add a comment", for: .normal)
         
-        let htmlArticleModel = dataController.htmlArticle
+        let article = dataController.article
         
-        titleLabel.text = htmlArticleModel.base.title
-        descriptionLabel.text = htmlArticleModel.base.excerpt
-        authorNameLabel.text = htmlArticleModel.base.authorName
-        let numberOfComments = htmlArticleModel.base.numberOfComments
+        titleLabel.text = article.title
+        descriptionLabel.text = article.excerpt
+        authorNameLabel.text = article.authorName
+        let numberOfComments = article.numberOfComments
         numberOfCommentsLabel.text = numberOfComments > 0 ? "(\(numberOfComments))" : ""
         
-        categoryLabel.text = htmlArticleModel.base.category.uppercased(with: VersionManager.shared.locale)
+        categoryLabel.text = article.category.uppercased(with: VersionManager.shared.locale)
         
-        if var articleCreatedAtAsString = stringFor(date: htmlArticleModel.base.createdAt)
+        if var articleCreatedAtAsString = stringFor(date: article.createdAt)
         {
-            if htmlArticleModel.base.createdAt!.compare(htmlArticleModel.base.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: htmlArticleModel.base.updatedAt)
+            if article.createdAt!.compare(article.updatedAt!) == .orderedAscending, let articleUpdateAtAsString = stringFor(date: article.updatedAt)
             {
                 // TODO: - Localization "UPD"
                 articleCreatedAtAsString += " | UPD \(articleUpdateAtAsString)"
@@ -129,7 +129,7 @@ extension ArticleViewController
             dateLabel.text = articleCreatedAtAsString
         }
         
-        headerImageView.sd_setImage(with: htmlArticleModel.base.image.imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
+        headerImageView.sd_setImage(with: article.image.imageURL, placeholderImage: #imageLiteral(resourceName: "logo_article"))
     }
     
     private func stringFor(date: Date?) -> String?
@@ -188,9 +188,9 @@ extension ArticleViewController
 
 extension ArticleViewController
 {
-    func bindData(htmlArticle: HTMLArticleModel)
+    func bindData(article: Article)
     {
-        dataController = ArticleDataController(htmlArticle: htmlArticle)
+        dataController = ArticleDataController(article: article)
         webController = ArticleWebController(dataController: dataController, delegate: self)
     }
 }

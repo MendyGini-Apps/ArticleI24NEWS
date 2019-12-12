@@ -9,7 +9,7 @@
 import Foundation
 import SwiftSoup
 
-struct Article: Decodable, Equatable
+class Article: Decodable, Equatable, NSCopying
 {
     static func == (lhs: Article, rhs: Article) -> Bool
     {
@@ -59,7 +59,7 @@ struct Article: Decodable, Equatable
         case name = "name"
     }
     
-    init(from decoder: Decoder) throws
+    required init(from decoder: Decoder) throws
     {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -99,6 +99,70 @@ struct Article: Decodable, Equatable
         
         self.bodyHTML = try container.decode(String.self, forKey: .bodyHTML)
         self.liveNews = try container.decode([ArticleNews]?.self, forKey: .liveNews)
+    }
+    
+    init(identifier           : Int,
+         title                : String,
+         shortTitle           : String,
+         excerpt              : String,
+         bodyHTML             : String,
+         authorName           : String,
+         category             : String,
+         createdAt            : Date?,
+         publishedAt          : Date?,
+         updatedAt            : Date?,
+         numberOfComments     : UInt,
+         image                : ArticleImage,
+         type                 : String,
+         liveNews             : [ArticleNews]?,
+         favorite             : Bool,
+         href                 : URL,
+         frontedURL           : URL,
+         externalVideoId      : String?,
+         externalVideoProvider: String?)
+    {
+        self.identifier            = identifier
+        self.title                 = title
+        self.shortTitle            = shortTitle
+        self.excerpt               = excerpt
+        self.bodyHTML              = bodyHTML
+        self.authorName            = authorName
+        self.category              = category
+        self.createdAt             = createdAt
+        self.publishedAt           = publishedAt
+        self.updatedAt             = updatedAt
+        self.numberOfComments      = numberOfComments
+        self.image                 = image
+        self.type                  = type
+        self.liveNews              = liveNews
+        self.favorite              = favorite
+        self.href                  = href
+        self.frontedURL            = frontedURL
+        self.externalVideoId       = externalVideoId
+        self.externalVideoProvider = externalVideoProvider
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any
+    {
+        return Article(identifier           : self.identifier,
+                       title                : self.title,
+                       shortTitle           : self.shortTitle,
+                       excerpt              : self.excerpt,
+                       bodyHTML             : self.bodyHTML,
+                       authorName           : self.authorName,
+                       category             : self.category,
+                       createdAt            : self.createdAt,
+                       publishedAt          : self.publishedAt,
+                       updatedAt            : self.updatedAt,
+                       numberOfComments     : self.numberOfComments,
+                       image                : self.image,
+                       type                 : self.type,
+                       liveNews             : self.liveNews,
+                       favorite             : self.favorite,
+                       href                 : self.href,
+                       frontedURL           : self.frontedURL,
+                       externalVideoId      : self.externalVideoId,
+                       externalVideoProvider: self.externalVideoProvider)
     }
 }
 

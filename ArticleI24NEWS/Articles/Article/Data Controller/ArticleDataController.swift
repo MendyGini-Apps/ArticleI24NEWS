@@ -17,10 +17,10 @@ protocol ArticleDataControllerProtocol
 
 class ArticleDataController
 {
-    let htmlArticle: HTMLArticleModel
-    init(htmlArticle: HTMLArticleModel)
+    let article: Article
+    init(article: Article)
     {
-        self.htmlArticle = htmlArticle
+        self.article = article
     }
 }
 
@@ -40,12 +40,14 @@ extension ArticleDataController: ArticleDataControllerProtocol
 {
     var imagesURLs: [URL]
     {
-        return htmlArticle.articleImages.map { $0.imageURL }
+        guard let htmlArticle = article as? HTMLArticleModel else { return [article.image.imageURL] }
+        return htmlArticle.images.map { $0.imageURL }
     }
     
     func indexOfArticleImage(from url: URL) -> Int?
     {
-        return htmlArticle.articleImages.firstIndex { $0.imageURL == url }
+        guard let htmlArticle = article as? HTMLArticleModel else { return 0 }
+        return htmlArticle.images.firstIndex { $0.imageURL == url }
     }
     
     func slugFromArticleLink(_ url: URL) -> String?

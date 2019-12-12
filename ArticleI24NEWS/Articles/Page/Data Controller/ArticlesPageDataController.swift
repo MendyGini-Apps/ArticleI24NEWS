@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ProcedureKit
 
 protocol ArticlesPageDataControllerProtocol: PageDataSourceProtocol
 {
@@ -21,10 +22,10 @@ protocol ArticlesPageDataControllerDelegate: NSObjectProtocol
 
 class ArticlesPageDataController
 {
-    private weak var delegate: ArticlesPageDataControllerDelegate!
-    private let articleHTMLFormatter: ArticleHTMLFormatter
-    private(set) var dataSource: [Item]
-    private var currentIndex: Int
+    private      let queue       : ProcedureQueue
+    private weak var delegate    : ArticlesPageDataControllerDelegate!
+    private(set) var dataSource  : [Item]
+    private      var currentIndex: Int
     {
         didSet
         {
@@ -33,14 +34,12 @@ class ArticlesPageDataController
         }
     }
     
-    init(articles: [Article], at index: Int, delegate: ArticlesPageDataControllerDelegate)
+    init(articles: [Item], at index: Int, delegate: ArticlesPageDataControllerDelegate)
     {
-        self.delegate = delegate
+        self.dataSource   = articles
         self.currentIndex = index
-        let articleHTMLFormatter = ArticleHTMLFormatter()
-        self.articleHTMLFormatter = articleHTMLFormatter
-        let HTMLArticlesModels = articles.compactMap { try? articleHTMLFormatter.extractHTMLArticle(from: $0) }
-        self.dataSource = HTMLArticlesModels
+        self.delegate     = delegate
+        self.queue        = ProcedureQueue()
     }
 }
 
@@ -48,15 +47,41 @@ extension ArticlesPageDataController: ArticlesPageDataControllerProtocol
 {
     func fetchData()
     {
-        self.delegate.dataController(self, taskStateDidChange: true)
+        delegate.dataController(self, taskStateDidChange: true)
+        DispatchQueue.global().async { [weak self] in
+            guard let strongSelf = self else { return }
+            let htmlArticlesExtractors = strongSelf.dataSource.map { HTMLArticleExtratorOperation(article: $0) }
+            
+            htmlArticlesExtractors.forEach { (htmlArticlesExtractor) in
+                
+                htmlArticlesExtractor.addDidFinishBlockObserver { [weak self] (operation, error) in
+                    
+                    guard let strongSelf = self else { return }
+                    
+                    guard let htmlArticle = operation.output.value?.value,
+                        let index = strongSelf.dataSource.firstIndex(of: htmlArticle) else { return }
+                    
+                    strongSelf.dataSource[index] = htmlArticle
+                    
+                    if index == strongSelf.currentIndex
+                    {
+                        DispatchQueue.main.async {
+                            strongSelf.delegate.dataController(strongSelf, taskStateDidChange: true)
+                        }
+                    }
+                }
+            }
+            
+            strongSelf.queue.addOperations(htmlArticlesExtractors)
+        }
     }
 }
 
 extension ArticlesPageDataController: PageDataSourceProtocol
 {
-    typealias Item = HTMLArticleModel
+    typealias Item = Article
     
-    var currentItem: HTMLArticleModel?
+    var currentItem: Item?
     {
         get
         {

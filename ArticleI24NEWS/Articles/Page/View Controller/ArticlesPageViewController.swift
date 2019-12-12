@@ -124,7 +124,7 @@ extension ArticlesPageViewController
     private func getArticleViewController(with item: ArticlesPageDataController.Item) -> ArticleViewController
     {
         let articleViewController = storyboard!.instantiateViewController(withIdentifier: "\(ArticleViewController.self)") as! ArticleViewController
-        articleViewController.bindData(htmlArticle: item)
+        articleViewController.bindData(article: item)
         
         return articleViewController
     }
@@ -161,7 +161,7 @@ extension ArticlesPageViewController: UIPageViewControllerDelegate
         
         guard let articleViewController = pageViewController.viewControllers?.first as? ArticleViewController else { return }
         
-        dataController.currentItem = articleViewController.dataController.htmlArticle
+        dataController.currentItem = articleViewController.dataController.article
     }
 }
 
@@ -179,7 +179,7 @@ extension ArticlesPageViewController: ArticlesPageDataControllerDelegate
     
     func dataController(_ dataController: ArticlesPageDataController, currentItemDidChanged item: ArticlesPageDataController.Item)
     {
-        commentButton.numberOfComment = item.base.numberOfComments
+        commentButton.numberOfComment = item.numberOfComments
     }
 }
 

@@ -19,7 +19,7 @@ class LoadBarView: UIView
         }
     }
     
-    @IBInspectable var progress: CGFloat = 0.5
+    @IBInspectable var progress: CGFloat = 0.0
     {
         didSet
         {
