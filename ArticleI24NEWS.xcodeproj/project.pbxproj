@@ -29,6 +29,7 @@
 		7B88865A23A109B400AFCED8 /* IDMTapDetectingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864B23A109B400AFCED8 /* IDMTapDetectingView.m */; };
 		7B88865B23A109B400AFCED8 /* DALabeledCircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88864F23A109B400AFCED8 /* DALabeledCircularProgressView.m */; };
 		7B88865C23A109B400AFCED8 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88865023A109B400AFCED8 /* DACircularProgressView.m */; };
+		7B8886DA23A230AB00AFCED8 /* Dated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8886D923A230AB00AFCED8 /* Dated.swift */; };
 		7B8C68DB2390014D00967B03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DA2390014D00967B03 /* AppDelegate.swift */; };
 		7B8C68DD2390014D00967B03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C68DC2390014D00967B03 /* SceneDelegate.swift */; };
 		7B8C68E22390014D00967B03 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8C68E02390014D00967B03 /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		7B88865123A109B400AFCED8 /* DALabeledCircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DALabeledCircularProgressView.h; sourceTree = "<group>"; };
 		7B88865223A109B400AFCED8 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
 		7B88866123A10D2500AFCED8 /* ArticleI24NEWS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ArticleI24NEWS-Bridging-Header.h"; sourceTree = "<group>"; };
+		7B8886D923A230AB00AFCED8 /* Dated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dated.swift; sourceTree = "<group>"; };
 		7B8C68D72390014D00967B03 /* ArticleI24NEWS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArticleI24NEWS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B8C68DA2390014D00967B03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7B8C68DC2390014D00967B03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,7 +147,6 @@
 			children = (
 				96BFCF51239CCBE800C49E39 /* Articles.storyboard */,
 				963D935923978D470050F014 /* HTMLArticleExtratorOperation.swift */,
-				7B2A4C202393D1AD003A40A8 /* Article.swift */,
 				96BFCF55239CCC6E00C49E39 /* Page */,
 				96BFCF4C239CCBB000C49E39 /* Article */,
 			);
@@ -156,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				7B2A4C322393DF16003A40A8 /* PageDataSourceProtocol.swift */,
+				7B8886D923A230AB00AFCED8 /* Dated.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -229,6 +231,14 @@
 			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
+		7B8886DB23A2313900AFCED8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				7B2A4C272393DA49003A40A8 /* Articles */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		7B8C68CE2390014D00967B03 = {
 			isa = PBXGroup;
 			children = (
@@ -253,11 +263,12 @@
 				7B2A4C2F2393DBE4003A40A8 /* BringJSONDataNetworkOperation.swift */,
 				7B8C68E02390014D00967B03 /* Main.storyboard */,
 				7BF9E0172399271000109877 /* MainTableViewController.swift */,
+				7B2A4C202393D1AD003A40A8 /* Article.swift */,
 				7B88863A23A109A100AFCED8 /* External Frameworks */,
 				7BF9E0162399265B00109877 /* Extensions */,
 				7B2A4C312393DF03003A40A8 /* Protocols */,
 				7B88863923A1098600AFCED8 /* Custom Views */,
-				7B2A4C272393DA49003A40A8 /* Articles */,
+				7B8886DB23A2313900AFCED8 /* Modules */,
 				7BF9E0002396711E00109877 /* Resources */,
 				7B8C68E52390014F00967B03 /* LaunchScreen.storyboard */,
 				7B8C68E82390014F00967B03 /* Info.plist */,
@@ -444,6 +455,7 @@
 				963D935A23978D470050F014 /* HTMLArticleExtratorOperation.swift in Sources */,
 				96FED69723902E1200439D80 /* ExtensionUIImage.swift in Sources */,
 				7BF9E01A2399532E00109877 /* LoadBarView.swift in Sources */,
+				7B8886DA23A230AB00AFCED8 /* Dated.swift in Sources */,
 				7B2A4C212393D1AD003A40A8 /* Article.swift in Sources */,
 				7BF9E0182399271000109877 /* MainTableViewController.swift in Sources */,
 				96BFCF5B239D56C700C49E39 /* ArticleWebcontroller.swift in Sources */,

@@ -51,9 +51,6 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FmO-x2-Lrq">
                                                     <rect key="frame" x="345" y="6.5" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="arabicSwitchValueChanged:" destination="doK-pX-TSc" eventType="valueChanged" id="zG2-Cq-sfW"/>
-                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -85,9 +82,6 @@
                                                         <segment title="FR"/>
                                                         <segment title="AR"/>
                                                     </segments>
-                                                    <connections>
-                                                        <action selector="localeControlsValueChanged:" destination="doK-pX-TSc" eventType="valueChanged" id="jyN-9E-7ll"/>
-                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -108,9 +102,6 @@
                                             <subviews>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="odM-oF-aSf">
                                                     <rect key="frame" x="300" y="6" width="94" height="32"/>
-                                                    <connections>
-                                                        <action selector="indexStepperValueChanged:" destination="doK-pX-TSc" eventType="valueChanged" id="EsM-hR-PPc"/>
-                                                    </connections>
                                                 </stepper>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6a-8d-X3S">
                                                     <rect key="frame" x="20" y="11.5" width="42" height="21"/>
@@ -137,18 +128,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="qWZ-ZF-Czh">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Show Articles" id="pxX-uU-fFW">
-                            <connections>
-                                <action selector="showArticlesAction:" destination="doK-pX-TSc" id="UzD-g4-ZY2"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Show Articles" id="pxX-uU-fFW"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="arabicSwitch" destination="FmO-x2-Lrq" id="0QD-sz-HYu"/>
                         <outlet property="indexLabel" destination="b6a-8d-X3S" id="btg-v3-5ke"/>
-                        <outlet property="indexStepper" destination="odM-oF-aSf" id="2Em-3E-le9"/>
-                        <outlet property="localeControls" destination="dAL-52-dfr" id="VqZ-OI-LnA"/>
-                        <outlet property="showArticlesButton" destination="pxX-uU-fFW" id="tdJ-qi-LWM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gww-tG-p47" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

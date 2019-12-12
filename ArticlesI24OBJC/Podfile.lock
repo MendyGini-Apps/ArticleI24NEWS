@@ -1,0 +1,22 @@
+PODS:
+  - NSTEasyJSON (1.0.6)
+  - ProcedureKit (5.2.0):
+    - ProcedureKit/Standard (= 5.2.0)
+  - ProcedureKit/Standard (5.2.0)
+
+DEPENDENCIES:
+  - NSTEasyJSON
+  - ProcedureKit
+
+SPEC REPOS:
+  trunk:
+    - NSTEasyJSON
+    - ProcedureKit
+
+SPEC CHECKSUMS:
+  NSTEasyJSON: 71399a97a84f35e31a7caa98e1385764d66d5e6d
+  ProcedureKit: deafeab083a0c5e45e4b02379e0ffa316d03db29
+
+PODFILE CHECKSUM: 4c34b48b4e2a31fba4b839df30d2459dcbcd7e5f
+
+COCOAPODS: 1.8.4

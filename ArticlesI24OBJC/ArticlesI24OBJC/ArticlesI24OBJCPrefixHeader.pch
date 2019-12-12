@@ -1,0 +1,25 @@
+//
+//  ArticlesI24OBJCPrefixHeader.pch
+//  i24News
+//
+//  Created by Guillaume on 25/10/2016.
+//  Copyright © 2016 Webwag Mobile. All rights reserved.
+//
+
+#ifndef ArticlesI24OBJCPrefixHeader_pch
+#define ArticlesI24OBJCPrefixHeader_pch
+
+#import <UIKit/UIKit.h>
+#import "NSTEasyJSON.h"
+#import "NSDateFormatter+Application.h"
+#import "VersionManager.h"
+
+#import "i24NewsConstants.h"
+
+#define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
+#define SYSTEM_VERSION_GREATER_THAN(v)              ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
+#define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+
+#endif /* i24NewsPrefixHeader_pch */
