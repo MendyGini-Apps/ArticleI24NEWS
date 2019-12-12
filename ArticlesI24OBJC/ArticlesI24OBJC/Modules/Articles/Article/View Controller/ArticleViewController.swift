@@ -38,7 +38,7 @@ class ArticleViewController: UIViewController
     
     // MARK: - Properties
     var webController: WebControllerProtocol!
-    weak var webView: WKWebView!
+    weak var webView: WKWebView?
     weak var heightWebViewConstraint: NSLayoutConstraint!
     
     private var observations = Set<NSKeyValueObservation>()
@@ -61,6 +61,8 @@ class ArticleViewController: UIViewController
     }
 
     deinit {
+        webView?.stopLoading()
+        webView?.configuration.userContentController.removeAllUserScripts()
         observations.forEach { $0.invalidate() }
     }
     
@@ -83,10 +85,9 @@ extension ArticleViewController
     {
         guard let htmlArticle = dataController.article as? HTMLArticleModel else { return }
         
-        guard let webView = NSTWKWebViewWarmuper.shared().dequeueWarmupedWKWebView() else { return }
+        let webView = WKWebView(frame: CGRect.zero, configuration: webController.configuration())
         self.webView = webView
         webView.removeFromSuperview()
-        webView.configuration.userContentController = webController.userContentController()
         webView.scrollView.isScrollEnabled = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = webController

@@ -1,7 +1,7 @@
 var intervalID;
 window.addEventListener('load', function(event) {
     notifyHeight();
-    intervalID = setInterval(startNotifyHeight, 2000);
+    intervalID = setInterval(startNotifyHeight, 1000);
 });
 
 var contentBody = document.getElementById('contentBody');
@@ -19,7 +19,7 @@ function startNotifyHeight() {
         return;
     }
     oldScrollHeights.unshift(contentBody.scrollHeight);
-    if (oldScrollHeights.length > 4) {
+    if (oldScrollHeights.length > 16) {
         oldScrollHeights.pop();
     }
     notifyHeight();

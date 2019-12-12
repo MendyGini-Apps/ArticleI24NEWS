@@ -42,20 +42,34 @@
 
 - (void)fetchArticles
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSURL *articleENURL = [NSBundle.mainBundle URLForResource:@"articlesEN" withExtension:@"json"];
-        NSData *data = [NSData dataWithContentsOfURL:articleENURL options:NSDataReadingMappedIfSafe error:nil];
-        NSArray *articlesENArr = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        NSString *articleENPath = [NSBundle.mainBundle pathForResource:@"articlesEN" ofType:@"json"];
+        NSString* jsonString = [[NSString alloc] initWithContentsOfFile:articleENPath encoding:NSUTF8StringEncoding error:nil];
+
+        NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+
+        NSArray *articlesENArr = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         self.enArticles = [Article objectsWithDictionaries:articlesENArr];
-        
-        
-        NSURL *articleARURL = [NSBundle.mainBundle URLForResource:@"articlesAR" withExtension:@"json"];
-        data = [NSData dataWithContentsOfURL:articleARURL options:NSDataReadingMappedIfSafe error:nil];
-        NSArray *articleArARURL = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        self.arArticles = [Article objectsWithDictionaries:articleArARURL];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             self.showArticlesButton.enabled = YES;
+        });
+    });
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        
+        NSString *articleARURL = [NSBundle.mainBundle pathForResource:@"articlesAR" ofType:@"json"];
+        NSString* jsonString = [[NSString alloc] initWithContentsOfFile:articleARURL encoding:NSUTF8StringEncoding error:nil];
+
+        NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+
+        
+        NSArray *articleArARURL = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        self.arArticles = [Article objectsWithDictionaries:articleArARURL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.arabicSwitch.enabled = YES;
         });
     });
 }

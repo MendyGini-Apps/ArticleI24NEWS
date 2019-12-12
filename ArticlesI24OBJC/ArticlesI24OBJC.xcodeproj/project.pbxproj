@@ -60,6 +60,7 @@
 		7B88871B23A2570500AFCED8 /* HTMLArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B88871A23A2570500AFCED8 /* HTMLArticleModel.swift */; };
 		7B88872423A26FFA00AFCED8 /* NSTViewWarmuper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B88872223A26FFA00AFCED8 /* NSTViewWarmuper.m */; };
 		917587EC252AFCCEF075BDFC /* Pods_ArticlesI24OBJC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A41FAAB8936AAD8AD7663AD /* Pods_ArticlesI24OBJC.framework */; };
+		9621CF5E23A29AFD001B3883 /* LeakAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9621CF5D23A29AFD001B3883 /* LeakAvoider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -142,6 +143,7 @@
 		7B88871A23A2570500AFCED8 /* HTMLArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTMLArticleModel.swift; sourceTree = "<group>"; };
 		7B88872223A26FFA00AFCED8 /* NSTViewWarmuper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTViewWarmuper.m; sourceTree = "<group>"; };
 		7B88872323A26FFA00AFCED8 /* NSTViewWarmuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTViewWarmuper.h; sourceTree = "<group>"; };
+		9621CF5D23A29AFD001B3883 /* LeakAvoider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeakAvoider.swift; sourceTree = "<group>"; };
 		F06E5BF0B0EAF22FE7AB3FB1 /* Pods-ArticlesI24OBJC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ArticlesI24OBJC.release.xcconfig"; path = "Target Support Files/Pods-ArticlesI24OBJC/Pods-ArticlesI24OBJC.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,10 +201,8 @@
 				7B88868A23A10E4500AFCED8 /* External Frameworks */,
 				7B88871123A239E200AFCED8 /* Extensions */,
 				7B8886C323A22F8700AFCED8 /* Helpers */,
-				7B88870523A2376900AFCED8 /* Protocols */,
 				7B8886B323A22B8600AFCED8 /* Managers */,
 				7B8886B923A22DF300AFCED8 /* Models */,
-				7B88870A23A239D000AFCED8 /* Custom Views */,
 				7B8886DC23A2318A00AFCED8 /* Modules */,
 				7B88867A23A10DDF00AFCED8 /* Assets.xcassets */,
 				7B8886F323A231CF00AFCED8 /* HTML */,
@@ -332,6 +332,8 @@
 		7B8886DD23A2318A00AFCED8 /* Articles */ = {
 			isa = PBXGroup;
 			children = (
+				7B88870523A2376900AFCED8 /* Protocols */,
+				7B88870A23A239D000AFCED8 /* Custom Views */,
 				7B8886E423A2318A00AFCED8 /* Articles.storyboard */,
 				7B8886E323A2318A00AFCED8 /* HTMLArticleExtratorOperation.swift */,
 				7B88871A23A2570500AFCED8 /* HTMLArticleModel.swift */,
@@ -380,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				7B8886E723A2318A00AFCED8 /* ArticleWebcontroller.swift */,
+				9621CF5D23A29AFD001B3883 /* LeakAvoider.swift */,
 			);
 			path = "Web Controller";
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				7B88870923A2376A00AFCED8 /* PageDataSourceProtocol.swift in Sources */,
 				7B8886AB23A10E4500AFCED8 /* DALabeledCircularProgressView.m in Sources */,
 				7B8886C723A22FA100AFCED8 /* NSDateFormatter+Application.m in Sources */,
+				9621CF5E23A29AFD001B3883 /* LeakAvoider.swift in Sources */,
 				7B8886C223A22F6D00AFCED8 /* ArticleComment.m in Sources */,
 				7B88871923A239E200AFCED8 /* ExtensionUIViewController.swift in Sources */,
 				7B88870E23A239D000AFCED8 /* CommentButton.swift in Sources */,

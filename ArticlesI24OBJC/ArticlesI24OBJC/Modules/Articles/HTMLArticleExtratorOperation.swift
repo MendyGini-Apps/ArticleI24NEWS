@@ -19,13 +19,18 @@ class HTMLArticleExtratorOperation: Procedure, InputProcedure, OutputProcedure
         return articleStyleString
     }()
     
-    private static var templateArticleString: String = {
+    private static var templateArticleLTRString: String = {
         let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
         let templateArticleString = try! String(contentsOf: templateArticleURL)
         
-        let direction = VersionManager.sharedInstance().isArabic ? "rtl" : "ltr"
+        return String(format: templateArticleString, "ltr", articleStyleString)
+    }()
+    
+    private static var templateArticleRTLString: String = {
+        let templateArticleURL = Bundle.main.url(forResource: "articleTemplate", withExtension: "html")!
+        let templateArticleString = try! String(contentsOf: templateArticleURL)
         
-        return String(format: templateArticleString, direction, articleStyleString)
+        return String(format: templateArticleString, "rtl", articleStyleString)
     }()
     
     private static var templateNewsString: String = {
@@ -84,7 +89,8 @@ class HTMLArticleExtratorOperation: Procedure, InputProcedure, OutputProcedure
         
         do
         {
-            let doc = try SwiftSoup.parse(HTMLArticleExtratorOperation.templateArticleString)
+            let templateArticle = VersionManager.sharedInstance()?.isArabic ?? false ? HTMLArticleExtratorOperation.templateArticleRTLString : HTMLArticleExtratorOperation.templateArticleLTRString
+            let doc = try SwiftSoup.parse(templateArticle)
             
             try doc.body()?.select("#contentBody").prepend(article.bodyHTML)
             

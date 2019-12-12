@@ -11,7 +11,7 @@ import WebKit
 
 protocol WebControllerProtocol: WKNavigationDelegate
 {
-    func userContentController() -> WKUserContentController
+    func configuration() -> WKWebViewConfiguration
 }
 
 protocol WebControllerDelegate: NSObjectProtocol
@@ -61,7 +61,7 @@ extension ArticleWebController
 
 extension ArticleWebController: WebControllerProtocol
 {
-    func userContentController() -> WKUserContentController
+    func configuration() -> WKWebViewConfiguration
     {
         //UserScript object
         let script = WKUserScript(source: ArticleWebController.jsSource, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
@@ -73,10 +73,13 @@ extension ArticleWebController: WebControllerProtocol
         controller.addUserScript(script)
 
         //Add message handler reference
-        controller.add(self, name: "sizeNotification")
+        controller.add(LeakAvoider(delegate: self), name: "sizeNotification")
 
         //Create configuration
-        return controller
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = controller
+        
+        return configuration
     }
 }
 
